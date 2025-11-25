@@ -1,10 +1,10 @@
 ---
 title: "How We're Making 28% Yield with Aster"
 description: "Live delta-neutral Aster funding rate strategy — currently earning 28.1% APR with near-zero directional risk."
-pubDate: 2025-11-24T05:00:00Z
+date: 2025-11-24T05:00:00Z
 image: "/images/posts/28-percent-yield.jpg"
 heroImageAlt: "Aster perpetuals funding rate chart showing +0.076% paid to shorts"
-authors: ["Nefutrades"]
+authors: ["Nefu"]
 authorTwitter: "@nefutrades"
 tags: ["Aster", "Funding Rate", "Delta Neutral", "Yield", "DeFi", "Solana"]
 categories: ["yield"]

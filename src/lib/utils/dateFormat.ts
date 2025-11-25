@@ -1,21 +1,19 @@
+// src/lib/utils/dateFormat.ts
 import { format, parseISO } from "date-fns";
 
-const dateFormat = (input: any): string => {
-  if (!input) return "No Date";
+export default function dateFormat(dateInput: string | Date | undefined): string {
+  if (!dateInput) return "No date";
 
   let date: Date;
 
-  if (typeof input === "string") {
-    const trimmed = input.trim();
-    const iso = parseISO(trimmed);
-    if (!isNaN(iso.getTime())) return format(iso, "dd MMM yyyy");
-
-    date = new Date(trimmed);
+  if (typeof dateInput === "string") {
+    // Handle both "2025-11-24" and "2025-11-24T05:00:00Z"
+    date = new Date(dateInput);
   } else {
-    date = new Date(input);
+    date = dateInput;
   }
 
-  return isNaN(date.getTime()) ? "Invalid Date" : format(date, "dd MMM yyyy");
-};
+  if (isNaN(date.getTime())) return "Invalid date";
 
-export default dateFormat;
+  return format(date, "dd MMM yyyy"); // → 24 Nov 2025
+}

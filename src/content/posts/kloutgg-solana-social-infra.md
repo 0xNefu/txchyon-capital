@@ -1,10 +1,10 @@
 ---
 title: "KloutGG Is Quietly Becoming the Social Graph of Solana"
 description: "How Klout is turning on-chain activity into verifiable social capital — and why Klout score will matter more than follower count in 2026."
-pubDate: 2025-11-21
+date: 2025-11-21
 image: "/images/posts/klout.jpg"
 heroImageAlt: "KloutGG social graph visualization with on-chain reputation scores"
-authors: ["Nefutrades"]
+authors: ["Nefu"]
 authorTwitter: "@nefutradaes"
 tags: ["KloutGG", "SocialFi", "Reputation", "Solana", "On-Chain Score"]
 categories: ["solana"]

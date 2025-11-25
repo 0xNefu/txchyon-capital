@@ -1,10 +1,10 @@
 ---
 title: "$ASTER Below $1 Is the Last Dip — Here's Why"
 description: "On-chain metrics, funding dynamics, and macro setup that make sub-$1 the final accumulation zone."
-pubDate: 2025-11-20
+date: 2025-11-20
 image: "/images/posts/aster.jpg"
 heroImageAlt: "Aster price chart wicked below $1 with bullish on-chain backdrop"
-authors: ["NefuTrades"]
+authors: ["Nefu"]
 authorTwitter: "@nefutraades"
 tags: ["ASTER", "Price Prediction", "Macro", "Solana"]
 categories: ["perps"]

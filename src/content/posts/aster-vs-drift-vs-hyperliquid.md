@@ -1,10 +1,10 @@
 ---
 title: "Aster vs Drift vs Hyperliquid — Where Smart Money Actually Trades in 2025"
 description: "Volume, depth, funding rates, and slippage compared across the three major Solana perps DEXs."
-pubDate: 2025-11-21
+date: 2025-11-21
 image: "/images/posts/aster-rocket.jpg"
 heroImageAlt: "Aster, Drift, and Hyperliquid logos with volume and funding comparison"
-authors: ["NefuTrades"]
+authors: ["Nefu"]
 authorTwitter: "@nefutrades"
 tags: ["Aster", "Drift", "Hyperliquid", "Comparison", "Solana", "Perps"]
 categories: ["perps"]

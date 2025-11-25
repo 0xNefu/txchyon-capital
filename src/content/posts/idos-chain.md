@@ -1,11 +1,11 @@
 ---
 title: "idOS Network – The Chain-Agnostic Identity Layer Web3 Has Needed Since Day One"
 description: "How idOS solves KYC, sybil resistance, and on-chain reputation across every major chain — without ever touching your private keys."
-pubDate: 2025-11-22
+date: 2025-11-22
 image: "/images/posts/idos.jpg"
 heroImageAlt: "idOS decentralized identity vault with connections to NEAR, Arbitrum, Starknet, and more"
-authors: ["Txchyon"]
-authorTwitter: "txchyon"
+authors: ["Nefu"]
+authorTwitter: "@txchyon"
 tags: ["idOS", "Identity", "KYC", "Chain-Agnostic", "DeFi", "Zero-Knowledge"]
 categories: ["evm"]
 draft: false

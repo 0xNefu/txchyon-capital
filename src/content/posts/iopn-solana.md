@@ -1,10 +1,10 @@
 ---
 title: "iopn Is the Quietest 100x Infrastructure Play on Solana Right Now"
 description: "Why the iopn network is becoming the de facto AI agent execution layer on Solana — and why we’re accumulating hard below $0.40."
-pubDate: 2025-11-23
+date: 2025-11-23
 image: "/images/posts/iopn.jpg"
 heroImageAlt: "iopn decentralized AI agent compute layer powering Solana agents"
-authors: ["Nefutraades"]
+authors: ["Nefu"]
 authorTwitter: "@nefutrades"
 tags: ["iopn", "AI Agents", "Solana", "RPC", "DePIN", "Infrastructure"]
 categories: ["evm"]

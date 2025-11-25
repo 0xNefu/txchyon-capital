@@ -1,39 +1,60 @@
 {
   "site": {
-    "title": "Bookworm Light Astro | Blog Template",
-    "base_url": "https://bookworm-light-astro.vercel.app",
+    "title": "Txchyon",
+    "base_url": "http://localhost:4321",
     "base_path": "/",
     "trailing_slash": false,
     "favicon": "/images/favicon.png",
-    "logo": "/images/logo.png",
+    "logo": false,
     "logo_width": "200",
     "logo_height": "34",
-    "logo_text": "Bookworm Light"
+    "logo_text": "Txchyon"
   },
 
   "settings": {
-    "pagination": 5
+    "pagination": 6
   },
 
   "metadata": {
-    "meta_author": "Themefisher",
-    "meta_image": "/images/og-image.png",
-    "meta_description": "Bookworm Light Astro Blog Template"
+    "meta_author": "NefuTrades",
+    "meta_image": "/images/og-image.jpg",
+    "meta_description": "Minimalist thoughts on markets, code, and the cosmos. Powered by Astro."
   },
 
   "google_tag_manager": {
     "enable": false,
-    "gtm_id": "GTM-XXXXXX"
+    "gtm_id": ""
   },
 
   "params": {
     "contact_form_action": "#",
-    "copyright": "Copyright © 2025 a theme by [Themefisher](https://themefisher.com)"
+    "copyright": "© 2025 Txchyon — Built by NefuTrades"
   },
 
   "contactinfo": {
-    "address": "355 S Grand Ave <br/> Los Angeles, CA 90071",
-    "email": "info@bookworm.org",
-    "phone": "+800 567 1234"
+    "address": "",
+    "email": "",
+    "phone": ""
+  },
+
+  "social": {
+    "twitter": "txchyon",
+    "github": "",
+    "linkedin": "",
+    "youtube": "",
+    "instagram": ""
+  },
+
+  "author": {
+    "name": "NefuTrades",
+    "bio": "Trading, building, and writing in public.",
+    "avatar": "/images/avatar.jpg",
+    "twitter": "nefutrades"
+  },
+
+  "branding": {
+    "blog_name": "Txchyon",
+    "tagline": "Signal in the noise.",
+    "twitter_handle": "@txchyon"
   }
 }

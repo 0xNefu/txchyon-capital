@@ -1,61 +1,39 @@
 {
   "main": [
     {
-      "name": "Home",
-      "url": "/"
+      "name": "Yield",
+      "url": "/categories/yield"
     },
     {
-      "name": "About",
-      "url": "/about"
+      "name": "Perps",
+      "url": "/categories/perps"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
+      "name": "EVM",
+      "url": "/categories/evm"
     },
     {
-      "name": "Pages",
-      "url": "",
-      "hasChildren": true,
-      "children": [
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "Elements",
-          "url": "/elements"
-        },
-        {
-          "name": "Privacy Policy",
-          "url": "/privacy-policy"
-        }
-      ]
+      "name": "Solana",
+      "url": "/categories/solana"
+    },
+    {
+      "name": "Aster",
+      "url": "/categories/aster"
+    },
+    {
+      "name": "Bitcoin",
+      "url": "/categories/bitcoin"
     }
   ],
   "footer": [
     {
-      "name": "About",
-      "url": "/about"
+      "name": "Txchyon",
+      "url": "/"
     },
     {
-      "name": "Contact",
-      "url": "/contact"
-    },
-    {
-      "name": "Elements",
-      "url": "/elements"
-    },
-    {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
+      "name": "Twitter",
+      "url": "https://twitter.com/txchyon",
+      "external": true
     }
   ]
 }

@@ -1,13 +1,13 @@
 ---
-title: "How to Use NordVPN with Hyperliquid – The Exact 5-Minute Setup I Run Before Every Perps Trade in 2025"
+title: "How to Use NordVPN with Hyperliquid - Step by step guide"
 description: "Full step-by-step guide to hiding your IP, killing ISP throttling, bypassing geo-blocks, and adding kill-switch protection while trading on Hyperliquid. Includes my tested server list, latency numbers, and the current NordVPN deal with 3+ months free."
-date: 2025-11-27
-image: "/images/posts/nordvpn-hyperliquid-2025.jpg"
+date: 2025-11-28
+image: "/images/posts/hyperliquid.jpg"
 heroImageAlt: "NordVPN connected to New York server with Hyperliquid dashboard open and MetaMask connected"
 authors: ["Nefu"]
 authorTwitter: "@txchyon"
 tags: ["NordVPN", "Hyperliquid", "Arbitrum", "Perps", "DeFi Security", "Privacy", "VPN", "Anonymity", "Trading Guide"]
-categories: ["privacy", "trading", "arbitrum"]
+categories: ["defi", "evm"]
 draft: false
 ---
 

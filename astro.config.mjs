@@ -6,19 +6,35 @@ import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
 import remarkCollapse from "remark-collapse";
 import remarkToc from "remark-toc";
-import sharp from "sharp";
+
 import config from "./src/config/config.json";
 
 // https://astro.build/config
 export default defineConfig({
-  site: config.site.base_url ? config.site.base_url : "http://examplesite.com",
+  site: "https://txchyon.com",
+
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-  image: { service: sharp() },
-  vite: { plugins: [tailwindcss()] },
+
+  // ← This is the correct way for the Bookworm Light theme (and most Astro 3/4 projects)
+  image: {
+    service: { entrypoint: "astro/assets/services/sharp" },
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
+  },
+
   integrations: [
     react(),
-    sitemap(),
+    mdx(),
+
+    sitemap({
+      changefreq: "weekly",
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+
     AutoImport({
       imports: [
         "@/shortcodes/Button",
@@ -30,10 +46,13 @@ export default defineConfig({
         "@/shortcodes/Tab",
       ],
     }),
-    mdx(),
   ],
+
   markdown: {
-    remarkPlugins: [remarkToc, [remarkCollapse, { test: "Table of contents" }]],
+    remarkPlugins: [
+      remarkToc,
+      [remarkCollapse, { test: "Table of contents" }],
+    ],
     shikiConfig: { theme: "one-dark-pro", wrap: true },
     extendDefaultPlugins: true,
   },

@@ -2,6 +2,7 @@
 title: "The Ultimate Beginner’s Guide to Providing Liquidity on Uniswap V3"
 description: "A complete step-by-step guide for beginners on how to provide concentrated liquidity on Uniswap V3, understand fee tiers, set price ranges, avoid impermanent loss, and start earning trading fees in DeFi."
 date: 2025-12-01
+updatedDate: 2025-12-02 
 image: "/images/posts/uniswapv3.jpg"
 heroImageAlt: "Uniswap V3 concentrated liquidity interface showing price range selection and fee tier options"
 authors: ["Nefu"]

@@ -2,6 +2,7 @@
 title: "idOS Network 2025: The Only Chain-Agnostic Identity Layer Actually Shipping"
 description: "idOS is the decentralized, zero-knowledge identity primitive that finally works across EVM, Solana, NEAR, Starknet, Cosmos, and more. 1.2M+ profiles, 450k+ verified credentials, and a massive airdrop farming opportunity via Wallchain leaderboard."
 date: 2025-11-25
+updatedDate: 2025-12-02 
 image: "/images/posts/idos.jpg"
 heroImageAlt: "idOS decentralized identity vault connected to Ethereum, Solana, NEAR, Starknet, Arbitrum, Cosmos"
 authors: ["Nefu"]

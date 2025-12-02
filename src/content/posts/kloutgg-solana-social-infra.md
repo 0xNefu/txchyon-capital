@@ -2,6 +2,7 @@
 title: "KloutGG 2025: The On-Chain Social Graph That's Redefining Solana Reputation"
 description: "KloutGG is turning Solana on-chain activity into verifiable social capital with 420k+ verified wallets. From Backpack whitelists to Marginfi borrow limits, here's how Klout is becoming the reputation layer Solana needs — and how to boost your score."
 date: 2025-11-25
+updatedDate: 2025-12-02 
 image: "/images/posts/kloutgg.jpg"
 heroImageAlt: "KloutGG on-chain social graph visualization with Solana wallets, TVL, and reputation scores"
 authors: ["Nefu"]

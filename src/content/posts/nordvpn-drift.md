@@ -2,6 +2,7 @@
 title: " How to setup Drift.trade with VPN – The Exact 5-Minute Setup I Run Before Every Perps Trade in 2025"
 description: "Full step-by-step guide to hiding your IP, killing ISP throttling, bypassing geo-blocks, and adding kill-switch protection while trading Solana perps on Drift Protocol. Includes my tested server list, latency numbers, and the current NordVPN deal with 3+ months free."
 date: 2025-11-27
+updatedDate: 2025-12-02 
 image: "/images/posts/drift1.jpg"
 heroImageAlt: "NordVPN connected to Singapore server with Drift.trade open and Phantom wallet connected"
 authors: ["Nefu"]

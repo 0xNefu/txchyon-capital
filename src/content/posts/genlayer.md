@@ -2,6 +2,7 @@
 title: "Genlayer: The \"AI Co-Processor\" for Blockchains and Your Ticket to the Future of Crypto Work"
 description: "Genlayer brings verifiable AI intelligence to any blockchain using zkML, unlocking subjective prediction markets, on-chain credit scoring, dynamic NFTs, autonomous agents, and much more."
 date: 2025-12-01
+updatedDate: 2025-12-02 
 image: "/images/posts/genlayer3.jpg"
 heroImageAlt: "Genlayer architecture diagram showing blockchain + traditional oracles + Genlayer as the decentralized AI brain with zkML verification"
 authors: ["Nefu"]

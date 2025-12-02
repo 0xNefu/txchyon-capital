@@ -2,6 +2,7 @@
 title: "iopn Network: From Solana RPC Vision to EVM L1 Reality — What Actually Changed"
 description: "iopn quietly pivoted from a Solana-only AI agent RPC layer to its own sovereign EVM-compatible L1 (OPN Chain) with government partnerships. Here’s the full story, updated stats, and why it’s still a high-conviction play below $0.40."
 date: 2025-11-25
+updatedDate: 2025-12-02 
 image: "/images/posts/iopn.jpg"
 heroImageAlt: "iopn Network OPN Chain — the sovereign EVM L1 powering AI agents and digital citizenship"
 authors: ["Nefu"]

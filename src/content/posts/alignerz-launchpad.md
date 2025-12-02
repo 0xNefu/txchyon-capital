@@ -2,6 +2,7 @@
 title: "AlignerZ Launchpad: The First Truly Aligned Launchpad"
 description: "Traditional launchpads are broken: bots, instant dumps, zero alignment. AlignerZ fixes it with IWO + TVS and is giving away 3.84% of supply via the ongoing Wallchain Epoch 1 airdrop. Full breakdown + how to join the airdrop with max rewards."
 date: 2025-11-26
+updatedDate: 2025-12-02 
 image: "/images/posts/alignerz.jpg"
 heroImageAlt: "AlignerZ logo with IWO pools, TVS NFTs, and Wallchain Quacks leaderboard"
 authors: ["Nefu"]

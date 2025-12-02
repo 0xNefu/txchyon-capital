@@ -2,6 +2,7 @@
 title: "How to Farm 28%+ Yield on Aster Perps Without Directional Risk (Delta-Neutral Funding Strategy)"
 description: "Step-by-step guide to the Aster funding rate arb that's printing 28.1% APR right now. No personal trades, just the mechanics — plus your referral link for bonus rewards and airdrop points."
 date: 2025-11-24
+updatedDate: 2025-12-02 
 image: "/images/posts/28-percent-yield.jpg"
 heroImageAlt: "Aster perpetuals funding rate chart showing +0.076% paid to shorts with delta-neutral setup"
 authors: ["Nefu"]

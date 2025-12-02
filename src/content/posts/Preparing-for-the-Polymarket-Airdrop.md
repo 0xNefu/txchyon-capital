@@ -2,6 +2,7 @@
 title: "Preparing for the Polymarket Airdrop: A Step-by-Step Guide (2025–2026)"
 description: "Polymarket is launching its $POLY token in Q1 2026 with a massive airdrop. Here’s exactly how to position yourself using real trading activity, track your progress, and avoid common mistakes — updated November 2025."
 date: 2025-11-28
+updatedDate: 2025-12-02 
 image: "/images/posts/poly.jpg"
 heroImageAlt: "Polymarket logo and prediction market interface with USDC bets on Polygon"
 authors: ["Nefu"]

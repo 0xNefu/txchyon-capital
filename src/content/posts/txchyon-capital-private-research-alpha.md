@@ -2,6 +2,7 @@
 title: "Introducing Txchyon Capital – My Private On-Chain Alpha Research & Media Firm"
 description: "I’m going fully on-chain with my research, trading, and media business. Welcome to Txchyon Capital: the private fund and alpha blog that turns real positions, real PnL, and real edge into the sharpest public (and private) crypto research on the internet."
 date: 2025-11-27
+updatedDate: 2025-12-02 
 image: "/images/posts/iopn2.jpg"
 heroImageAlt: "Txchyon Capital logo glowing on a dark asteroid field with Aster and Bitcoin charts in the background"
 authors: ["Nefu"]

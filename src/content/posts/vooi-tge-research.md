@@ -2,6 +2,7 @@
 title: "$VOOI TGE in Days: Full Research + Playbook"
 description: "26× oversubscribed community round, $20B+ cumulative volume, $200-400M daily, 100% unlock at TGE, and a points system that actually rewards real traders. Here’s why $VOOI at $112.5M FDV is the cleanest utility launch of Q4 2025 — plus exact steps to farm the airdrop before it’s gone."
 date: 2025-11-25
+updatedDate: 2025-12-02 
 image: "/images/posts/vooi.jpg"
 heroImageAlt: "VOOI dashboard showing $20B+ volume, 26× oversubscribed Cookie sale, and pre-market price action"
 authors: ["Nefu"]

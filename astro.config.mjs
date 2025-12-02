@@ -1,6 +1,6 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-import sitemap from "@astrojs/sitemap";
+// import sitemap from "@astrojs/sitemap"; // <-- REMOVE THIS IMPORT
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
@@ -16,7 +16,6 @@ export default defineConfig({
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
 
-  // ← This is the correct way for the Bookworm Light theme (and most Astro 3/4 projects)
   image: {
     service: { entrypoint: "astro/assets/services/sharp" },
   },
@@ -29,11 +28,12 @@ export default defineConfig({
     react(),
     mdx(),
 
-    sitemap({
-      changefreq: "weekly",
-      priority: 0.7,
-      lastmod: new Date(),
-    }),
+    // REMOVED: sitemap integration is replaced by a manual API endpoint (Step 2)
+    // sitemap({
+    //   changefreq: "weekly",
+    //   priority: 0.7,
+    //   lastmod: new Date(),
+    // }),
 
     AutoImport({
       imports: [

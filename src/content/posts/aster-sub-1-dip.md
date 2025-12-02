@@ -2,6 +2,7 @@
 title: "$ASTER Below $1 Is the Last Real Dip — Full On-Chain + Macro Case for 2026"
 description: "Funding rates, open interest, liquidity inflows, and macro setup all scream accumulation. Here’s why sub-$1 is the final shakeout before $3+ in 2026 — plus our exact position and referral link."
 date: 2025-11-20
+updatedDate: 2025-12-02 
 image: "/images/posts/aster.jpg"
 heroImageAlt: "ASTER price chart wicked below $1 with explosive OI, funding, and Meteora inflows"
 authors: ["Nefu"]

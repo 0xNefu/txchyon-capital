@@ -2,6 +2,7 @@
 title: "Aster vs Drift vs Hyperliquid — Where Smart Money Actually Trades in 2025"
 description: "Full on-chain breakdown of volume, depth, funding rates, slippage, fees, and liquidity across the three dominant Solana perps platforms — and why Aster is currently the highest-conviction venue for professional traders."
 date: 2025-11-21
+updatedDate: 2025-12-02 
 image: "/images/posts/aster-rocket.jpg"
 heroImageAlt: "Aster, Drift, and Hyperliquid logos with live volume, funding, and OI comparison"
 authors: ["Nefu"]

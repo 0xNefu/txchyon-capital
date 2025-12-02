@@ -2,6 +2,7 @@
 title: "How to Use NordVPN with Hyperliquid - Step by step guide"
 description: "Full step-by-step guide to hiding your IP, killing ISP throttling, bypassing geo-blocks, and adding kill-switch protection while trading on Hyperliquid. Includes my tested server list, latency numbers, and the current NordVPN deal with 3+ months free."
 date: 2025-11-28
+updatedDate: 2025-12-02 
 image: "/images/posts/hyperliquid.jpg"
 heroImageAlt: "NordVPN connected to New York server with Hyperliquid dashboard open and MetaMask connected"
 authors: ["Nefu"]

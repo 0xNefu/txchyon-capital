@@ -105,11 +105,11 @@ If you need a custom theme, theme customization, or complete website development
 to upload to git 
 
 git add .
-git commit -m "floating bubble link fix"
+git commit -m "reply guy article"
 git push
 
 
 The Sitemap links are 
 Search Engine,URL to Submit
-Google Search Console,https://txchyon.com/sitemap-index.xml
-Bing Webmaster Tools,https://txchyon.com/sitemap-index.xml
+Google Search Console,https://txchyon.com/sitemap.xml
+Bing Webmaster Tools,https://txchyon.com/sitemap.xml

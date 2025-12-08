@@ -7,6 +7,10 @@ import { markdownify } from "@/lib/utils/textConverter";
 import { getArticleCount } from "@/lib/utils/articleCounter";
 
 const articleCount = await getArticleCount();
+
+// Get the current page URL to check if we're on the main page
+const url = Astro.url.pathname;
+const isHomePage = url === '/' || url === '/index.html';
 ---
 
 <footer class="section bg-dark">
@@ -30,7 +34,7 @@ const articleCount = await getArticleCount();
           href="/tools"
           class="p-4 text-white/75 hover:text-white transition-all"
         >
-          Tools & Disclosures
+          Toolkit
         </a>
       </li>
     </ul>
@@ -38,17 +42,40 @@ const articleCount = await getArticleCount();
     {/* Social icons */}
     <Social class="social-icons mb-8" />
 
-    {/* Telegram CTA */}
-    <div class="mb-8">
-      <a
-        href="https://t.me/txchyon"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-all shadow-lg"
-      >
-        ✈️ Join Telegram Channel
-      </a>
-    </div>
+    {/* Newsletter on home, Telegram on other pages */}
+    {
+      isHomePage ? (
+        <div class="mb-8">
+          <script async src="https://subscribe-forms.beehiiv.com/embed.js"></script>
+          <iframe 
+            src="https://subscribe-forms.beehiiv.com/62d85daa-7878-4a83-a78a-a15f6226c516" 
+            class="beehiiv-embed"
+            frameborder="0" 
+            scrolling="no"
+            style="
+              width: 100%;
+              max-width: 400px;
+              height: 150px;
+              margin: 0 auto;
+              border-radius: 0;
+              background-color: transparent;
+              border: none;
+            "
+          ></iframe>
+        </div>
+      ) : (
+        <div class="mb-8">
+          <a
+            href="https://t.me/txchyon"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition-all shadow-lg"
+          >
+            ✈️ Join Telegram Channel
+          </a>
+        </div>
+      )
+    }
 
     {/* Article Count */}
     <div class="mb-6">

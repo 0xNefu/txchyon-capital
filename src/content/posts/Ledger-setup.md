@@ -22,10 +22,9 @@ A hardware wallet, often called **cold storage**, is the most secure way to prot
 
 Before we begin, it's important to understand the "why." Software wallets (like MetaMask or Exodus) are connected to the internet, making them vulnerable to malware, phishing attacks, and sophisticated wallet drainers. A hardware wallet like Ledger stores your private keys in a secure, offline chip. Transactions are signed inside the device and only the signed transaction is sent to your computer, meaning your keys never leave the safe environment.
 
-<video width="800" controls>
-  <source src="/videos/ledger-solana-flex-hero-compress.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+<div style="text-align: center; margin: 2rem 0;">
+<iframe width="800" height="450" src="https://www.youtube.com/embed/uArO_nobD4Q?si=tyTWlyMq37WZcQJJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</div>
 
 *This video showcases Ledger's seamless integration with the Solana ecosystem, highlighting its modern capabilities for secure DeFi and NFT management.*
 

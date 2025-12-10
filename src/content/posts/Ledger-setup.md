@@ -1,8 +1,8 @@
 ---
 title: "Cold Storage 101: The Essential Guide to Setting Up Your Ledger Nano S or X"
 description: "A step-by-step tutorial for setting up a Ledger hardware wallet. Learn where to buy securely, how to initialize your device, manage your Secret Recovery Phrase, and master the fundamentals of crypto self-custody."
-date: 2025-12-07
-updatedDate: 2025-12-07
+date: 2025-12-11
+updatedDate: 2025-12-11
 image: "/images/posts/Ledger_VictorMalecot-163.jpg"
 heroImageAlt: "A Ledger Nano device on a desk next to a paper sheet with the 24-word recovery phrase written down"
 authors: ["Nefu"]

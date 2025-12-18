@@ -1,4 +1,4 @@
-﻿// src/lib/categories.js - COMPLETE 10 PILLARS VERSION
+﻿// src/lib/categories.js - NOW WITH 11 PILLARS (Prediction Markets added)
 export const CATEGORY_HIERARCHY = {
   "getting-started": {
     name: "Getting Started",
@@ -143,6 +143,24 @@ export const CATEGORY_HIERARCHY = {
       "performance-tracking": "Performance Tracking",
       "tax-loss-harvesting": "Tax-Loss Harvesting",
       "estate-planning": "Estate Planning"
+    }
+  },
+
+  // NEW: 11th Pillar - Prediction Markets
+  "prediction-markets": {
+    name: "Prediction Markets",
+    description: "On-chain prediction platforms, event betting strategies, liquidity, arbitrage, and real-world outcome markets",
+    icon: "🎲",
+    subcategories: {
+      "platform-guides": "Platform Guides",
+      "event-strategies": "Event Strategies",
+      "liquidity-providing": "Liquidity Providing",
+      "arbitrage-opportunities": "Arbitrage Opportunities",
+      "on-chain-protocols": "On-Chain Protocols",
+      "resolution-mechanisms": "Resolution Mechanisms",
+      "bankroll-management": "Bankroll & Risk Management",
+      "market-analysis": "Market Analysis",
+      "regulatory-updates": "Regulatory Landscape"
     }
   }
 };

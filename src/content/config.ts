@@ -11,7 +11,8 @@ export const blogCategories = [
   'tools-automation',
   'research-analysis',
   'regulatory-tax',
-  'portfolio-management'
+  'portfolio-management',
+  'prediction-markets'  // ← New 11th pillar
 ] as const;
 
 export type BlogCategory = typeof blogCategories[number];
@@ -103,6 +104,17 @@ export const subcategories: Record<BlogCategory, string[]> = {
     'Performance Tracking',
     'Tax-Loss Harvesting',
     'Estate Planning'
+  ],
+  'prediction-markets': [  // ← New subcategories
+    'Platform Guides',
+    'Event Strategies',
+    'Liquidity Providing',
+    'Arbitrage Opportunities',
+    'On-Chain Betting Protocols',
+    'Resolution Mechanisms',
+    'Risk Management & Bankroll',
+    'Market Manipulation Detection',
+    'Regulatory Landscape'
   ]
 };
 
@@ -115,7 +127,7 @@ const blogCollection = defineCollection({
     description: z.string(),
     pubDate: z.date(),
     
-    // Category system - FIXED: Use categories (plural) not category
+    // Category system - now includes prediction-markets
     categories: z.array(z.enum(blogCategories)).or(z.enum(blogCategories)),
     subcategory: z.string().optional(),
     
@@ -148,16 +160,16 @@ const blogCollection = defineCollection({
   }),
 });
 
-// Export all collections - FIXED: Use 'posts' to match your folder name
+// Export all collections
 export const collections = {
-  'posts': blogCollection,  // CHANGED FROM 'blog' TO 'posts'
+  'posts': blogCollection,
   'pages': defineCollection({ type: 'content' }),
   'authors': defineCollection({ type: 'data' }),
   'about': defineCollection({ type: 'content' }),
   'contact': defineCollection({ type: 'content' }),
 };
 
-// Helper functions
+// Helper functions - updated with Prediction Markets metadata
 export const categoryMetadata: Record<BlogCategory, { title: string; description: string; color: string }> = {
   'getting-started': {
     title: 'Getting Started',
@@ -208,5 +220,10 @@ export const categoryMetadata: Record<BlogCategory, { title: string; description
     title: 'Portfolio Management',
     description: 'Wealth building and portfolio optimization',
     color: '#14B8A6'
+  },
+  'prediction-markets': {  // ← New pillar metadata
+    title: 'Prediction Markets',
+    description: 'Betting on real-world outcomes — platforms, strategies, and edge in on-chain prediction markets',
+    color: '#FF6B6B'  // Vibrant coral red — stands out nicely
   }
 };

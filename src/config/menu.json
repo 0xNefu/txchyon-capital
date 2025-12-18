@@ -42,6 +42,10 @@
         {
           "name": "Tools & Automation",
           "url": "/categories/tools-automation"
+        },
+        {
+          "name": "Prediction Markets",
+          "url": "/categories/prediction-markets"
         }
       ]
     }

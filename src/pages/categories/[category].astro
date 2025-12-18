@@ -1,11 +1,11 @@
 ---
 // src/pages/categories/[category].astro
-// Dynamic page for all 10 pillars
+// Dynamic page for all 11 pillars (Prediction Markets added)
 
 import Base from "@/layouts/Base.astro";
 import { getCollection } from "astro:content";
 
-// Generate all 10 pillar pages at build time
+// Generate all 11 pillar pages at build time
 export async function getStaticPaths() {
   const pillars = [
     "airdrop-farming",
@@ -17,7 +17,8 @@ export async function getStaticPaths() {
     "research-analysis",
     "security-privacy",
     "tools-automation",
-    "trading-investing"
+    "trading-investing",
+    "prediction-markets"  // ← New 11th pillar
   ];
 
   console.log("Generating category pages for:", pillars);

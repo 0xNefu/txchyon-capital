@@ -8,9 +8,9 @@ heroImageAlt: "Polymarket Beginner Guide"
 authors: ["Nefu"]
 authorTwitter: "Nefutrades"
 tags: ["Polymarket", "Prediction Markets", "DeFi", "Beginner Guides"]
-categories:
-  - "defi-yield"
-  - "defi-yield/prediction-markets"
+categories: 
+  - "prediction-markets"                    # Main new pillar
+  - "prediction-markets/platform-guides"    # Subcategory (use one from the list above)
   # Keep: "defi", "Founders", "tutorial", "solana", "DeFi", "Guides"
 draft: false
 ---

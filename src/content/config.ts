@@ -55,14 +55,21 @@ export const collections = {
   posts: blogCollection,
   pages: defineCollection({ type: 'content' }),
   authors: defineCollection({ 
-    type: 'data',
+    type: 'content',  // Changed from 'data' to 'content' for .md files
     schema: z.object({ 
-      name: z.string(),
-      bio: z.string().optional(),
-    })
+      title: z.string(),  // Changed from 'name' to 'title' (matches your nefu.md)
+      image: z.string().optional(),
+      description: z.string().optional(),  // Changed from 'bio' to 'description'
+      meta_title: z.string().optional(),
+      social: z.object({
+        github: z.string().url().optional(),
+        x: z.string().url().optional(),
+        linkedin: z.string().url().optional(),
+        facebook: z.string().url().optional(),
+      }).optional(),
+    }).passthrough(),
   }),
   about: defineCollection({ type: 'content' }),
   contact: defineCollection({ type: 'content' }),
   blog: defineCollection({ type: 'content' }),
-  'posts-backup': defineCollection({ type: 'content' }),
 };

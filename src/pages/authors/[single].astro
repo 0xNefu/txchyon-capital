@@ -1,4 +1,4 @@
----
+﻿---
 import Base from "@/layouts/Base.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
@@ -8,14 +8,13 @@ import { sortByDate } from "@/lib/utils/sortFunctions";
 import { humanize, slugify } from "@/lib/utils/textConverter";
 import type { CollectionEntry } from "astro:content";
 import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi";
-import AuthorSingle from "@/partials/AuthorSingle.astro";
+import AuthorSingle from "@/layouts/partials/AuthorSingle.astro";
 
 export async function getStaticPaths() {
   const authors = await getSinglePage("authors");
 
-  const paths = authors.map((author) => ({
-    params: {
-      single: author.id,
+  const paths = authors?.map((author) => ({
+    params: { single: author.id.replace(/\.md$/, ""),
     },
     props: { author },
   }));
@@ -28,7 +27,7 @@ const { title, meta_title, description, image } = author.data;
 // Author Posts
 const posts = await getSinglePage("posts");
 const sortPostsByDate: CollectionEntry<"posts">[] = sortByDate(posts);
-const currentPosts = sortPostsByDate.filter((post) => {
+const currentPosts = sortPostsByDate?.filter((post) => {
   return post.data.authors
     .map((author) => slugify(author))
     .includes(slugify(title));
@@ -51,11 +50,11 @@ const currentPosts = sortPostsByDate.filter((post) => {
           <div
             class={`row gy-4 ${currentPosts.length < 3 ? "justify-center" : ""}`}
           >
-            {currentPosts.map((post) => (
+            {currentPosts?.map((post) => (
               <div class="col-12 sm:col-6 lg:col-4">
                 {post.data.image && (
                   <a
-                    href={`/${post.id}`}
+                    href={`/blog/${post.id.replace(/\.md$/, "")}`}
                     class="rounded-lg block hover:text-primary overflow-hidden group"
                   >
                     <Image
@@ -76,7 +75,7 @@ const currentPosts = sortPostsByDate.filter((post) => {
                     <BiCategoryAlt className="mr-1 h-[16px] w-[16px] text-gray-600" />
 
                     <ul>
-                      {post.data.categories.map((category, i: number) => (
+                      {post.data.categories?.map((category, i: number) => (
                         <li class="inline-block">
                           <a
                             href={`/categories/${slugify(category)}`}
@@ -92,7 +91,7 @@ const currentPosts = sortPostsByDate.filter((post) => {
                 </ul>
                 <h3 class="h5">
                   <a
-                    href={`/${post.id}`}
+                    href={`/blog/${post.id.replace(/\.md$/, "")}`}
                     class="block hover:text-primary transition duration-300"
                   >
                     {post.data.title}

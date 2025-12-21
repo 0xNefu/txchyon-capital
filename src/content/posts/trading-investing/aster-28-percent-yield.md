@@ -100,5 +100,4 @@ Trade on Aster with this referral for:
 â†’ https://www.asterdex.com/en/referral/6814be
 
 *Published: November 24, 2025*  
-*Categories: aster, solana*  
 *Tags: Aster, funding rate, delta neutral, yield farming, perps strategy*

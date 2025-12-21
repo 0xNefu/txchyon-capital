@@ -34,7 +34,7 @@ Bitcoin wallets come in different forms: mobile/desktop software wallets, hardwa
 6. Your wallet is ready → Copy a receiving address (starts with bc1…)
 
 ### 3. Example: Set Up Ledger Hardware Wallet (Recommended for >$1k)
-1. Buy directly from https://ledger.com (never second-hand)
+1. Buy directly from https://tinyurl.com/ledgernef (never second-hand)
 2. Install Ledger Live app
 3. Initialize device → Write down 24-word seed phrase offline
 4. Install the Bitcoin app on the device via Ledger Live

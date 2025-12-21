@@ -73,5 +73,4 @@ Hyperliquid still wins on raw headline volume and exotic pairs, but if you trade
 → https://www.asterdex.com/en/referral/6814be
 
 *Published: November 21, 2025*  
-*Categories: aster,  
 *Tags: Aster, Drift, Hyperliquid, funding arbitrage, perps trading*

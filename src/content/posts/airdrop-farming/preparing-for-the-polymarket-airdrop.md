@@ -27,7 +27,7 @@ Aim for **$100–$200** in total activity to hit basic thresholds, but scale up 
 Here’s how to get set up and maximize your chances without risking capital unnecessarily.
 
 ## 1. Set Up Your Account and Wallet
-- Sign up on [polymarket.com](https://polymarket.com) → create an account using email or social login (no KYC for most regions; U.S. beta live via QCX).
+- Sign up on [polymarket.com](https://tinyurl.com/polynefu) → create an account using email or social login (no KYC for most regions; U.S. beta live via QCX).
 - Connect a Polygon-compatible wallet (MetaMask, Bitget Wallet, etc.). Your linked wallet will receive the $POLY airdrop.
   - Pro tip: Keep ~$5–10 in MATIC for gas.
 - Deposit USDC on Polygon ($50–$100 is plenty to start) via Polygon Bridge, Coinbase, or any major exchange.

@@ -82,7 +82,7 @@ Drop a comment if you want the same guide for Drift, Aster, GMX, or Bybit — al
 
 Stay safe out there.
 
-— Nefu (@txchyon)  
+— Nefu (@nefutrades)  
 txchyon.com
 
 *(When you’re ready to grab NordVPN, use my link again — it’s the cheapest you’ll ever see it and keeps these guides coming.)*

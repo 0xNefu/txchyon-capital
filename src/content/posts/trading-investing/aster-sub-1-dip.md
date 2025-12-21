@@ -66,5 +66,4 @@ We are stacking.
 → https://www.asterdex.com/en/referral/6814be
 
 *Published: November 20, 2025*  
-*Categories: aster, research  
 *Tags: ASTER, price prediction, funding arbitrage, accumulation*

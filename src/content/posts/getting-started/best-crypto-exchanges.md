@@ -86,15 +86,15 @@ Welcome to the most comprehensive 2026 guide covering **both centralized (CEX) a
 
 ### 1. Kraken – Best Overall US Crypto Exchange for Americans 2026
 **Best for:** Security + staking  
-[Kraken Referral – $10 BTC](https://www.kraken.com/sign-up?ref=YOUR_KRAKEN_REF)
+[Kraken Referral – $10 BTC](https://www.kraken.com/)
 
 ### 2. Coinbase – Best Beginner Crypto App USA 2026
 **Best for:** First-time buyers  
-[Coinbase Referral – $10 Free BTC](https://coinbase.com/join/DUTD8L9?src=ios-link)
+[Coinbase Referral – $10 Free BTC](https://tinyurl.com/coinbnefu)
 
 ### 3. Crypto.com – Best Crypto Debit Card + Rewards 2026
 **Best for:** Cashback card  
-[Crypto.com Referral – $25 Bonus](https://crypto.com/app/YOUR_CRYPTOCOM_REF)
+[Crypto.com Referral – $25 Bonus](https://crypto.com/)
 
 ## Best Decentralized Exchanges (DEX) 2026 – No KYC, Full Control
 

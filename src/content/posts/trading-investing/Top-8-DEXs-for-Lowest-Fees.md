@@ -103,5 +103,5 @@ A venerable and community-focused DEX, SushiSwap has successfully expanded its p
 
 ***
 
-**âš ï¸ Disclaimer:** The decentralized finance (DeFi) space is highly dynamic. Reward APYs/APRs can fluctuate dramatically based on market conditions, token prices, and protocol updates. Always conduct your own research (DYOR) before committing funds to any DeFi protocol. Past performance is not indicative of future results.
+**Disclaimer:** The decentralized finance (DeFi) space is highly dynamic. Reward APYs/APRs can fluctuate dramatically based on market conditions, token prices, and protocol updates. Always conduct your own research (DYOR) before committing funds to any DeFi protocol. Past performance is not indicative of future results.
 

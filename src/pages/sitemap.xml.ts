@@ -1,4 +1,4 @@
-// src/pages/sitemap.xml.ts  (or wherever you have it)
+// src/pages/sitemap.xml.ts
 
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
@@ -11,7 +11,7 @@ export const GET: APIRoute = async ({ site }) => {
   // 1. Fetch all posts from the 'posts' collection
   const posts = await getCollection('posts', ({ data }) => !data.draft);
 
-  // 2. Map posts to correct nested URLs using post.id
+  // 2. Map posts to correct nested URLs using post.slug (FIXED from post.id)
   const postsMap = posts
     .map((post) => {
       const lastModDate = post.data.updatedDate ?? post.data.date;
@@ -19,7 +19,7 @@ export const GET: APIRoute = async ({ site }) => {
 
       return `
         <url>
-          <loc>${new URL(`/blog/${post.id}`, site).href}</loc>
+          <loc>${new URL(`/blog/${post.slug}`, site).href}</loc>
           <lastmod>${lastMod}</lastmod>
           <priority>0.8</priority>
           <changefreq>weekly</changefreq>

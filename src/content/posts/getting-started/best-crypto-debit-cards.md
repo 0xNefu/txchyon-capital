@@ -1,8 +1,8 @@
 ---
-title: "Best Crypto Debit Cards That Still Pay Rewards in 2026"
+title: "Best Crypto Debit Cards That Pay Rewards in 2026"
 description: "Beginner-friendly guide to the best crypto debit cards in 2026, featuring cashback, token rewards, and real-world usability."
-date: 2025-12-08
-updatedDate: 2025-12-08
+date: 2025-12-15
+updatedDate: 2025-12-15
 image: "/images/posts/triadebitcrop.jpg"
 heroImageAlt: "debitcard"
 authors: ["Nefu"]
@@ -16,7 +16,7 @@ draft: true
 
 ## 📊 Quick Comparison Table: Best Crypto Debit Cards 2026
 
-| Card | Rewards | Type | Pros | Cons | Referral Placeholder |
+| Card | Rewards | Type | Pros | Cons | Official Ref Link |
 |------|--------|------|------|------|-------------------|
 | **Tria Card** | Up to 6% TRIA | Self-custodial | Global support, high cashback, stablecoin-friendly | Newer product, token-denominated rewards | `https://tria.com/ref/YOURCODE` |
 | **Coinbase Card** | Up to 4% crypto | Exchange-linked | Beginner-friendly, widely accepted, no annual fee | Conversion fees, occasional support issues | `https://coinbase.com/join/YOURCODE` |

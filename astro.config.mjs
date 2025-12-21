@@ -1,6 +1,5 @@
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-// import sitemap from "@astrojs/sitemap"; // <-- REMOVE THIS IMPORT
 import tailwindcss from "@tailwindcss/vite";
 import AutoImport from "astro-auto-import";
 import { defineConfig } from "astro/config";
@@ -12,10 +11,14 @@ import config from "./src/config/config.json";
 // https://astro.build/config
 export default defineConfig({
   site: "https://txchyon.com",
-
   base: config.site.base_path ? config.site.base_path : "/",
   trailingSlash: config.site.trailing_slash ? "always" : "never",
-
+  
+  // FIX ADDED HERE
+  build: {
+    format: "directory", // Forces clean URLs: /blog/post/ instead of /blog/post.md
+  },
+  
   image: {
     service: { entrypoint: "astro/assets/services/sharp" },
   },
@@ -26,8 +29,6 @@ export default defineConfig({
 
   integrations: [
     react(),
-
-    // ← AutoImport moved BEFORE mdx to fix the warning
     AutoImport({
       imports: [
         "@/shortcodes/Button",
@@ -39,8 +40,7 @@ export default defineConfig({
         "@/shortcodes/Tab",
       ],
     }),
-
-    mdx(), // ← Now comes after AutoImport
+    mdx(),
   ],
 
   markdown: {

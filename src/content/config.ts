@@ -18,25 +18,24 @@ const blogCategories = [
 const blogCollection = defineCollection({
   type: 'content',
   
-  // This filter EXCLUDES drafts from final output — but validation still runs on all files
-  filter: ({ data }) => !data.draft,
+  // REMOVE the filter from here - handle filtering in components
+  // filter: ({ data }) => !data.draft, ← DELETE THIS LINE
   
-  // REMOVE ({ image }) parameter since we're not using image() helper
   schema: z.object({
-    // Previously "required" — now safe for drafts
-    title: z.string().catch('Draft Post'),                    // fallback if missing/invalid
-    description: z.string().catch('No description yet'),      // fallback
-    date: z.coerce.date().catch(new Date()),                  // fallback to today if invalid
+    // Required fields with defaults
+    title: z.string(),
+    description: z.string(),
+    date: z.coerce.date(),
     
-    // Category system — keep enforcement but with fallback
-    category: z.enum(blogCategories).catch('getting-started'),
+    // Category system
+    category: z.enum(blogCategories),
     subcategory: z.string().optional(),
     
     // Tags & draft
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     
-    // 🔥 REVERT: Back to string paths (what was working on live site)
+    // Image fields
     image: z.string().optional(),
     heroImageAlt: z.string().optional(),
     
@@ -47,7 +46,7 @@ const blogCollection = defineCollection({
     
     updatedDate: z.coerce.date().optional(),
     
-    // Total freedom for anything else (comments, extras, etc.)
+    // Total freedom for anything else
   }).passthrough(),
 });
 
@@ -55,11 +54,11 @@ export const collections = {
   posts: blogCollection,
   pages: defineCollection({ type: 'content' }),
   authors: defineCollection({ 
-    type: 'content',  // Changed from 'data' to 'content' for .md files
+    type: 'content',
     schema: z.object({ 
-      title: z.string(),  // Changed from 'name' to 'title' (matches your nefu.md)
+      title: z.string(),
       image: z.string().optional(),
-      description: z.string().optional(),  // Changed from 'bio' to 'description'
+      description: z.string().optional(),
       meta_title: z.string().optional(),
       social: z.object({
         github: z.string().url().optional(),

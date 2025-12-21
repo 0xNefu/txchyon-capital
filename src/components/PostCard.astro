@@ -2,7 +2,7 @@
 ---
 const { post } = Astro.props;
 const { title, description, date, category, subcategory } = post.data;
-const { id } = post;
+const { slug } = post;  // ← Use slug (clean, no .md)
 
 const formattedDate = new Date(date).toLocaleDateString('en-US', {
   month: 'short',
@@ -25,7 +25,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     </div>
     
     <h3 class="text-xl font-bold mb-3 text-gray-900 dark:text-white">
-      <a href={`/blog/${id}`} class="hover:text-primary transition-colors">
+      <a href={`/blog/${slug}`} class="hover:text-primary transition-colors">
         {title}
       </a>
     </h3>
@@ -38,7 +38,7 @@ const formattedDate = new Date(date).toLocaleDateString('en-US', {
     
     <div class="flex justify-between items-center text-sm text-gray-500 dark:text-gray-400">
       <span>{formattedDate}</span>
-      <a href={`/blog/${id}`} class="text-primary font-medium hover:underline">
+      <a href={`/blog/${slug}`} class="text-primary font-medium hover:underline">
         Read →
       </a>
     </div>

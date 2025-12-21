@@ -1,21 +1,20 @@
 ﻿---
 import Base from "@/layouts/Base.astro";
-import { getSinglePage } from "@/lib/contentParser.astro";
 import dateFormat from "@/lib/utils/dateFormat";
 import { Image } from "astro:assets";
 
 import { sortByDate } from "@/lib/utils/sortFunctions";
 import { humanize, slugify } from "@/lib/utils/textConverter";
-import type { CollectionEntry } from "astro:content";
 import { BiCalendarEdit, BiCategoryAlt } from "react-icons/bi";
 import AuthorSingle from "@/layouts/partials/AuthorSingle.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";  // For authors
+import { getCollection } from "astro:content";           // ← ADD THIS LINE
 
 export async function getStaticPaths() {
   const authors = await getSinglePage("authors");
 
-  const paths = authors?.map((author) => ({
-    params: { single: author.id.replace(/\.md$/, ""),
-    },
+  const paths = authors.map((author) => ({
+    params: { single: author.slug || slugify(author.data.title) },
     props: { author },
   }));
   return paths;
@@ -24,12 +23,13 @@ export async function getStaticPaths() {
 const { author } = Astro.props;
 const { title, meta_title, description, image } = author.data;
 
-// Author Posts
-const posts = await getSinglePage("posts");
-const sortPostsByDate: CollectionEntry<"posts">[] = sortByDate(posts);
-const currentPosts = sortPostsByDate?.filter((post) => {
+// Author Posts - Use modern collection for posts
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sortedPosts = sortByDate(allPosts);
+
+const currentPosts = sortedPosts.filter((post) => {
   return post.data.authors
-    .map((author) => slugify(author))
+    ?.map((auth) => slugify(auth))
     .includes(slugify(title));
 });
 ---
@@ -50,11 +50,11 @@ const currentPosts = sortPostsByDate?.filter((post) => {
           <div
             class={`row gy-4 ${currentPosts.length < 3 ? "justify-center" : ""}`}
           >
-            {currentPosts?.map((post) => (
+            {currentPosts.map((post) => (
               <div class="col-12 sm:col-6 lg:col-4">
                 {post.data.image && (
                   <a
-                    href={`/blog/${post.id.replace(/\.md$/, "")}`}
+                    href={`/blog/${post.slug}`}
                     class="rounded-lg block hover:text-primary overflow-hidden group"
                   >
                     <Image
@@ -91,7 +91,7 @@ const currentPosts = sortPostsByDate?.filter((post) => {
                 </ul>
                 <h3 class="h5">
                   <a
-                    href={`/blog/${post.id.replace(/\.md$/, "")}`}
+                    href={`/blog/${post.slug}`}
                     class="block hover:text-primary transition duration-300"
                   >
                     {post.data.title}

@@ -1,5 +1,5 @@
 ---
-// src/pages/blog/[...slug].astro
+// src/pages/blog/[...slug].astro - FIXED WITH DEBUG LOGS
 
 import Base from "@/layouts/Base.astro";
 import PostSingle from "@/partials/PostSingle.astro";
@@ -11,7 +11,6 @@ export async function getStaticPaths() {
   console.log('=== DEBUG getStaticPaths ===');
   console.log('Number of posts:', posts.length);
   
-  // Detailed debug for each post
   posts.forEach((post, index) => {
     console.log(`\n[Post ${index + 1}] ${post.data.title}`);
     console.log(`  ID: "${post.id}"`);
@@ -19,15 +18,10 @@ export async function getStaticPaths() {
     console.log(`  File path: ${post.id}.md`);
     console.log(`  Category: "${post.data.category}"`);
     console.log(`  Subcategory: "${post.data.subcategory}"`);
-    
-    // What URLs will this create?
-    console.log(`  Will create route: /blog/${post.id}`);
-    
-    // Check if file exists
+    console.log(`  Will create route: /blog/${post.slug}`);
     console.log(`  Expected file: src/content/posts/${post.id}.md`);
   });
   
-  // Check for your example post
   const ourPost = posts.find(p => p.id === 'getting-started/how-to-buy-crypto');
   console.log('\nOur post found?', ourPost ? 'YES' : 'NO');
   
@@ -39,24 +33,48 @@ export async function getStaticPaths() {
   }
   
   return posts.map((post) => ({
-    params: { slug: post.id }, // Handles nested like 'getting-started/how-to-buy-crypto'
+    params: { slug: post.slug },
     props: { post },
   }));
 }
 
-const { slug } = Astro.params;
+// Get raw slug from URL
+const rawSlug = Astro.params.slug || '';
+
+// Strip .md if present
+const cleanSlug = rawSlug.endsWith('.md') ? rawSlug.slice(0, -3) : rawSlug;
+
+// Load all posts
+const allPosts = await getCollection("posts", ({ data }) => !data.draft);
+
+// Find post by clean slug first
+let post = allPosts.find((p) => p.slug === cleanSlug);
+
+// Fallback to exact match
+if (!post) {
+  post = allPosts.find((p) => p.slug === rawSlug);
+}
+
+// Debug render
 console.log('\n=== DEBUG Page Render ===');
-console.log('URL param "slug":', slug);
+console.log('URL param "slug":', rawSlug);
+console.log('Cleaned slug used:', cleanSlug);
 console.log('Full URL:', Astro.url.pathname);
 
-const { post } = Astro.props;
-console.log('Post from props:', post ? post.id : 'UNDEFINED');
-
 if (!post) {
-  console.log('ERROR: No post found, returning 404');
-  console.log('Requested slug:', slug);
-  console.log('Available posts:', (await getCollection("posts")).map(p => p.id));
-  return Astro.redirect('/404');
+  console.log('ERROR: No post found');
+  console.log('Requested slug:', rawSlug);
+  console.log('Available slugs:', allPosts.map(p => p.slug));
+
+  // If it was a .md URL, 301 redirect to clean version
+  if (rawSlug.endsWith('.md')) {
+    const redirectSlug = rawSlug.slice(0, -3);
+    console.log(`Redirecting .md URL to: /blog/${redirectSlug}`);
+    throw Astro.redirect(`/blog/${redirectSlug}`, 301);
+  }
+
+  // Otherwise, 404
+  throw Astro.redirect('/404');
 }
 
 console.log('Post found!');

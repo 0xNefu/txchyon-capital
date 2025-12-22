@@ -5,11 +5,11 @@ date: 2025-12-22
 updatedDate: 2025-12-22
 image: "/images/posts/liquidity-providing-prediction-markets.jpg"
 heroImageAlt: "Liquidity pools visualization with yes/no shares"
-authors: ["TxChyon"]
+authors: ["Nefu"]
 authorTwitter: "txchyon"
 tags: ["prediction-markets", "passive-income", "liquidity"]
-category: "Prediction Markets"
-subcategory: "Liquidity Providing"
+category: "prediction-markets"
+subcategory: "liquidity-providing"
 draft: true
 ---
 

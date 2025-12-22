@@ -5,11 +5,11 @@ date: 2025-12-22
 updatedDate: 2025-12-22
 image: "/images/posts/prediction-market-arbitrage.jpg"
 heroImageAlt: "Multiple prediction market screens showing price differences"
-authors: ["TxChyon"]
+authors: ["Nefu"]
 authorTwitter: "txchyon"
 tags: ["prediction-markets", "arbitrage", "trading"]
-category: "Prediction Markets"
-subcategory: "Arbitrage Opportunities"
+category: "prediction-markets"
+subcategory: "arbitrage-opportunities"
 draft: true
 ---
 

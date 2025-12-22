@@ -5,11 +5,11 @@ date: 2025-12-22
 updatedDate: 2025-12-22
 image: "/images/posts/prediction-market-strategies.jpg"
 heroImageAlt: "Trader analyzing multiple prediction market screens"
-authors: ["TxChyon"]
+authors: ["Nefu"]
 authorTwitter: "txchyon"
 tags: ["prediction-markets", "trading-strategies", "crypto"]
-category: "Prediction Markets"
-subcategory: "Event Strategies"
+category: "prediction-markets"
+subcategory: "event-strategies"
 draft: true
 ---
 

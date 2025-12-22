@@ -5,11 +5,11 @@ date: 2025-12-22
 updatedDate: 2025-12-22
 image: "/images/posts/bankroll-management-prediction-markets.jpg"
 heroImageAlt: "Bankroll growth chart with risk controls"
-authors: ["TxChyon"]
+authors: ["Nefu"]
 authorTwitter: "txchyon"
 tags: ["prediction-markets", "risk-management", "trading"]
-category: "Prediction Markets"
-subcategory: "Bankroll & Risk Management"
+category: "prediction-markets"
+subcategory: "bankroll-management"
 draft: true
 ---
 

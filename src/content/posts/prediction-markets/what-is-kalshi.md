@@ -5,12 +5,12 @@ date: 2025-12-22
 updatedDate: 2025-12-22
 image: "/images/posts/kalshi-prediction-market.jpg"
 heroImageAlt: "Kalshi platform screenshot showing event contracts"
-authors: ["TxChyon"]
+authors: ["Nefu"]
 authorTwitter: "txchyon"
 tags: ["prediction-markets", "regulated", "cftc"]
-category: "Prediction Markets"
-subcategory: "Platforms"
-draft: false
+category: "prediction-markets"
+subcategory: "platform-guides"
+draft: true
 ---
 
 # What Is Kalshi? The Complete Beginner’s Guide to the Regulated Prediction Market Giant (2025)

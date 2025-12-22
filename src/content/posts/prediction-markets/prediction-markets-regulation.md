@@ -5,11 +5,11 @@ date: 2025-12-22
 updatedDate: 2025-12-22
 image: "/images/posts/prediction-markets-regulation.jpg"
 heroImageAlt: "Gavel over prediction market interface"
-authors: ["TxChyon"]
+authors: ["Nefu"]
 authorTwitter: "txchyon"
 tags: ["prediction-markets", "regulation", "legal"]
-category: "Prediction Markets"
-subcategory: "Regulatory Landscape"
+category: "prediction-markets"
+subcategory: "regulatory-updates"
 draft: true
 ---
 

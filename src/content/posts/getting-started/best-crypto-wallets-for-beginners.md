@@ -21,7 +21,7 @@ Searches for "best crypto wallets for beginners" and "best beginner crypto walle
 
 This guide reviews the top crypto wallets suitable for newcomers. We cover both software (hot) and hardware (cold) options, compare key features, and provide practical recommendations. Whether you plan to hold Bitcoin, Ethereum, or multiple assets, these picks balance ease of use, security, and functionality.
 
-Before diving in, review core concepts in our [crypto terminology glossary](/blog/getting-started/crypto-terminology-glossary) and learn common pitfalls in our [10 biggest crypto mistakes beginners make](/blog/getting-started/10-biggest-crypto-mistakes-beginners-make-in-2026). For foundational knowledge, start with [what is cryptocurrency](/blog/getting-started/what-is-cryptocurrency-a-complete-beginners-guide-to-blockchain-in-2026).
+Before diving in, review core concepts in our [crypto terminology glossary](/blog/getting-started/crypto-terminology-glossary) and learn common pitfalls in our [10 biggest crypto mistakes beginners make](/blog/getting-started/biggest-crypto-mistakes). For foundational knowledge, start with [what is cryptocurrency](https://txchyon.com/blog/getting-started/what-is-cryptocurrency).
 
 ## Types of Crypto Wallets: Hot vs Cold Storage
 

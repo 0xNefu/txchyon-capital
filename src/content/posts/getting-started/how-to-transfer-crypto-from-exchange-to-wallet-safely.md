@@ -3,14 +3,14 @@ title: "How to Transfer Crypto from Exchange to Wallet Safely"
 description: "Just bought crypto? Learn how to move it from an exchange to your personal wallet securely. This step-by-step beginner guide covers the process, fees, common errors, and best practices for 2026."
 date: 2025-12-22
 updatedDate: 2025-12-22
-image: "/images/posts/transfer-crypto-exchange-to-wallet-2026.jpg"
+image: "/images/posts/ethereum3.jpg"
 heroImageAlt: "Illustration of cryptocurrency moving securely from an exchange icon to a personal wallet icon via a protected arrow"
 authors: ["Nefu"]
 authorTwitter: "@txchyon"
 tags: ["Transfer Crypto", "Exchange to Wallet", "Withdraw Crypto", "Crypto Security", "Beginner Guide", "Self Custody"]
 category: "getting-started"
 subcategory: "wallet-setup"
-draft: true
+draft: false
 ---
 
 ## Introduction: Why Transfer Crypto to Your Own Wallet
@@ -21,7 +21,7 @@ Moving your assets to a personal wallet gives you full control and significantly
 
 This guide explains the complete process safely and clearly for 2026. We cover preparation, step-by-step transfer, fees, common mistakes, and verification tips.
 
-Strengthen your knowledge with our [best crypto wallets for beginners](/blog/getting-started/best-crypto-wallets-for-beginners-in-2026) and review pitfalls in our [10 biggest crypto mistakes](/blog/getting-started/10-biggest-crypto-mistakes-beginners-make-in-2026).
+Strengthen your knowledge with our [best crypto wallets for beginners](https://txchyon.com/blog/getting-started/best-crypto-wallets-for-beginners) and review pitfalls in our [10 biggest crypto mistakes](https://txchyon.com/blog/getting-started/biggest-crypto-mistakes).
 
 ## Preparation: Set Up Your Wallet First
 
@@ -137,7 +137,7 @@ Layer-2 solutions and chains like Solana keep costs minimal.
 
 - Hold long-term with proper backups.
 - Use dollar-cost averaging for additional purchases.
-- Monitor portfolio sparingly to avoid emotional stress — see our [crypto psychology guide](/blog/getting-started/crypto-investing-psychology-mastering-emotions-and-avoiding-fomo-as-a-beginner-in-2026).
+- Monitor portfolio sparingly to avoid emotional stress — see our [crypto psychology guide](https://txchyon.com/blog/getting-started/crypto-investing-psychology).
 
 ## Conclusion: Take Control of Your Assets
 
@@ -145,6 +145,6 @@ Transferring crypto from exchange to wallet is a crucial step toward true owners
 
 Follow this guide, start with test transactions, and prioritize correct addresses and networks. Self-custody protects your investment far better than leaving funds on platforms.
 
-Combine this with safe buying practices from our [how to buy Bitcoin guide](/blog/getting-started/how-to-buy-bitcoin-for-beginners-complete-step-by-step-guide-2026) or general [how to buy crypto](/blog/getting-started/how-to-buy-crypto).
+Combine this with safe buying practices from our [how to buy Bitcoin guide](https://txchyon.com/blog/getting-started/how-to-buy-bitcoin-for-beginners) or general [how to buy crypto](https://txchyon.com/blog/getting-started/how-to-buy-crypto).
 
 You now have the tools for responsible crypto ownership in 2026. Stay vigilant and enjoy the benefits of decentralization.

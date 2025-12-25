@@ -4,9 +4,13 @@ import config from "@/config/config.json";
 import menu from "@/config/menu.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
-import { getArticleCount } from "@/lib/utils/articleCounter";
+import { getCollection } from 'astro:content';
 
-const articleCount = await getArticleCount();
+// Get all posts to count
+const allPosts = await getCollection('posts');
+const publishedPosts = allPosts.filter(post => !post.data.draft);
+const totalPosts = allPosts.length;
+const draftCount = totalPosts - publishedPosts.length;
 
 // Get the current page URL to check what type of page we're on
 const url = Astro.url.pathname;
@@ -91,14 +95,32 @@ const isHomePage = url === '/' || url === '/index.html';
       )
     }
 
-    {/* Article Count */}
-    <div class="mb-6">
+    {/* Guide Counts - UPDATED */}
+    <div class="mb-6 space-y-3">
+      {/* Published Guides */}
       <p class="text-white/75 text-lg">
         <span class="inline-flex items-center gap-2">
           <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.968 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
           </svg>
-          <span class="font-semibold">{articleCount}</span> Articles Published
+          <span class="font-semibold text-green-400">{publishedPosts.length}</span> 
+          <span>Guides Published</span>
+        </span>
+      </p>
+
+      {/* Total Guides */}
+      <p class="text-white/60 text-base">
+        <span class="inline-flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"/>
+          </svg>
+          <span class="font-semibold text-blue-400">{totalPosts}</span> 
+          <span>Total Guides</span>
+          {draftCount > 0 && (
+            <span class="text-xs text-yellow-400 ml-2">
+              ({draftCount} in draft)
+            </span>
+          )}
         </span>
       </p>
     </div>

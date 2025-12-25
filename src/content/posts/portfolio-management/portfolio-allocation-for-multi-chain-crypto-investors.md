@@ -10,7 +10,7 @@ authorTwitter: "@txchyon"
 tags: ["Crypto Portfolio", "Multi-Chain Allocation", "Risk Management", "Bitcoin", "Ethereum", "Solana"]
 category: "portfolio-management"
 subcategory: "allocation-strategies"
-draft: false
+draft: true
 ---
 
 ## Why Multi-Chain Allocation Matters

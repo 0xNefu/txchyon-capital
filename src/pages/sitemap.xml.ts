@@ -1,5 +1,4 @@
-// src/pages/sitemap.xml.ts
-
+// src/pages/sitemap.xml.ts - CORRECTED WITH /authors/nefu/
 import { getCollection } from 'astro:content';
 import type { APIRoute } from 'astro';
 
@@ -11,7 +10,7 @@ export const GET: APIRoute = async ({ site }) => {
   // 1. Fetch all posts from the 'posts' collection
   const posts = await getCollection('posts', ({ data }) => !data.draft);
 
-  // 2. Map posts to correct nested URLs using post.slug (FIXED from post.id)
+  // 2. Map posts to correct nested URLs using post.slug
   const postsMap = posts
     .map((post) => {
       const lastModDate = post.data.updatedDate ?? post.data.date;
@@ -28,13 +27,14 @@ export const GET: APIRoute = async ({ site }) => {
     })
     .join('\n');
 
-  // 3. Your 10 pillar category pages
-  const pillarCategories = [
+  // 3. ALL 11 pillar category pages
+  const allCategories = [
     "airdrop-farming",
-    "defi-yield",
+    "defi-yield", 
     "getting-started",
     "infrastructure-tech",
     "portfolio-management",
+    "prediction-markets",
     "regulatory-tax",
     "research-analysis",
     "security-privacy",
@@ -42,7 +42,7 @@ export const GET: APIRoute = async ({ site }) => {
     "trading-investing"
   ];
 
-  const categoryMap = pillarCategories
+  const categoryMap = allCategories
     .map((category) => `
       <url>
         <loc>${new URL(`/categories/${category}`, site).href}</loc>
@@ -53,12 +53,16 @@ export const GET: APIRoute = async ({ site }) => {
     `)
     .join('\n');
 
-  // 4. Static pages
+  // 4. Static pages - UPDATED WITH CORRECT /authors/nefu/
   const staticPages = [
-    { loc: site.href, priority: 1.0, changefreq: 'daily' },
-    { loc: '/about', priority: 0.7, changefreq: 'monthly' },
+    { loc: site.href, priority: 1.0, changefreq: 'daily' }, // Homepage
+    { loc: '/blog', priority: 0.9, changefreq: 'daily' }, // Main blog page
+    { loc: '/categories', priority: 0.8, changefreq: 'weekly' }, // Categories overview
     { loc: '/tools', priority: 0.8, changefreq: 'weekly' },
+    { loc: '/about', priority: 0.7, changefreq: 'monthly' },
     { loc: '/contact', priority: 0.6, changefreq: 'yearly' },
+    { loc: '/disclaimer', priority: 0.5, changefreq: 'yearly' }, // Optional
+    { loc: '/authors/nefu/', priority: 0.7, changefreq: 'weekly' }, // CORRECTED: /authors/nefu/
   ];
 
   const staticMap = staticPages

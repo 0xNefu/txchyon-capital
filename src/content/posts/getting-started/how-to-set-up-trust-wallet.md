@@ -1,16 +1,16 @@
 ---
 title: "How to Set Up Trust Wallet: Step-by-Step Tutorial for Beginners 2026"
 description: "Learn how to safely install and configure Trust Wallet, the popular mobile non-custodial wallet supporting thousands of blockchains, tokens, DeFi, NFTs, and staking for beginners."
-date: 2025-12-25
-updatedDate: 2025-12-25
-image: "/images/posts/trust1.jpg"
+date: 2025-12-29
+updatedDate: 2025-12-29
+image: "/images/posts/trust.jpg"
 heroImageAlt: "Trust Wallet mobile app dashboard showing multi-chain assets and portfolio overview"
 authors: ["Nefu"]
 authorTwitter: "@txchyon"
 tags: ["trust-wallet", "mobile-wallet", "multi-chain-wallet", "defi-wallet", "nft-wallet", "non-custodial-wallet"]
 category: "getting-started"
 subcategory: "wallet-setup"
-draft: true
+draft: false
 ---
 
 I first started using Trust Wallet in 2021, when I started trading bsc memecoins, and I even had friends who launched their own coins. I was having lots of fun in defi playing around on binance smart chain because the gas fee's were really cheap. I learned to trust Trust wallet. 

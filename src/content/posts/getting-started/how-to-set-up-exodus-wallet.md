@@ -10,7 +10,7 @@ authorTwitter: "@txchyon"
 tags: ["exodus-wallet", "multi-asset-wallet", "desktop-wallet", "mobile-wallet", "non-custodial-wallet", "crypto-portfolio"]
 category: "getting-started"
 subcategory: "wallet-setup"
-draft: true
+draft: false
 ---
 
 This is definitely a OG wallet for beginners, I really love the UI and the smoothness of the wallet. If you plan on buying lots of different coins this is the wallet for you. 

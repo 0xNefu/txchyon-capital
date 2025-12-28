@@ -10,7 +10,7 @@ authorTwitter: "@txchyon"
 tags: ["okx-wallet", "multi-chain-wallet", "defi-wallet", "nft-wallet", "non-custodial-wallet", "web3-wallet"]
 category: "getting-started"
 subcategory: "wallet-setup"
-draft: true
+draft: false
 ---
 
 OKX Wallet is one of the most versatile non-custodial wallets available in 2026, ideal for beginners transitioning from centralized exchanges to full self-custody. It supports over 100 blockchains—including Bitcoin, Ethereum, Solana, BNB Chain, Polygon, Avalanche, and many more—allowing you to manage thousands of tokens, NFTs, and DeFi positions in one place.

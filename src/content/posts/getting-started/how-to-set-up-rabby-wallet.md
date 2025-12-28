@@ -10,7 +10,7 @@ authorTwitter: "@txchyon"
 tags: ["rabby-wallet", "evm-wallet", "defi-wallet", "browser-extension-wallet", "multi-chain-wallet", "non-custodial-wallet"]
 category: "getting-started"
 subcategory: "wallet-setup"
-draft: true
+draft: false
 ---
 
 I first downloaded Rabby wallet when I was farming the hyperliquid launches. This is the go to wallet for hyperliquid ecosystem, plus it works perfectly fine with ethereum coins as well. 

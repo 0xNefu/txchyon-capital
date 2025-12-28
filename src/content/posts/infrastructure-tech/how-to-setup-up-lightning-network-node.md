@@ -13,7 +13,7 @@ subcategory: "layer-2s"
 draft: false
 ---
 
-The Lightning Network (LN) builds on Bitcoin's base layer to enable fast, low-cost, and private transactions. In 2026, running a Lightning node is easier than ever, but requires careful setup for security, liquidity, and uptime. This guide assumes you already have a Bitcoin full node running. If you haven’t yet, see [What Is a Bitcoin Node and Why You Need One](#) and check out our [Recommended Hardware for Bitcoin Nodes](#).
+The Lightning Network (LN) builds on Bitcoin's base layer to enable fast, low-cost, and private transactions. In 2026, running a Lightning node is easier than ever, but requires careful setup for security, liquidity, and uptime. This guide assumes you already have a Bitcoin full node running. If you haven't yet, see [What Is a Bitcoin Node and Why You Need One](https://txchyon.com/blog/infrastructure-tech/what-is-a-bitcoin-node-and-why-you-need-one) and check out our [Recommended Hardware for Bitcoin Nodes](https://txchyon.com/blog/infrastructure-tech/best-hardware-for-bitcoin-nodes-2026).
 
 A Lightning node is a software client that allows you to open payment channels on Bitcoin. These channels let you transact off-chain, which means faster and cheaper payments without congesting the main blockchain. Key requirements: a synced Bitcoin full node (pruned mode acceptable), stable internet connection, and decent hardware (Raspberry Pi 4+ recommended). Lightning nodes can send and receive instant payments, earn routing fees, and improve privacy compared to on-chain transactions.
 
@@ -97,5 +97,5 @@ Tools:
 Tip: Start small, increase channels gradually as you gain experience.
 
 ### Conclusion
-Running a Lightning Network node in 2026 is accessible but requires care. You can send/receive fast Bitcoin payments, contribute to LN, and earn routing fees while improving privacy. For full setup, review our Bitcoin Node guide and Recommended Hardware. Running both gives the foundation to leverage Bitcoin’s layer-2 fully.  
+Running a Lightning Network node in 2026 is accessible but requires care. You can send/receive fast Bitcoin payments, contribute to LN, and earn routing fees while improving privacy. For full setup, review our Bitcoin Node guide and Recommended Hardware. Running both gives the foundation to leverage Bitcoin's layer-2 fully.  
  Hero-style dashboard showing channels, payments, and routing activity.

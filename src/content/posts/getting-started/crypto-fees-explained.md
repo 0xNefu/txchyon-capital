@@ -49,7 +49,7 @@ Ethereum uses **gas fees** to power transactions and smart contract execution.
 - Swapping tokens on Uniswap: $10–$50+ depending on network load  
 - Minting NFTs: $50–$200+ at peak demand  
 
-> Tip: Beginners should **start with small transfers** to understand costs. Learn wallet setup here: [Set Up Your First Wallet](/blog/getting-started/set-up-first-wallet/)
+> Tip: Beginners should **start with small transfers** to understand costs. Learn wallet setup here: [Set Up Your First Wallet](https://txchyon.com/blog/getting-started/how-to-setup-bitocoin-wallet)
 
 ---
 
@@ -71,7 +71,7 @@ Solana, Avalanche, Cardano (ADA), and other high-throughput chains offer **low-c
 - Launching memecoins: Low fees reduce friction for participants  
 - NFTs: Minting on Solana or Cardano is cheaper than Ethereum  
 
-> Learn tools to track fees during memecoin launches: [Tools](/tools)
+> Learn tools to track fees during memecoin launches: [Tools](https://txchyon.com/tools)
 
 ---
 
@@ -124,7 +124,7 @@ Example:
 
 ## 7. Why Fees Exist: Beyond Transfers
 
-Fees aren’t just for sending coins—they are **essential for network security and creation of new assets**.
+Fees aren't just for sending coins—they are **essential for network security and creation of new assets**.
 
 - **Transaction validation:** Incentivizes miners/validators  
 - **Smart contracts:** More complex logic = more computation = higher fees  
@@ -158,7 +158,7 @@ Fees are like a **toll for using decentralized infrastructure**. Ignoring them c
 4. **Avoid peak times**: Gas spikes during high network activity (weekends, market events).  
 5. **Check slippage settings**: Avoid hidden costs when swapping tokens or providing liquidity.  
 
-> Start small, track costs, and integrate fees into your memecoin or NFT strategy: [Tools](/tools)
+> Start small, track costs, and integrate fees into your memecoin or NFT strategy: [Tools](https://txchyon.com/tools)
 
 ---
 
@@ -167,19 +167,19 @@ Fees are like a **toll for using decentralized infrastructure**. Ignoring them c
 - **Fees are unavoidable**, but understanding them prevents overspending.  
 - **Different blockchains have radically different fee structures**—choose wisely for memecoins, NFTs, or transfers.  
 - **Slippage and hidden costs** matter for swaps, token launches, and liquidity provision.  
-- **Plan and track** using portfolio tools ([Portfolio Tracking Guide](/blog/trading-investing/how-to-track-your-crypto-portfolio-as-a-beginner/)).  
-- Integrate fees into your **first 30-day crypto roadmap** ([Your First 30 Days in Crypto](/blog/getting-started/first-30-days-crypto/)).
+- **Plan and track** using portfolio tools ([Portfolio Tracking Guide](https://txchyon.com/blog/getting-started/how-to-track-your-crypto-portfolio)).  
+- Integrate fees into your **first 30-day crypto roadmap** ([Your First 30 Days in Crypto: A Beginner Roadmap](https://txchyon.com/blog/getting-started/what-to-do-before-you-buy-your-first-crypto)).
 
 ---
 
 ## 11. Recommended Cluster Links
 
-- [Set Up Your First Wallet](/blog/getting-started/set-up-first-wallet/) – Secure wallet basics  
-- [How Crypto Transactions Work](/blog/getting-started/how-crypto-transactions-work/) – Understanding blockchain mechanics  
-- [Crypto Portfolio Tracking](/blog/trading-investing/how-to-track-your-crypto-portfolio-as-a-beginner/) – Track fees and holdings  
-- [Tools for Memecoin Launches](/tools) – Monitor swaps, gas, and slippage  
-- [Stablecoins Guide](/blog/trading-investing/what-are-stablecoins-and-why-beginners-should-care/) – Reduce volatility when paying fees  
-- [DeFi Guide](/blog/getting-started/what-is-defi-simple-beginners-guide-to-decentralized-finance/) – Fees in lending, DEX swaps, and yield strategies  
+- [Set Up Your First Wallet](https://txchyon.com/blog/getting-started/how-to-setup-bitocoin-wallet) – Secure wallet basics  
+- [How Crypto Transactions Actually Work: From Click to Confirmation](https://txchyon.com/blog/getting-started/how-crypto-transactions-actually-work) – Understanding blockchain mechanics  
+- [How to Track Your Crypto Portfolio as a Beginner](https://txchyon.com/blog/getting-started/how-to-track-your-crypto-portfolio) – Track fees and holdings  
+- [Tools for Memecoin Launches](https://txchyon.com/tools) – Monitor swaps, gas, and slippage  
+- [What Are Stablecoins and Why Beginners Should Care](https://txchyon.com/blog/getting-started/what-are-stablecoins) – Reduce volatility when paying fees  
+- [What is DeFi? A Simple Beginner's Guide to Decentralized Finance](https://txchyon.com/blog/getting-started/what-is-defi) – Fees in lending, DEX swaps, and yield strategies  
 
 ---
 
@@ -196,4 +196,3 @@ Crypto fees are **complex but understandable**. Beginners must know:
 By choosing the right blockchain, timing transactions, and using tracking tools, beginners can **significantly reduce expenses** while exploring memecoins, NFTs, and DeFi safely.
 
 Understanding fees is **essential for budgeting, strategy, and long-term success** in crypto.
-

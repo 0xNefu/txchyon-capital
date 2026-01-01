@@ -258,3 +258,8 @@
 /categories/airdrop/ /categories/airdrop-farming 301
 /categories/airdrop/* /categories/airdrop-farming/:splat 301
 
+
+# Redirect long URL to shorter version
+/blog/prediction-markets/how-to-earn-passive-income-on-kalshi-liquidity-incentive-program-guide /blog/prediction-markets/how-to-earn-passive-income-on-kalshi-liquidity-incentive-program 301
+
+/blog/prediction-markets/how-to-earn-passive-income-on-kalshi-liquidity-incentive-program-guide/ /blog/prediction-markets/how-to-earn-passive-income-on-kalshi-liquidity-incentive-program 301

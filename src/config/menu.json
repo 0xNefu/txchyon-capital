@@ -17,8 +17,12 @@
       "url": "/categories/security-privacy"
     },
     {
-      "name": "Research",
-      "url": "/categories/research-analysis"
+      "name": "Alpha",
+      "url": "/categories/alpha-insider"
+    },
+    {
+      "name": "Gaming",
+      "url": "/categories/web3-gaming-metaverse"
     },
     {
       "name": "More",
@@ -46,6 +50,10 @@
         {
           "name": "Prediction Markets",
           "url": "/categories/prediction-markets"
+        },
+        {
+          "name": "Research",
+          "url": "/categories/research-analysis"
         },
         {
           "name": "Services",

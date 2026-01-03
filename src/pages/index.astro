@@ -101,12 +101,53 @@ const realisticStats = {
 <Base title="Txchyon - Free DeFi Mastery | No Gatekeeping, Just Knowledge" 
       description="Premium DeFi education that should cost thousands... but we're giving it away free. Because crypto knowledge should be accessible to everyone">
   
-  <!-- 🌟 HERO SECTION -->
+  <!-- 🌟 SPACE-THEMED HERO SECTION -->
   <section class="relative min-h-[85vh] overflow-hidden dark:bg-gradient-to-br dark:from-gray-900 dark:via-black dark:to-blue-950 bg-gradient-to-br from-blue-50 via-white to-cyan-50">
-    <!-- Animated gradient background -->
-    <div class="absolute inset-0">
-      <div class="absolute w-[500px] h-[500px] dark:bg-cyan-500/10 bg-cyan-200/20 rounded-full blur-3xl top-1/4 left-1/4 animate-pulse"></div>
-      <div class="absolute w-[400px] h-[400px] dark:bg-purple-500/10 bg-purple-200/20 rounded-full blur-3xl bottom-1/4 right-1/4 animate-pulse animation-delay-2000"></div>
+    <!-- Space Background for Dark Mode -->
+    <div class="absolute inset-0 bg-black hidden dark:block">
+      <!-- Stars Container -->
+      <div class="absolute inset-0">
+        <!-- Static Stars -->
+        <div class="stars"></div>
+        <div class="stars stars-2"></div>
+        <div class="stars stars-3"></div>
+        
+        <!-- Animated Shooting Stars -->
+        <div class="shooting-star"></div>
+        <div class="shooting-star shooting-star-2"></div>
+        <div class="shooting-star shooting-star-3"></div>
+        
+        <!-- Nebula/Galaxy Effect -->
+        <div class="absolute w-[800px] h-[800px] bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-cyan-500/5 rounded-full blur-3xl top-1/4 left-1/4 animate-pulse-slow"></div>
+        <div class="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/5 via-cyan-500/5 to-purple-500/5 rounded-full blur-3xl bottom-1/4 right-1/4 animate-pulse-slower"></div>
+        
+        <!-- Tachyon Particle Effects -->
+        <div class="particle-field">
+          <!-- Fast moving particles (tachyons) -->
+          <div class="particle particle-fast"></div>
+          <div class="particle particle-fast particle-fast-2"></div>
+          <div class="particle particle-fast particle-fast-3"></div>
+          
+          <!-- Slow moving particles -->
+          <div class="particle particle-slow"></div>
+          <div class="particle particle-slow particle-slow-2"></div>
+          <div class="particle particle-slow particle-slow-3"></div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Light Mode: Hero image background -->
+    <div class="absolute inset-0 dark:hidden">
+      <img
+        src="/images/posts/txchyasit.jpg"
+        alt="Txchyon Hero"
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <!-- Overlay to ensure text readability -->
+      <div class="absolute inset-0 bg-gradient-to-br from-white/75 via-white/60 to-white/60"></div>
+      <!-- Subtle texture overlay -->
+      <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-50/30 via-transparent to-transparent"></div>
     </div>
     
     <div class="container relative z-10 mx-auto px-4 pt-28 pb-16">
@@ -141,7 +182,7 @@ const realisticStats = {
         <div class="flex flex-col sm:flex-row gap-5 justify-center mb-12">
           <a href="#start-learning" 
              class="group relative px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold rounded-xl hover:shadow-2xl hover:shadow-cyan-500/40 transition-all duration-300 transform hover:-translate-y-1 text-center text-lg">
-            <span class="relative z-10">START LEARNING FREE</span>
+            <span class="relative z-10">🚀 START LEARNING FREE</span>
             <div class="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 blur opacity-50 group-hover:opacity-70 transition-opacity"></div>
           </a>
           <a href="#why-free" 
@@ -180,9 +221,227 @@ const realisticStats = {
     </div>
   </section>
 
+  <!-- Add these styles - REMOVED .dark selectors from CSS -->
+  <style>
+    /* Stars */
+    .stars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        radial-gradient(2px 2px at 20px 30px, #eee, transparent),
+        radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+        radial-gradient(1px 1px at 90px 40px, #ddd, transparent),
+        radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+        radial-gradient(2px 2px at 160px 20px, #ddd, transparent),
+        radial-gradient(1px 1px at 200px 120px, #fff, transparent),
+        radial-gradient(2px 2px at 250px 60px, #eee, transparent),
+        radial-gradient(1px 1px at 300px 100px, #ddd, transparent),
+        radial-gradient(2px 2px at 350px 30px, #fff, transparent),
+        radial-gradient(1px 1px at 400px 150px, #eee, transparent),
+        radial-gradient(2px 2px at 450px 80px, #fff, transparent),
+        radial-gradient(1px 1px at 500px 40px, #ddd, transparent),
+        radial-gradient(2px 2px at 550px 130px, #eee, transparent),
+        radial-gradient(1px 1px at 600px 70px, #fff, transparent);
+      background-repeat: repeat;
+      background-size: 800px 800px;
+      animation: twinkle-slow 8s infinite;
+    }
+    
+    .stars-2 {
+      animation-delay: 2s;
+      opacity: 0.6;
+      background-size: 900px 900px;
+      animation-duration: 10s;
+    }
+    
+    .stars-3 {
+      animation-delay: 4s;
+      opacity: 0.4;
+      background-size: 1000px 1000px;
+      animation-duration: 12s;
+    }
+    
+    /* Shooting Stars */
+    .shooting-star {
+      position: absolute;
+      top: 0;
+      left: -100px;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(96, 165, 250, 0.4), transparent);
+      animation: shooting-star-slow 30s linear infinite;
+    }
+    
+    .shooting-star-2 {
+      top: 25%;
+      animation-delay: 10s;
+      animation-duration: 35s;
+    }
+    
+    .shooting-star-3 {
+      top: 65%;
+      animation-delay: 20s;
+      animation-duration: 40s;
+    }
+    
+    /* Tachyon Particles */
+    .particle-field {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      animation: particle-float-slow linear infinite;
+    }
+    
+    .particle-fast {
+      width: 2px;
+      height: 2px;
+      background: rgba(139, 92, 246, 0.5);
+      animation-duration: 8s;
+      animation-timing-function: ease-in-out;
+    }
+    
+    .particle-fast-2 {
+      top: 15%;
+      left: 15%;
+      animation-delay: 2s;
+      animation-duration: 10s;
+    }
+    
+    .particle-fast-3 {
+      top: 70%;
+      left: 85%;
+      animation-delay: 5s;
+      animation-duration: 12s;
+    }
+    
+    .particle-slow {
+      width: 1px;
+      height: 1px;
+      background: rgba(59, 130, 246, 0.3);
+      animation-duration: 20s;
+      animation-timing-function: ease-in-out;
+    }
+    
+    .particle-slow-2 {
+      top: 35%;
+      left: 25%;
+      animation-delay: 3s;
+      animation-duration: 25s;
+    }
+    
+    .particle-slow-3 {
+      top: 85%;
+      left: 55%;
+      animation-delay: 7s;
+      animation-duration: 30s;
+    }
+    
+    /* Particle trails for tachyon effect - subtler */
+    .particle-fast::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -15px;
+      width: 15px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2));
+    }
+    
+    @keyframes twinkle-slow {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 0.9; }
+    }
+    
+    @keyframes shooting-star-slow {
+      0% {
+        transform: translateX(0) translateY(0) rotate(30deg);
+        opacity: 0;
+      }
+      5% {
+        opacity: 0.6;
+      }
+      15% {
+        transform: translateX(100vw) translateY(80px) rotate(30deg);
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+    
+    @keyframes particle-float-slow {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.6;
+      }
+      90% {
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateX(100vw) translateY(80vh);
+        opacity: 0;
+      }
+    }
+    
+    /* Slower pulse animations */
+    @keyframes pulse-slow {
+      0%, 100% { opacity: 0.03; }
+      50% { opacity: 0.08; }
+    }
+    
+    @keyframes pulse-slower {
+      0%, 100% { opacity: 0.02; }
+      50% { opacity: 0.05; }
+    }
+    
+    .animate-pulse-slow {
+      animation: pulse-slow 6s ease-in-out infinite;
+    }
+    
+    .animate-pulse-slower {
+      animation: pulse-slower 8s ease-in-out infinite;
+    }
+  </style>
+
   <!-- 🤔 "WHY FREE?" SECTION -->
-  <section id="why-free" class="py-20 dark:bg-black bg-white">
-    <div class="container mx-auto px-4">
+  <section id="why-free" class="py-20 dark:bg-black bg-white relative overflow-hidden">
+    <!-- Space background for dark mode (non-animated) -->
+    <div class="absolute inset-0 bg-black hidden dark:block">
+      <!-- Static space background without stars -->
+      <div class="absolute inset-0">
+        <!-- Nebula/Galaxy Effects (static) -->
+        <div class="absolute w-[800px] h-[800px] bg-gradient-to-r from-purple-500/5 via-blue-500/5 to-cyan-500/5 rounded-full blur-3xl top-1/4 left-1/4 opacity-50"></div>
+        <div class="absolute w-[600px] h-[600px] bg-gradient-to-r from-blue-500/5 via-cyan-500/5 to-purple-500/5 rounded-full blur-3xl bottom-1/4 right-1/4 opacity-30"></div>
+        
+        <!-- Subtle stars (static, non-animated) -->
+        <div class="absolute inset-0 opacity-30"
+             style="background-image: 
+               radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.5) 0%, transparent 50%),
+               radial-gradient(1px 1px at 30% 50%, rgba(255,255,255,0.4) 0%, transparent 50%),
+               radial-gradient(0.5px 0.5px at 60% 40%, rgba(255,255,255,0.3) 0%, transparent 50%),
+               radial-gradient(0.5px 0.5px at 80% 80%, rgba(255,255,255,0.4) 0%, transparent 50%),
+               radial-gradient(1px 1px at 40% 90%, rgba(255,255,255,0.5) 0%, transparent 50%),
+               radial-gradient(0.5px 0.5px at 70% 10%, rgba(255,255,255,0.3) 0%, transparent 50%);
+             background-size: 400px 400px;">
+        </div>
+      </div>
+    </div>
+    
+    <div class="container relative z-10 mx-auto px-4">
       <div class="max-w-3xl mx-auto text-center">
         <h2 class="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-12">
           <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-purple-500 dark:from-cyan-400 dark:to-purple-400">
@@ -190,7 +449,7 @@ const realisticStats = {
           </span>
         </h2>
         
-        <div class="dark:bg-gray-900/50 bg-gray-100/50 backdrop-blur-sm rounded-3xl dark:border border-cyan-500/30 border-cyan-400/30 p-8 mb-8">
+        <div class="dark:bg-black/40 bg-gray-100/50 backdrop-blur-sm rounded-3xl dark:border border-cyan-500/30 border-cyan-400/30 p-8 mb-8">
           <div class="text-6xl mb-6">🎯</div>
           <h3 class="text-2xl font-bold dark:text-white text-gray-900 mb-4">The Open Source Philosophy</h3>
           <p class="dark:text-gray-300 text-gray-700 text-lg mb-6">
@@ -203,21 +462,21 @@ const realisticStats = {
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="dark:bg-gray-900/30 bg-gray-100/50 rounded-2xl p-6 dark:border border-gray-800 border-gray-200">
+          <div class="dark:bg-black/30 bg-gray-100/50 backdrop-blur-sm rounded-2xl p-6 dark:border border-gray-800 border-gray-200">
             <div class="text-3xl mb-4">⚡</div>
             <h4 class="text-xl font-bold dark:text-white text-gray-900 mb-3">No Hidden Agenda</h4>
             <p class="dark:text-gray-400 text-gray-600 text-sm">
               We're not selling courses. Not promoting shitcoins. Just sharing what works.
             </p>
           </div>
-          <div class="dark:bg-gray-900/30 bg-gray-100/50 rounded-2xl p-6 dark:border border-gray-800 border-gray-200">
+          <div class="dark:bg-black/30 bg-gray-100/50 backdrop-blur-sm rounded-2xl p-6 dark:border border-gray-800 border-gray-200">
             <div class="text-3xl mb-4">🔓</div>
             <h4 class="text-xl font-bold dark:text-white text-gray-900 mb-3">Accessible to All</h4>
             <p class="dark:text-gray-400 text-gray-600 text-sm">
               Whether you have $100 or $100,000 - knowledge should be equally accessible.
             </p>
           </div>
-          <div class="dark:bg-gray-900/30 bg-gray-100/50 rounded-2xl p-6 dark:border border-gray-800 border-gray-200">
+          <div class="dark:bg-black/30 bg-gray-100/50 backdrop-blur-sm rounded-2xl p-6 dark:border border-gray-800 border-gray-200">
             <div class="text-3xl mb-4">🌱</div>
             <h4 class="text-xl font-bold dark:text-white text-gray-900 mb-3">Grow With Us</h4>
             <p class="dark:text-gray-400 text-gray-600 text-sm">
@@ -228,14 +487,58 @@ const realisticStats = {
       </div>
     </div>
   </section>
-
   <!-- 🎯 FEATURED POST -->
-  <section class="py-20 dark:bg-gradient-to-br dark:from-gray-900 dark:via-purple-900/20 dark:to-blue-900/20 bg-gradient-to-br from-blue-50 via-purple-50/20 to-cyan-50/20">
-    <div class="container mx-auto px-4">
-      <div class="dark:bg-gradient-to-r dark:from-black/80 dark:to-gray-900/80 bg-gradient-to-r from-white/80 to-gray-100/80 backdrop-blur-xl rounded-3xl dark:border border-purple-500/30 border-purple-400/30 overflow-hidden shadow-xl">
-        <div class="grid grid-cols-1 lg:grid-cols-2">
-          <div class="p-8 lg:p-10">
-            <div class="inline-flex items-center gap-2 mb-6">
+<section class="py-20 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black bg-gradient-to-b from-white to-gray-100">
+  <div class="container mx-auto px-4">
+    <!-- Featured Deep Dive Header -->
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold dark:text-white text-gray-900 mb-4">
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 dark:from-purple-400 dark:to-pink-400">
+          Featured Deep Dive
+        </span>
+      </h2>
+      <p class="text-xl dark:text-gray-400 text-gray-600">
+        Our latest premium guide, completely free
+      </p>
+    </div>
+    
+    <div class="dark:bg-gradient-to-r dark:from-black/80 dark:to-gray-900/80 bg-gradient-to-r from-white/80 to-gray-100/80 backdrop-blur-xl rounded-3xl dark:border border-purple-500/30 border-purple-400/30 overflow-hidden shadow-2xl">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <!-- Image Side -->
+        <div class="relative min-h-[400px] lg:min-h-[500px] overflow-hidden">
+          {featuredPost?.data?.image ? (
+            <img
+              src={featuredPost.data.image}
+              alt={featuredPost.data.title}
+              class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="eager"
+            />
+          ) : (
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900 via-pink-800 to-blue-900"></div>
+          )}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+          <div class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent lg:hidden"></div>
+          <div class="absolute inset-0 bg-gradient-to-l from-black/30 to-transparent hidden lg:block"></div>
+          
+          {/* Content Overlay on Image */}
+          <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-8">
+            <div class="flex flex-wrap gap-2 mb-3">
+              {featuredPost?.data?.tags?.slice(0, 3).map(tag => (
+                <span class="px-3 py-1 bg-white/20 backdrop-blur-sm text-white text-xs font-bold rounded-full border border-white/30">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+            <div class="text-white font-bold text-sm opacity-90">
+              ⏱️ {featuredPost?.data?.readTime || 10} min read • 🆓 100% Free
+            </div>
+          </div>
+        </div>
+        
+        <!-- Content Side -->
+        <div class="p-8 lg:p-10 flex flex-col justify-center">
+          <div class="mb-6">
+            <div class="inline-flex items-center gap-2 mb-4">
               <div class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-bold text-sm">
                 🔥 FEATURED DEEP DIVE
               </div>
@@ -244,61 +547,43 @@ const realisticStats = {
               </div>
             </div>
             
-            <h2 class="text-3xl lg:text-4xl font-bold dark:text-white text-gray-900 mb-6">
+            <h2 class="text-3xl lg:text-4xl font-bold dark:text-white text-gray-900 mb-4 leading-tight">
               {featuredPost?.data?.title || "Latest Deep Dive"}
             </h2>
             
-            <p class="text-lg dark:text-gray-300 text-gray-700 mb-8">
+            <p class="text-lg dark:text-gray-300 text-gray-700 mb-6">
               {featuredPost?.data?.description || "Our most recent premium guide, completely free."}
             </p>
-            
-            {featuredPost?.data?.tags && featuredPost.data.tags.length > 0 && (
-              <div class="flex flex-wrap gap-3 mb-8">
-                {featuredPost.data.tags.slice(0, 3).map(tag => (
-                  <span class="px-3 py-1.5 dark:bg-gray-800/50 bg-gray-200/50 rounded-lg text-sm dark:text-gray-300 text-gray-700 dark:border border-gray-700 border-gray-300">
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-            )}
-            
-            <div class="space-y-4">
-              {featuredPost ? (
-                <>
-                  <a href={`/blog/${featuredPost.slug}`} 
-                     class="block w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl text-center hover:shadow-xl hover:shadow-purple-500/30 transition-all hover:scale-[1.02]">
-                    👉 READ FREE DEEP DIVE
-                  </a>
-                  <div class="text-center dark:text-gray-400 text-gray-600 text-sm">
-                    📖 Complete guide • ⏱️ {featuredPost.data.readTime} min read • 🆓 100% Free
-                  </div>
-                </>
-              ) : (
-                <div class="text-center py-8">
-                  <p class="dark:text-gray-400 text-gray-600">No posts published yet. Check back soon!</p>
-                </div>
-              )}
-            </div>
           </div>
           
-          <div class="relative min-h-[300px] lg:min-h-auto dark:bg-gradient-to-br dark:from-purple-900 dark:to-pink-900 bg-gradient-to-br from-purple-200 to-pink-200">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1620336655055-bd87c5d1d73f?auto=format&fit=crop&w=800')] opacity-10 dark:opacity-20 bg-cover bg-center"></div>
-            <div class="absolute inset-0 flex items-center justify-center p-8">
-              <div class="text-center">
-                <div class="text-7xl mb-6 opacity-30">📚</div>
-                <div class="dark:bg-black/60 bg-white/60 backdrop-blur-sm rounded-2xl p-6 dark:border border-white/10 border-gray-300">
-                  <div class="text-xl font-bold dark:text-white text-gray-900 mb-2">PREMIUM QUALITY</div>
-                  <div class="text-green-600 dark:text-green-400 font-medium">Zero Cost</div>
+          <div class="space-y-4 mt-auto">
+            {featuredPost ? (
+              <>
+                <a href={`/blog/${featuredPost.slug}`} 
+                   class="block w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl text-center hover:shadow-xl hover:shadow-purple-500/30 transition-all hover:scale-[1.02] group">
+                  <span class="flex items-center justify-center gap-3">
+                    👉 READ FREE DEEP DIVE
+                    <svg class="w-5 h-5 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                  </span>
+                </a>
+                <div class="text-center dark:text-gray-400 text-gray-600 text-sm">
+                  📖 Complete step-by-step guide • Beginner to advanced
                 </div>
+              </>
+            ) : (
+              <div class="text-center py-8">
+                <p class="dark:text-gray-400 text-gray-600">No posts published yet. Check back soon!</p>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- 🚀 QUICK START SECTION -->
+  </div>
+</section>
+   <!-- 🚀 QUICK START SECTION -->
   <section id="start-learning" class="py-20 dark:bg-gradient-to-b dark:from-black dark:to-gray-900 bg-gradient-to-b from-white to-gray-100">
     <div class="container mx-auto px-4">
       <div class="text-center mb-16">
@@ -312,30 +597,69 @@ const realisticStats = {
         </p>
       </div>
       
-      {/* Quick Wins */}
+      {/* Quick Wins - Only This Section */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
         {quickWins && quickWins.length > 0 ? quickWins.map((post, index) => (
           <a href={`/blog/${post.slug}`} 
-             class="group dark:bg-gradient-to-br dark:from-gray-900 dark:to-black bg-gradient-to-br from-white to-gray-50 dark:border border-gray-800 border-gray-200 rounded-2xl p-6 hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 hover:-translate-y-1">
-            <div class="mb-4">
-              <span class="inline-block px-3 py-1 bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 rounded-full text-xs font-bold">
-                {post.data.readTime <= 5 ? '⚡ QUICK START' : '🎯 GET STARTED'}
-              </span>
+             class="group dark:bg-gradient-to-br dark:from-gray-900 dark:to-black bg-gradient-to-br from-white to-gray-50 dark:border border-gray-800 border-gray-200 rounded-2xl overflow-hidden hover:border-cyan-500 hover:shadow-lg hover:shadow-cyan-500/10 transition-all duration-300 hover:-translate-y-1 flex flex-col h-full">
+            
+            {/* Thumbnail Image Container */}
+            <div class="relative h-40 md:h-48 overflow-hidden bg-gradient-to-br from-cyan-500/10 to-blue-500/10 dark:from-cyan-500/5 dark:to-blue-500/5">
+              {post.data.image ? (
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="text-5xl opacity-20 dark:opacity-30">
+                    {post.data.category === 'getting-started' ? '🚀' : 
+                     post.data.category === 'security-privacy' ? '🔐' :
+                     post.data.category === 'trading-investing' ? '📈' :
+                     post.data.category === 'defi-yield' ? '🏦' :
+                     '📚'}
+                  </div>
+                </div>
+              )}
+              {/* Gradient Overlay */}
+              <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+              
+              {/* Category Badge */}
+              <div class="absolute top-3 left-3">
+                <span class="inline-block px-3 py-1 bg-gradient-to-r from-green-500 to-cyan-500 text-white text-xs font-bold rounded-full shadow-md">
+                  {post.data.readTime <= 5 ? '⚡ QUICK START' : '🎯 GET STARTED'}
+                </span>
+              </div>
             </div>
-            <h3 class="text-lg font-bold dark:text-white text-gray-900 mb-3 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
-              {post.data.title}
-            </h3>
-            <p class="dark:text-gray-400 text-gray-600 text-sm mb-4">
-              {post.data.description?.substring(0, 70) || 'Actionable guide to get started...'}
-              {post.data.description?.length > 70 ? '...' : ''}
-            </p>
-            <div class="flex items-center justify-between">
-              <span class="text-cyan-500 dark:text-cyan-400 text-sm font-medium">
-                READ NOW →
-              </span>
-              <span class="dark:text-gray-500 text-gray-400 text-xs">
-                {post.data.readTime} min
-              </span>
+            
+            {/* Content */}
+            <div class="p-5 flex-1 flex flex-col">
+              <div class="mb-3">
+                <div class="text-xs font-semibold text-cyan-600 dark:text-cyan-400 uppercase tracking-wider mb-1">
+                  {post.data.category ? post.data.category.replace('-', ' ') : 'Guide'}
+                </div>
+                <h3 class="text-lg font-bold dark:text-white text-gray-900 mb-3 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors line-clamp-2">
+                  {post.data.title}
+                </h3>
+              </div>
+              
+              <p class="dark:text-gray-400 text-gray-600 text-sm mb-4 flex-1 line-clamp-3">
+                {post.data.description || 'Actionable guide to get started...'}
+              </p>
+              
+              <div class="flex items-center justify-between mt-auto pt-4 border-t border-gray-200 dark:border-gray-800">
+                <span class="text-cyan-500 dark:text-cyan-400 text-sm font-medium flex items-center gap-1">
+                  READ NOW 
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </span>
+                <span class="dark:text-gray-500 text-gray-400 text-xs bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">
+                  {post.data.readTime} min
+                </span>
+              </div>
             </div>
           </a>
         )) : (
@@ -348,6 +672,7 @@ const realisticStats = {
       </div>
     </div>
   </section>
+      
 
   <!-- 🗺️ CATEGORIES SECTION -->
   <section class="py-20 dark:bg-black bg-white">
@@ -437,12 +762,216 @@ const realisticStats = {
       )}
     </div>
   </section>
-
+  <!-- ✨ EXCLUSIVE BONUS PILLARS SECTION -->
+  <section class="py-20 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-3 mb-4">
+          <span class="text-4xl">✨</span>
+          <h2 class="text-3xl md:text-4xl font-bold dark:text-white text-gray-900">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-orange-500 dark:from-yellow-400 dark:to-orange-400">
+              Exclusive Bonus Pillars
+            </span>
+          </h2>
+          <span class="text-4xl">✨</span>
+        </div>
+        <p class="text-xl dark:text-gray-400 text-gray-600 max-w-2xl mx-auto">
+          Premium content for dedicated members
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <!-- Alpha & Insider Strategies -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/10 via-orange-500/10 to-red-500/10 dark:from-yellow-500/5 dark:via-orange-500/5 dark:to-red-500/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+          <div class="relative dark:bg-gradient-to-br dark:from-gray-900 dark:to-black bg-gradient-to-br from-white to-gray-50 dark:border border-yellow-500/30 border-yellow-400/30 rounded-3xl p-8 hover:shadow-2xl hover:shadow-yellow-500/20 dark:hover:shadow-yellow-500/10 transition-all duration-300 hover:-translate-y-2">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <div class="inline-flex items-center gap-3 mb-3">
+                  <div class="text-3xl">🔒</div>
+                  <h3 class="text-2xl font-bold dark:text-white text-gray-900">
+                    Alpha & Insider Strategies 🔒
+                  </h3>
+                </div>
+                <p class="dark:text-gray-300 text-gray-700">
+                  Exclusive early access plays, whitelist strategies, and high-frequency alpha
+                </p>
+              </div>
+              <div class="px-4 py-2 bg-gradient-to-r from-yellow-600 to-orange-600 rounded-full text-white font-bold text-sm">
+                MEMBER EXCLUSIVE
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="dark:text-gray-300 text-gray-700 font-semibold mb-4 text-lg">Premium Subcategories:</h4>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-yellow-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>⚡</span>
+                  <span class="text-sm">Early DEX Arbitrage</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-yellow-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🎯</span>
+                  <span class="text-sm">Memecoin & NFT Whitelists</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-yellow-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🔥</span>
+                  <span class="text-sm">High-Frequency Airdrops</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-yellow-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🧠</span>
+                  <span class="text-sm">Alpha Discovery Systems</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-yellow-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🕵️</span>
+                  <span class="text-sm">Pre-Narrative Positioning</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-yellow-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🔍</span>
+                  <span class="text-sm">On-Chain Insider Signals</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="dark:bg-black/40 bg-yellow-50/30 rounded-xl p-4">
+                <h4 class="dark:text-yellow-400 text-yellow-600 font-bold mb-2">🎁 Premium Access</h4>
+                <p class="dark:text-gray-400 text-gray-600 text-sm">
+                  Get exclusive access to these premium strategies and insider plays
+                </p>
+              </div>
+              
+              <button onclick="document.getElementById('subscribe-popup').showModal()" 
+                      class="w-full py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-yellow-500/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-3">
+                <span>🔓</span>
+                UNLOCK BONUS PILLARS
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Web3 Gaming & Metaverse -->
+        <div class="relative group">
+          <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 dark:from-blue-500/5 dark:via-purple-500/5 dark:to-pink-500/5 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+          <div class="relative dark:bg-gradient-to-br dark:from-gray-900 dark:to-black bg-gradient-to-br from-white to-gray-50 dark:border border-purple-500/30 border-purple-400/30 rounded-3xl p-8 hover:shadow-2xl hover:shadow-purple-500/20 dark:hover:shadow-purple-500/10 transition-all duration-300 hover:-translate-y-2">
+            <div class="flex items-start justify-between mb-6">
+              <div>
+                <div class="inline-flex items-center gap-3 mb-3">
+                  <div class="text-3xl">🎮</div>
+                  <h3 class="text-2xl font-bold dark:text-white text-gray-900">
+                    Web3 Gaming & Metaverse 🔒
+                  </h3>
+                </div>
+                <p class="dark:text-gray-300 text-gray-700">
+                  Insider gaming strategies, early access plays, and metaverse wealth building
+                </p>
+              </div>
+              <div class="px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full text-white font-bold text-sm">
+                MEMBER EXCLUSIVE
+              </div>
+            </div>
+            
+            <div class="mb-8">
+              <h4 class="dark:text-gray-300 text-gray-700 font-semibold mb-4 text-lg">Premium Subcategories:</h4>
+              <div class="grid grid-cols-2 gap-3">
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-purple-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🎮</span>
+                  <span class="text-sm">Play-to-Earn Strategies</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-purple-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🌐</span>
+                  <span class="text-sm">Metaverse Land & Real Estate</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-purple-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🏆</span>
+                  <span class="text-sm">NFT Game Assets</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-purple-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>⚡</span>
+                  <span class="text-sm">Early Access & Insider Play</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-purple-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>🔄</span>
+                  <span class="text-sm">Cross-Game Strategies</span>
+                </div>
+                <div class="flex items-center gap-2 dark:bg-gray-800/50 bg-purple-50/50 dark:text-gray-300 text-gray-700 p-3 rounded-lg">
+                  <span>👥</span>
+                  <span class="text-sm">Guilds & Community</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="dark:bg-black/40 bg-purple-50/30 rounded-xl p-4">
+                <h4 class="dark:text-purple-400 text-purple-600 font-bold mb-2">🎁 Premium Access</h4>
+                <p class="dark:text-gray-400 text-gray-600 text-sm">
+                  Access gaming alpha, guild strategies, and metaverse investment plays
+                </p>
+              </div>
+              
+              <button onclick="document.getElementById('subscribe-popup').showModal()" 
+                      class="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all hover:scale-[1.02] flex items-center justify-center gap-3">
+                <span>🔓</span>
+                UNLOCK BONUS PILLARS
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Why Bonus Pillars Section -->
+      <div class="mt-12 max-w-3xl mx-auto">
+        <div class="dark:bg-gradient-to-r dark:from-gray-900/50 dark:to-black/50 bg-gradient-to-r from-gray-100/50 to-white/50 backdrop-blur-sm rounded-2xl dark:border border-gray-800 border-gray-200 p-8">
+          <div class="text-center mb-6">
+            <h3 class="text-2xl font-bold dark:text-white text-gray-900 mb-4">
+              Why Exclusive Bonus Pillars?
+            </h3>
+            <p class="dark:text-gray-300 text-gray-700">
+              These pillars contain premium content that requires dedicated access
+            </p>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="text-center p-4">
+              <div class="text-2xl mb-3">⚡</div>
+              <h4 class="font-bold dark:text-white text-gray-900 mb-2">Time-Sensitive Alpha</h4>
+              <p class="dark:text-gray-400 text-gray-600 text-sm">
+                Strategies that work best when you act fast
+              </p>
+            </div>
+            <div class="text-center p-4">
+              <div class="text-2xl mb-3">🤫</div>
+              <h4 class="font-bold dark:text-white text-gray-900 mb-2">Insider Strategies</h4>
+              <p class="dark:text-gray-400 text-gray-600 text-sm">
+                Plays that lose edge if shared too widely
+              </p>
+            </div>
+            <div class="text-center p-4">
+              <div class="text-2xl mb-3">🎯</div>
+              <h4 class="font-bold dark:text-white text-gray-900 mb-2">Premium Content</h4>
+              <p class="dark:text-gray-400 text-gray-600 text-sm">
+                High-value strategies for dedicated members
+              </p>
+            </div>
+          </div>
+          
+          <div class="text-center mt-8">
+            <p class="dark:text-gray-400 text-gray-600 text-sm italic">
+              The 11 main pillars remain 100% free. These bonus pillars contain premium content for dedicated members.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- 📚 LATEST GUIDES SECTION -->
   <section class="py-20 dark:bg-gradient-to-b dark:from-gray-900 dark:to-black bg-gradient-to-b from-gray-100 to-white">
     <div class="container mx-auto px-4">
       <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-12 gap-6">
         <div>
+          
+
           <h2 class="text-3xl lg:text-4xl font-bold dark:text-white text-gray-900">
             Latest Deep Dives
           </h2>

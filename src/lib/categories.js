@@ -1,4 +1,4 @@
-﻿// src/lib/categories.js - NOW WITH 11 PILLARS (Prediction Markets added)
+﻿// src/lib/categories.js - FULL CATEGORY HIERARCHY WITH 13 PILLARS (UPDATED)
 export const CATEGORY_HIERARCHY = {
   "getting-started": {
     name: "Getting Started",
@@ -13,7 +13,7 @@ export const CATEGORY_HIERARCHY = {
     }
   },
   
-  "security-privacy": {  // CHANGED FROM "security" to "security-privacy"
+  "security-privacy": {
     name: "Security & Privacy",
     description: "Protect your crypto assets with hardware wallets, security guides, and scam prevention",
     icon: "🔐",
@@ -146,7 +146,6 @@ export const CATEGORY_HIERARCHY = {
     }
   },
 
-  // NEW: 11th Pillar - Prediction Markets
   "prediction-markets": {
     name: "Prediction Markets",
     description: "On-chain prediction platforms, event betting strategies, liquidity, arbitrage, and real-world outcome markets",
@@ -161,6 +160,46 @@ export const CATEGORY_HIERARCHY = {
       "bankroll-management": "Bankroll & Risk Management",
       "market-analysis": "Market Analysis",
       "regulatory-updates": "Regulatory Landscape"
+    }
+  },
+
+  // NEW PILLAR 1: Alpha & Insider Strategies
+  "alpha-insider": {
+    name: "Alpha & Insider Strategies 🔒",
+    description: "Exclusive early DEX arbitrage, memecoin whitelists, high-frequency airdrop tactics, and alpha discovery systems",
+    icon: "🔒",
+    subcategories: {
+      "early-dex-arbitrage": "⚡ Early DEX Arbitrage",
+      "memecoin-nft-whitelists": "🎯 Memecoin & NFT Whitelist Strategies",
+      "high-frequency-airdrops": "🔥 High-Frequency Airdrop Tactics",
+      "smart-contract-sniping": "🛡️ Smart Contract Sniping",
+      "liquidity-market-depth-alpha": "💧 Liquidity & Market Depth Alpha",
+      "cross-chain-alpha-arbitrage": "🌉 Cross-Chain Alpha & Arbitrage",
+      "insider-governance-dao-plays": "🏛️ Insider Governance & DAO Plays",
+      "token-launch-fair-launch-tactics": "🚀 Token Launch & Fair Launch Tactics",
+      "private-testnet-beta-exploits": "🧪 Private Testnet & Beta Exploits",
+      "on-chain-analytics-wallet-shadowing": "🔍 On-Chain Analytics & Wallet Shadowing"
+    }
+  },
+
+  // NEW PILLAR 2: Web3 Gaming & Metaverse
+  "web3-gaming-metaverse": {
+    name: "Web3 Gaming & Metaverse 🔒",
+    description: "Exclusive play-to-earn strategies, NFT game assets, metaverse land, early access plays, and guild dynamics",
+    icon: "🎮",
+    subcategories: {
+      "play-to-earn-strategies": "🎮 Play-to-Earn Strategies",
+      "nft-game-assets": "🏆 NFT Game Assets",
+      "metaverse-land-real-estate": "🌐 Metaverse Land & Real Estate",
+      "game-economy-tokenomics": "💹 Game Economy & Tokenomics",
+      "early-access-insider-play": "⚡ Early Access & Insider Play",
+      "cross-game-multiverse-strategies": "🔗 Cross-Game & Multi-Metaverse Strategies",
+      "guilds-teams-community": "🛡️ Guilds, Teams & Community Dynamics",
+      "defi-integration-gamers": "🏦 DeFi Integration for Gamers",
+      "risk-management-exit": "🧰 Risk Management & Exit Strategy",
+      "rare-event-opportunities": "🎯 Rare Event & Limited-Time Opportunities",
+      "tools-trackers-analytics": "📊 Tools, Trackers & Analytics for Gamers",
+      "social-competitive-alpha": "🏆 Social & Competitive Alpha"
     }
   }
 };

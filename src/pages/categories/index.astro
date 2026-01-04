@@ -87,6 +87,11 @@ const categoriesWithProgress = Object.entries(CATEGORY_HIERARCHY).map(([slug, ca
   const latestPosts = latestCategoryPosts[slug] || [];
   const isGettingStarted = slug === 'getting-started';
   
+  // Determine if this is an exclusive category and which type
+  const isExclusive = slug === 'web3-gaming-metaverse' || slug === 'alpha-insider-strategies';
+  const isAlphaCategory = slug === 'alpha-insider-strategies';
+  const isGamingCategory = slug === 'web3-gaming-metaverse';
+  
   // Determine category status
   let categoryStatus = 'New path';
   if (postCount > 0 && postCount <= 3) categoryStatus = 'Getting started';
@@ -102,30 +107,13 @@ const categoriesWithProgress = Object.entries(CATEGORY_HIERARCHY).map(([slug, ca
     postCount,
     latestPosts,
     isGettingStarted,
+    isExclusive,
+    isAlphaCategory,
+    isGamingCategory,
     categoryStatus,
     progressWidth
   };
 });
-
-// Premium Newsletter-Gated Categories
-const premiumCategories = [
-  {
-    slug: 'alpha-insider-strategies',
-    name: 'Alpha & Insider Strategies',
-    icon: '⚡',
-    description: 'Highest-level tactical strategies for crypto, DeFi, and memecoin trading that most people don\'t know. Insider edge, early access, and playbooks not publicly shared.',
-    isPremium: true,
-    badge: 'NEWSLETTER EXCLUSIVE'
-  },
-  {
-    slug: 'web3-gaming-metaverse',
-    name: 'Web3 Gaming & Metaverse',
-    icon: '🎮',
-    description: 'Earn, invest, and strategize in Web3 gaming and metaverse ecosystems. Practical guides for earning crypto while playing and investing in emerging gaming economies.',
-    isPremium: true,
-    badge: 'NEWSLETTER EXCLUSIVE'
-  }
-];
 ---
 
 <Base title="Master DeFi Through Our 11 Pillar Categories | Txchyon Capital" 
@@ -144,7 +132,7 @@ const premiumCategories = [
         <div class="inline-flex items-center gap-2 dark:bg-black/40 bg-white/80 backdrop-blur-sm dark:border border-cyan-500/30 border-cyan-400/30 rounded-full px-5 py-2.5 mb-8">
           <span class="text-cyan-500 dark:text-cyan-400">🗺️</span>
           <span class="text-cyan-600 dark:text-cyan-300 font-medium text-sm">
-            {totalCategories + premiumCategories.length} LEARNING PATHS • {totalPosts} GUIDES • 100% FREE
+            {totalCategories} LEARNING PATHS • {totalPosts} GUIDES • 100% FREE
           </span>
         </div>
         
@@ -166,7 +154,7 @@ const premiumCategories = [
         <div class="dark:bg-black/30 bg-white/50 backdrop-blur-sm rounded-2xl dark:border border-gray-800 border-gray-200 p-6 max-w-4xl mx-auto mb-12">
           <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
             <div class="text-center">
-              <div class="text-3xl font-bold dark:text-white text-gray-900 mb-2">{totalCategories + premiumCategories.length}</div>
+              <div class="text-3xl font-bold dark:text-white text-gray-900 mb-2">{totalCategories}</div>
               <div class="dark:text-gray-400 text-gray-600 text-sm">PILLAR CATEGORIES</div>
             </div>
             <div class="text-center">
@@ -179,7 +167,7 @@ const premiumCategories = [
             </div>
             <div class="text-center">
               <div class="text-3xl font-bold dark:text-white text-gray-900 mb-2">2</div>
-              <div class="text-purple-500 dark:text-purple-400 text-sm">PREMIUM PILLARS</div>
+              <div class="text-purple-500 dark:text-purple-400 text-sm">EXCLUSIVE PILLARS</div>
             </div>
           </div>
         </div>
@@ -218,11 +206,18 @@ const premiumCategories = [
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
         {featuredCategories.map((category) => (
-          <div class="group dark:bg-gradient-to-br dark:from-gray-900 dark:to-black bg-gradient-to-br from-white to-gray-50 dark:border border-gray-800 border-gray-200 rounded-2xl p-6 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300 hover:-translate-y-2">
+          <div class={`group ${category.isExclusive ? (category.isAlphaCategory ? 'dark:border border-yellow-500/30 border-yellow-400/30' : 'dark:border border-purple-500/30 border-purple-400/30') : 'dark:border border-gray-800 border-gray-200'} dark:bg-gradient-to-br dark:from-gray-900 dark:to-black bg-gradient-to-br from-white to-gray-50 rounded-2xl p-6 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 transition-all duration-300 hover:-translate-y-2`}>
             <div class="flex items-start justify-between mb-6">
               <div class="text-3xl">{category.icon}</div>
-              <div class="px-3 py-1 bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 rounded-full text-xs font-bold">
-                {category.postCount} {category.postCount === 1 ? 'guide' : 'guides'}
+              <div class="flex items-center gap-2">
+                {category.isExclusive && (
+                  <span class={`px-2 py-1 ${category.isAlphaCategory ? 'bg-gradient-to-r from-yellow-600 to-orange-600' : 'bg-gradient-to-r from-purple-600 to-pink-600'} text-white text-xs font-bold rounded-full`}>
+                    EXCLUSIVE
+                  </span>
+                )}
+                <div class={`px-3 py-1 ${category.isExclusive ? (category.isAlphaCategory ? 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-300' : 'bg-purple-500/20 text-purple-600 dark:text-purple-300') : 'bg-cyan-500/20 text-cyan-600 dark:text-cyan-300'} rounded-full text-xs font-bold`}>
+                  {category.postCount} {category.postCount === 1 ? 'guide' : 'guides'}
+                </div>
               </div>
             </div>
             
@@ -365,268 +360,185 @@ const premiumCategories = [
           </div>
         </div>
       ))}
-      
       <!-- All Other Pillars (Grid Layout) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {categoriesWithProgress.filter(cat => !cat.isGettingStarted).map((category) => (
-          <div class="group dark:bg-gradient-to-br dark:from-gray-900/80 dark:to-black/80 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-sm dark:border border-gray-800 border-gray-200 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-cyan-500/30">
-            
-            <div class="flex flex-col h-full">
-              <!-- Top Section with Icon, Title, and Stats -->
-              <div class="mb-6">
-                <div class="flex items-start justify-between mb-4">
-                  <div class="flex items-center gap-4">
-                    <div class="text-4xl">{category.icon}</div>
-                    <div>
-                      <h3 class="text-xl lg:text-2xl font-bold dark:text-white text-gray-900 mb-1 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
-                        {category.name}
-                      </h3>
-                      <div class="flex items-center gap-3">
-                        <span class="dark:text-gray-500 text-gray-400 text-sm">
-                          {category.postCount} {category.postCount === 1 ? 'guide' : 'guides'}
-                        </span>
-                        <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 rounded-full text-xs font-bold">
-                          {category.categoryStatus}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <p class="dark:text-gray-300 text-gray-700 mb-6">
-                  {category.description}
-                </p>
-                
-                <!-- Progress Bar -->
-                <div class="flex items-center gap-3 mb-6">
-                  <div class="flex-1 dark:bg-gray-800 bg-gray-200 rounded-full h-2">
-                    <div 
-                      class="dark:bg-cyan-500 bg-cyan-400 h-2 rounded-full transition-all duration-500" 
-                      style={{"width": `${category.progressWidth}%`}}>
-                    </div>
-                  </div>
-                  <span class="dark:text-gray-400 text-gray-500 text-sm">
-                    {Math.round(category.progressWidth)}% complete
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+  {categoriesWithProgress.filter(cat => !cat.isGettingStarted).map((category) => (
+    <div class={`group relative ${category.isExclusive ? (category.isAlphaCategory ? 'dark:bg-gradient-to-br dark:from-yellow-900/20 dark:to-orange-900/20 bg-gradient-to-br from-yellow-50/80 to-orange-50/80 dark:border-2 border-yellow-500/40 border-yellow-400/40' : 'dark:bg-gradient-to-br dark:from-purple-900/20 dark:to-pink-900/20 bg-gradient-to-br from-purple-50/80 to-pink-50/80 dark:border-2 border-purple-500/40 border-purple-400/40') : 'dark:bg-gradient-to-br dark:from-gray-900/80 dark:to-black/80 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-sm dark:border border-gray-800 border-gray-200 hover:border-cyan-500/30'} rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 ${category.isExclusive ? 'shadow-xl' : ''}`}>
+      
+      {category.isExclusive && category.isAlphaCategory && (
+        <!-- Special Badge for Alpha - Top Left -->
+        <div class="absolute -top-3 left-6 px-4 py-1 bg-gradient-to-r from-yellow-500 to-orange-600 text-white font-bold text-xs rounded-full flex items-center gap-2 shadow-lg z-10">
+          <span>⚡</span> NEWSLETTER EXCLUSIVE
+        </div>
+      )}
+      
+      {category.isExclusive && category.isGamingCategory && (
+        <div class="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs rounded-full shadow-lg z-10">
+          NEWSLETTER EXCLUSIVE
+        </div>
+      )}
+      
+      <div class="flex flex-col h-full">
+        <!-- Top Section with Icon, Title, and Stats -->
+        <div class="mb-6">
+          <div class="flex items-start justify-between mb-4">
+            <div class="flex items-center gap-4">
+              <div class={`text-4xl ${category.isExclusive && category.isAlphaCategory ? 'animate-pulse' : ''}`}>{category.icon}</div>
+              <div>
+                <h3 class="text-xl lg:text-2xl font-bold dark:text-white text-gray-900 mb-1 group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
+                  {category.name}
+                </h3>
+                <div class="flex items-center gap-3">
+                  <span class={`${category.isExclusive ? (category.isAlphaCategory ? 'dark:text-yellow-300 text-yellow-600' : 'dark:text-purple-300 text-purple-600') : 'dark:text-gray-500 text-gray-400'} text-sm`}>
+                    {category.postCount} {category.postCount === 1 ? 'guide' : 'guides'}
                   </span>
-                </div>
-              </div>
-              
-              <!-- Latest Posts Preview -->
-              <div class="mt-auto">
-                <h4 class="text-lg font-bold dark:text-white text-gray-900 mb-4">Latest in this pillar:</h4>
-                {category.latestPosts.length > 0 ? (
-                  <div class="space-y-3 mb-6">
-                    {category.latestPosts.map(post => (
-                      <a href={`/blog/${post.slug}`} 
-                         class="block p-4 dark:bg-black/30 bg-gray-100/50 rounded-xl hover:dark:bg-black/50 hover:bg-gray-200/50 transition-colors group">
-                        <div class="flex justify-between items-start mb-2">
-                          <div class="dark:text-white text-gray-900 font-medium group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors line-clamp-2">
-                            {post.data.title}
-                          </div>
-                          <span class="dark:text-gray-500 text-gray-400 text-xs whitespace-nowrap ml-2">
-                            {post.data.readTime} min
-                          </span>
-                        </div>
-                        <div class="dark:text-gray-500 text-gray-400 text-xs">
-                          {new Date(post.data.date).toLocaleDateString('en-US', { 
-                            month: 'short', 
-                            day: 'numeric',
-                            year: 'numeric'
-                          })}
-                        </div>
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <div class="p-4 dark:bg-black/20 bg-gray-100/30 rounded-xl text-center mb-6">
-                    <div class="text-3xl mb-2 dark:text-gray-700 text-gray-300">📖</div>
-                    <p class="dark:text-gray-500 text-gray-400 text-sm">First guides coming soon!</p>
-                  </div>
-                )}
-                
-                <a href={`/categories/${category.slug}`} 
-                   class="block w-full py-3 dark:bg-gray-800/50 bg-gray-100 dark:text-white text-gray-900 font-semibold rounded-xl text-center hover:dark:bg-gray-700 hover:bg-gray-200 transition-colors group">
-                  <span class="group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
-                    Explore Full Path →
-                  </span>
-                </a>
-              </div>
-            </div>
-          </div>
-        ))}
-        
-        <!-- Premium Newsletter-Gated Categories -->
-        {premiumCategories.map((category) => (
-          <div class="group relative dark:bg-gradient-to-br dark:from-gray-900/80 dark:to-black/80 bg-gradient-to-br from-white/90 to-gray-50/90 backdrop-blur-sm dark:border border-purple-500/30 border-purple-400/30 rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-            {/* Premium Glow Effect */}
-            <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-pink-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            
-            {/* Premium Badge - Fixed positioning to not get cut off */}
-            <div class="absolute top-3 right-3 px-3 py-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xs rounded-full shadow-lg z-10">
-              {category.badge}
-            </div>
-            
-            <div class="flex flex-col h-full relative z-20">
-              <!-- Top Section with Icon, Title, and Stats -->
-              <div class="mb-6">
-                <div class="flex items-start gap-4 mb-4">
-                  <div class="text-4xl">{category.icon}</div>
-                  <div class="flex-1">
-                    <h3 class="text-xl lg:text-2xl font-bold dark:text-white text-gray-900 mb-1 group-hover:text-purple-500 dark:group-hover:text-purple-400 transition-colors">
-                      {category.name}
-                    </h3>
-                    <div class="flex items-center gap-3">
-                      <span class="dark:text-gray-500 text-gray-400 text-sm">
-                        Newsletter Exclusive
-                      </span>
-                      <span class="px-2 py-0.5 bg-purple-500/20 text-purple-600 dark:text-purple-300 rounded-full text-xs font-bold">
-                        Early Access
-                      </span>
-                    </div>
-                  </div>
-                </div>
-                
-                <p class="dark:text-gray-300 text-gray-700 mb-6">
-                  {category.description}
-                </p>
-                
-                <!-- Locked Progress Bar -->
-                <div class="flex items-center gap-3 mb-6">
-                  <div class="flex-1 dark:bg-gray-800 bg-gray-200 rounded-full h-2 relative overflow-hidden">
-                    <div class="absolute inset-0 dark:bg-purple-500/30 bg-purple-400/30 rounded-full"></div>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                      <span class="text-[8px] dark:text-purple-300 text-purple-500 font-bold">🔒 LOCKED</span>
-                    </div>
-                  </div>
-                  <span class="dark:text-purple-300 text-purple-500 text-sm font-medium">
-                    Join for Access
-                  </span>
-                </div>
-              </div>
-              
-              <!-- Locked Content Preview -->
-              <div class="mt-auto">
-                <h4 class="text-lg font-bold dark:text-white text-gray-900 mb-4">What's Inside (Exclusive):</h4>
-                
-                <div class="space-y-3 mb-6">
-                  {/* Alpha & Insider Strategies Content */}
-                  {category.slug === 'alpha-insider-strategies' ? (
-                    <>
-                      <div class="p-3 dark:bg-black/40 bg-gray-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
-                        <div class="dark:text-gray-300 text-gray-600 text-sm font-medium mb-1">
-                          ⚡ High-Frequency Airdrop Tactics
-                        </div>
-                        <div class="dark:text-purple-400/70 text-purple-500/70 text-xs">
-                          Maximize rewards before others even see them
-                        </div>
-                      </div>
-                      <div class="p-3 dark:bg-black/40 bg-gray-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
-                        <div class="dark:text-gray-300 text-gray-600 text-sm font-medium mb-1">
-                          🎯 Memecoin & NFT Whitelist Strategies
-                        </div>
-                        <div class="dark:text-purple-400/70 text-purple-500/70 text-xs">
-                          Insider whitelist hacks revealed only inside
-                        </div>
-                      </div>
-                      <div class="p-3 dark:bg-black/40 bg-gray-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
-                        <div class="dark:text-gray-300 text-gray-600 text-sm font-medium mb-1">
-                          🔥 Early DEX Arbitrage
-                        </div>
-                        <div class="dark:text-purple-400/70 text-purple-500/70 text-xs">
-                          Step-by-step methods for alpha arbitrage
-                        </div>
-                      </div>
-                    </>
+                  {category.isExclusive ? (
+                    <span class={`px-2 py-0.5 ${category.isAlphaCategory ? 'bg-yellow-500/30 text-yellow-700 dark:text-yellow-300' : 'bg-purple-500/30 text-purple-700 dark:text-purple-300'} rounded-full text-xs font-bold`}>
+                      {category.isAlphaCategory ? '⚡ Early Access' : '🎮 Early Access'}
+                    </span>
                   ) : (
-                    <>
-                      <div class="p-3 dark:bg-black/40 bg-gray-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
-                        <div class="dark:text-gray-300 text-gray-600 text-sm font-medium mb-1">
-                          🎮 Play-to-Earn Strategies
-                        </div>
-                        <div class="dark:text-purple-400/70 text-purple-500/70 text-xs">
-                          Get the most crypto while you play
-                        </div>
-                      </div>
-                      <div class="p-3 dark:bg-black/40 bg-gray-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
-                        <div class="dark:text-gray-300 text-gray-600 text-sm font-medium mb-1">
-                          🏆 NFT Game Assets
-                        </div>
-                        <div class="dark:text-purple-400/70 text-purple-500/70 text-xs">
-                          Discover hidden NFT gems before anyone else
-                        </div>
-                      </div>
-                      <div class="p-3 dark:bg-black/40 bg-gray-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
-                        <div class="dark:text-gray-300 text-gray-600 text-sm font-medium mb-1">
-                          🌐 Metaverse Land & Real Estate
-                        </div>
-                        <div class="dark:text-purple-400/70 text-purple-500/70 text-xs">
-                          Virtual real estate secrets revealed
-                        </div>
-                      </div>
-                    </>
+                    <span class="px-2 py-0.5 bg-cyan-500/20 text-cyan-600 dark:text-cyan-300 rounded-full text-xs font-bold">
+                      {category.categoryStatus}
+                    </span>
                   )}
                 </div>
-                
-                {/* Newsletter CTA Button */}
-                <a href="/newsletter" 
-                   class="block w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl text-center hover:shadow-xl hover:shadow-purple-500/30 transition-all hover:scale-[1.02] group">
-                  <div class="flex items-center justify-center gap-2">
-                    <span>🔓</span>
-                    <span>Join Newsletter to Unlock</span>
+              </div>
+            </div>
+          </div>
+          
+          <p class={`${category.isExclusive ? (category.isAlphaCategory ? 'dark:text-yellow-100/90 text-yellow-900/90' : 'dark:text-purple-100/90 text-purple-900/90') : 'dark:text-gray-300 text-gray-700'} mb-6`}>
+            {category.description}
+          </p>
+          
+          <!-- Progress Bar -->
+          <div class="flex items-center gap-3 mb-6">
+            <div class="flex-1 dark:bg-gray-800 bg-gray-200 rounded-full h-2 relative">
+              <div 
+                class={`h-2 rounded-full transition-all duration-500 ${category.isExclusive ? (category.isAlphaCategory ? 'dark:bg-gradient-to-r dark:from-yellow-400 dark:to-orange-400 bg-gradient-to-r from-yellow-500 to-orange-500' : 'dark:bg-gradient-to-r dark:from-purple-400 dark:to-pink-400 bg-gradient-to-r from-purple-500 to-pink-500') : 'dark:bg-cyan-500 bg-cyan-400'}`} 
+                style={{"width": `${category.progressWidth}%`}}>
+              </div>
+              {category.isExclusive && (
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span class={`text-[8px] ${category.isAlphaCategory ? 'dark:text-yellow-300 text-yellow-600' : 'dark:text-purple-300 text-purple-600'} font-bold`}>🔒 LOCKED</span>
+                </div>
+              )}
+            </div>
+            <span class={`${category.isExclusive ? (category.isAlphaCategory ? 'dark:text-yellow-300 text-yellow-600' : 'dark:text-purple-300 text-purple-600') : 'dark:text-gray-400 text-gray-500'} text-sm font-medium`}>
+              {category.isExclusive ? 'Join for Access' : `${Math.round(category.progressWidth)}% complete`}
+            </span>
+          </div>
+        </div>
+        
+        <!-- Latest Posts Preview -->
+        <div class="mt-auto">
+          <h4 class={`text-lg font-bold ${category.isExclusive ? (category.isAlphaCategory ? 'dark:text-yellow-300 text-yellow-700' : 'dark:text-purple-300 text-purple-700') : 'dark:text-white text-gray-900'} mb-4`}>
+            {category.isExclusive ? "What's Inside (Exclusive):" : "Latest in this pillar:"}
+          </h4>
+          
+          {category.latestPosts.length > 0 ? (
+            <div class="space-y-3 mb-6">
+              {category.latestPosts.map(post => (
+                <a href={`/blog/${post.slug}`} 
+                   class="block p-4 dark:bg-black/30 bg-gray-100/50 rounded-xl hover:dark:bg-black/50 hover:bg-gray-200/50 transition-colors group">
+                  <div class="dark:text-white text-gray-900 font-medium group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors line-clamp-2">
+                    {post.data.title}
                   </div>
-                  <div class="text-xs mt-1 opacity-80">
-                    {category.slug === 'alpha-insider-strategies' 
-                      ? 'Step into the secret playbook used by insiders'
-                      : 'Earn crypto, snag rare NFTs, and dominate the metaverse'}
+                  <div class="dark:text-gray-500 text-gray-400 text-xs">
+                    {new Date(post.data.date).toLocaleDateString('en-US', { 
+                      month: 'short', 
+                      day: 'numeric',
+                      year: 'numeric'
+                    })}
                   </div>
                 </a>
-              </div>
+              ))}
             </div>
-            
-            {/* Lock Overlay Effect */}
-            <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
-          </div>
-        ))}
-      </div>
-      
-      <!-- Newsletter Info Box -->
-      <div class="mt-16 max-w-3xl mx-auto">
-        <div class="dark:bg-gradient-to-r dark:from-purple-900/30 dark:to-pink-900/30 bg-gradient-to-r from-purple-50/80 to-pink-50/80 backdrop-blur-sm rounded-3xl dark:border border-purple-500/30 border-purple-400/30 p-8 text-center">
-          <div class="text-4xl mb-4">🎁</div>
-          <h3 class="text-2xl font-bold dark:text-white text-gray-900 mb-4">
-            Want Early Access to Premium Content?
-          </h3>
-          <p class="dark:text-gray-300 text-gray-700 mb-6 max-w-2xl mx-auto">
-            Our newsletter subscribers get <span class="text-purple-600 dark:text-purple-400 font-semibold">exclusive early access</span> to new pillars, 
-            plus weekly DeFi insights, airdrop alerts, and premium research that never goes public.
-          </p>
-          
-          <div class="mb-6 max-w-xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="dark:bg-purple-900/30 bg-purple-100/50 rounded-xl p-4 border dark:border-purple-500/20 border-purple-400/20">
-                <div class="text-xl mb-2">⚡</div>
-                <h4 class="font-bold dark:text-white text-gray-900 text-sm">Alpha & Insider Strategies</h4>
-                <p class="dark:text-gray-400 text-gray-600 text-xs mt-1">Secret playbooks & early access tactics</p>
-              </div>
-              <div class="dark:bg-pink-900/30 bg-pink-100/50 rounded-xl p-4 border dark:border-pink-500/20 border-pink-400/20">
-                <div class="text-xl mb-2">🎮</div>
-                <h4 class="font-bold dark:text-white text-gray-900 text-sm">Web3 Gaming & Metaverse</h4>
-                <p class="dark:text-gray-400 text-gray-600 text-xs mt-1">Earn crypto while playing & virtual investing</p>
-              </div>
+          ) : category.isExclusive ? (
+            <div class="space-y-3 mb-6">
+              {category.isAlphaCategory ? (
+                <>
+                  <div class="p-3 dark:bg-yellow-900/20 bg-yellow-100/50 rounded-xl border dark:border-yellow-500/20 border-yellow-400/20">
+                    <div class="dark:text-yellow-200 text-yellow-800 text-sm font-medium mb-1">
+                      ⚡ High-Frequency Airdrop Tactics
+                    </div>
+                    <div class="dark:text-yellow-400/70 text-yellow-600/70 text-xs">
+                      Maximize rewards before others even see them
+                    </div>
+                  </div>
+                  <div class="p-3 dark:bg-yellow-900/20 bg-yellow-100/50 rounded-xl border dark:border-yellow-500/20 border-yellow-400/20">
+                    <div class="dark:text-yellow-200 text-yellow-800 text-sm font-medium mb-1">
+                      🎯 Memecoin & NFT Whitelist Strategies
+                    </div>
+                    <div class="dark:text-yellow-400/70 text-yellow-600/70 text-xs">
+                      Insider whitelist hacks revealed only inside
+                    </div>
+                  </div>
+                  <div class="p-3 dark:bg-yellow-900/20 bg-yellow-100/50 rounded-xl border dark:border-yellow-500/20 border-yellow-400/20">
+                    <div class="dark:text-yellow-200 text-yellow-800 text-sm font-medium mb-1">
+                      🔥 Early DEX Arbitrage
+                    </div>
+                    <div class="dark:text-yellow-400/70 text-yellow-600/70 text-xs">
+                      Step-by-step methods for alpha arbitrage
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div class="p-3 dark:bg-purple-900/20 bg-purple-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
+                    <div class="dark:text-purple-200 text-purple-800 text-sm font-medium mb-1">
+                      🎮 Play-to-Earn Strategies
+                    </div>
+                    <div class="dark:text-purple-400/70 text-purple-600/70 text-xs">
+                      Get the most crypto while you play
+                    </div>
+                  </div>
+                  <div class="p-3 dark:bg-purple-900/20 bg-purple-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
+                    <div class="dark:text-purple-200 text-purple-800 text-sm font-medium mb-1">
+                      🏆 NFT Game Assets
+                    </div>
+                    <div class="dark:text-purple-400/70 text-purple-600/70 text-xs">
+                      Discover hidden NFT gems before anyone else
+                    </div>
+                  </div>
+                  <div class="p-3 dark:bg-purple-900/20 bg-purple-100/50 rounded-xl border dark:border-purple-500/20 border-purple-400/20">
+                    <div class="dark:text-purple-200 text-purple-800 text-sm font-medium mb-1">
+                      🌐 Metaverse Land & Real Estate
+                    </div>
+                    <div class="dark:text-purple-400/70 text-purple-600/70 text-xs">
+                      Virtual real estate secrets revealed
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-          </div>
+          ) : (
+            <div class="p-4 dark:bg-black/20 bg-gray-100/30 rounded-xl text-center mb-6">
+              <div class="text-3xl mb-2 dark:text-gray-700 text-gray-300">📖</div>
+              <p class="dark:text-gray-500 text-gray-400 text-sm">First guides coming soon!</p>
+            </div>
+          )}
           
-          <a href="/newsletter" 
-             class="inline-flex items-center gap-3 px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-xl hover:shadow-purple-500/30 transition-all hover:scale-[1.02] text-lg">
-            <span>✨</span> Join Newsletter for Exclusive Access
+          <a href={category.isExclusive ? "/newsletter" : `/categories/${category.slug}`} 
+             class={`block w-full py-3 ${category.isExclusive ? (category.isAlphaCategory ? 'bg-gradient-to-r from-yellow-500 to-orange-500 hover:shadow-xl hover:shadow-yellow-500/30' : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:shadow-xl hover:shadow-purple-500/30') : 'dark:bg-gray-800/50 bg-gray-100 dark:text-white text-gray-900 font-semibold hover:dark:bg-gray-700 hover:bg-gray-200'} ${category.isExclusive ? 'text-white font-bold hover:scale-[1.02]' : ''} rounded-xl text-center transition-all duration-300 group`}>
+            {category.isExclusive ? (
+              <div class="flex items-center justify-center gap-2">
+                <span>🔓</span>
+                <span>Join Newsletter to Unlock</span>
+              </div>
+            ) : (
+              <span class="group-hover:text-cyan-500 dark:group-hover:text-cyan-400 transition-colors">
+                Explore Full Path →
+              </span>
+            )}
           </a>
-          <p class="dark:text-gray-400 text-gray-600 text-sm mt-4">
-            🚀 100% free • No spam • Unsubscribe anytime
-          </p>
         </div>
       </div>
+      
+      {/* Glow effect for exclusive pillars */}
+      {category.isExclusive && (
+        <div class={`absolute inset-0 ${category.isAlphaCategory ? 'bg-gradient-to-br from-yellow-500/5 via-orange-500/5 to-red-500/5' : 'bg-gradient-to-br from-blue-500/5 via-purple-500/5 to-pink-500/5'} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
+      )}
     </div>
-  </section>
-
-  <!-- 🎯 GETTING STARTED CTA -->
-  <section id="getting-started" class="py-20 dark:bg-gradient-to-r dark:from-black dark:via-purple-900/20 dark:to-blue-900/20 bg-gradient-to-r from-white via-pur
+  ))}
+</div>
+</Base>

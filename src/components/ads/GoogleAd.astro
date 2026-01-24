@@ -11,9 +11,9 @@ const shouldShowAds = isBlogPost; // Removed && import.meta.env.PROD
 
 // REPLACE THESE WITH YOUR REAL AD SLOT IDs from AdSense
 const adSlots = {
-  'top': '5972464010',        // e.g., 1234567890
-  'middle': '4515912114',  // e.g., 0987654321  
-  'bottom': '8842347544'   // e.g., 1122334455
+  'top': '8178043657',        // e.g., 1234567890
+  'middle': '3779138804',  // e.g., 0987654321  
+  'bottom': '5551880317'   // e.g., 1122334455
 };
 
 const slotId = adSlots[position] || adSlots.middle;
@@ -22,13 +22,13 @@ const slotId = adSlots[position] || adSlots.middle;
 {shouldShowAds && (
   <div class="ad-container" data-ad-type="blog" data-ad-position={position}>
     <!-- Google AdSense -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6121972957488905"
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4395640740127630"
      crossorigin="anonymous"></script>
 
     <!-- Responsive Ad Unit -->
     <ins class="adsbygoogle"
          style="display:block"
-         data-ad-client="ca-pub-6121972957488905"
+         data-ad-client="ca-pub-4395640740127630"
          data-ad-slot={slotId}  <!-- UPDATED: Uses variable -->
          data-ad-format="auto"
          data-full-width-responsive="true"></ins>
@@ -53,3 +53,4 @@ const slotId = adSlots[position] || adSlots.middle;
     /* Dark mode */
     background: rgba(30, 41, 59, 0.3);
     border: 1
+

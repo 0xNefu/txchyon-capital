@@ -1,4 +1,4 @@
-﻿---
+---
 import SocialShare from "@/components/SocialShare.astro";
 import SimilarPosts from "@/components/SimilarPosts.astro";
 // REMOVED: import SEO from "@/layouts/components/SEO.astro"; <-- Remove this line
@@ -48,7 +48,7 @@ const authorNames = getAuthorNames();
       <div class="md:col-10 text-center">
         <h1 set:html={markdownify(title)} class="h2" />
         <ul class="mt-4 flex flex-wrap items-center justify-center text-text">
-          <!-- Author, Date, Categories – with safe handling -->
+          <!-- Author, Date, Categories � with safe handling -->
           {authorNames !== "NefuTrades" && (
             <li class="mr-4 flex items-center">
               {authorNames.split(", ").map((name: string, i: number) => (
@@ -203,7 +203,7 @@ const authorNames = getAuthorNames();
             ))}
           </div>
 
-          <!-- SHARE BUTTONS – NOW VISIBLE -->
+          <!-- SHARE BUTTONS � NOW VISIBLE -->
           <SocialShare title={title} url={Astro.url} />
         </div>
       </div>
@@ -211,7 +211,7 @@ const authorNames = getAuthorNames();
   </div>
 </section>
 
-<!-- Similar posts – untouched -->
+<!-- Similar posts � untouched -->
 {similarPosts.length > 0 && (
   <section class="section pt-0">
     <div class="container">
@@ -224,29 +224,29 @@ const authorNames = getAuthorNames();
 <!-- JavaScript to inject middle ad at 40% reading point -->
 <script>
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('🔄 Setting up middle ad injection...');
+    console.log('?? Setting up middle ad injection...');
     
     const placeholder = document.getElementById('middle-ad-placeholder');
     if (!placeholder) {
-      console.log('❌ Middle ad placeholder not found');
+      console.log('? Middle ad placeholder not found');
       return;
     }
     
     // Get the content area
     const contentArea = document.querySelector('.content');
     if (!contentArea) {
-      console.log('❌ Content area not found');
+      console.log('? Content area not found');
       placeholder.remove();
       return;
     }
     
     // Get all paragraphs in the content
     const paragraphs = contentArea.querySelectorAll('p');
-    console.log(`📊 Found ${paragraphs.length} paragraphs in content`);
+    console.log(`?? Found ${paragraphs.length} paragraphs in content`);
     
     // Need enough content for middle ad
     if (paragraphs.length < 6) {
-      console.log('⚠️ Not enough paragraphs, removing middle ad');
+      console.log('?? Not enough paragraphs, removing middle ad');
       placeholder.remove();
       return;
     }
@@ -256,12 +256,12 @@ const authorNames = getAuthorNames();
     const targetParagraph = paragraphs[targetIndex];
     
     if (!targetParagraph) {
-      console.log('❌ Target paragraph not found');
+      console.log('? Target paragraph not found');
       placeholder.remove();
       return;
     }
     
-    console.log(`🎯 Inserting ad after paragraph ${targetIndex + 1} of ${paragraphs.length}`);
+    console.log(`?? Inserting ad after paragraph ${targetIndex + 1} of ${paragraphs.length}`);
     
     // Create the ad HTML
     const adHTML = `
@@ -283,15 +283,15 @@ const authorNames = getAuthorNames();
               font-size: 0.875rem;
               font-weight: 500;
             ">
-              📖 Continue Reading
+              ?? Continue Reading
             </span>
           </div>
           
           <!-- AdSense Ad -->
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6121972957488905" crossorigin="anonymous"><\/script>
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4395640740127630" crossorigin="anonymous"><\/script>
           <ins class="adsbygoogle"
                style="display:block; min-height: 250px;"
-               data-ad-client="ca-pub-6121972957488905"
+               data-ad-client="ca-pub-4395640740127630"
                data-ad-slot="0987654321"
                data-ad-format="auto"
                data-full-width-responsive="true">
@@ -303,7 +303,7 @@ const authorNames = getAuthorNames();
               color: #92400e;
               font-family: sans-serif;
             ">
-              <div style="font-size: 48px; margin-bottom: 16px;">📢</div>
+              <div style="font-size: 48px; margin-bottom: 16px;">??</div>
               <h3 style="margin: 0 0 8px 0;">MIDDLE AD - In Content</h3>
               <p style="margin: 0; opacity: 0.7;">Positioned at 40% reading point</p>
               <p style="margin: 8px 0 0 0; font-size: 12px; opacity: 0.5;">
@@ -321,7 +321,7 @@ const authorNames = getAuthorNames();
             font-size: 0.75rem;
             opacity: 0.7;
           ">
-            Advertisement • Use Reading Mode button to hide ads
+            Advertisement � Use Reading Mode button to hide ads
           </div>
         </div>
       </div>
@@ -335,7 +335,7 @@ const authorNames = getAuthorNames();
     // Remove the placeholder
     placeholder.remove();
     
-    console.log('✅ Middle ad successfully injected into content');
+    console.log('? Middle ad successfully injected into content');
     
     // Apply reading mode if already active
     if (localStorage.getItem('txchyon-reading-mode') === 'true') {

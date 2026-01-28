@@ -1,75 +1,433 @@
 ---
-// src/layouts/Dashboard.astro
-const navItems = [
-  { name: 'Overview', path: '/' },
-  { name: 'Assets', path: '/assets' },
-  { name: 'Investments', path: '/investments' },
-  { name: 'Workflow', path: '/workflow' },
-  { name: 'Notes', path: '/notes' },
-  { name: 'Settings', path: '/settings' },
+import Layout from '../layouts/Base.astro';
+
+// Sample Data - We'll replace with JSON files later
+const kpis = [
+  { title: 'Total Assets Value', value: '$2.8M', change: '+2.4%', icon: '💰' },
+  { title: 'Monthly Cashflow', value: '$85,450', change: '+5.1%', icon: '📊' },
+  { title: 'Total ROI %', value: '142%', change: '+1.2%', icon: '📈' },
+  title: 'Active Businesses', value: '5', change: '+1', icon: '🏢' },
+  { title: 'Total Leads (monthly)', value: '1,240', change: '+12%', icon: '👥' },
 ];
+
+const assets = [
+  { name: 'Txchyon (DeFi Megablog)', type: 'Blog', status: 'Scaling', revenue: '$45,200', notes: 'Content refresh in Q1' },
+  { name: 'Insurance Megablog', type: 'Blog', status: 'Active', revenue: '$28,500', notes: 'Lead gen performing well' },
+  { name: 'Roofing Megablog', type: 'Blog', status: 'Active', revenue: '$18,750', notes: 'Seasonal spike expected' },
+  { name: 'Home Services Megablog', type: 'Blog', status: 'Active', revenue: '$32,500', notes: 'New funnel testing' },
+  { name: 'Music IP', type: 'IP', status: 'Active', revenue: '$4,500', notes: 'Royalties stable' },
+];
+
+const investments = [
+  { asset: 'BTC', allocation: '35%', costBasis: '$28,500', currentValue: '$42,500', roi: '+49.12%' },
+  { asset: 'S&P 500 ETF', allocation: '25%', costBasis: '$420,000', currentValue: '$515,000', roi: '+22.62%' },
+  { asset: 'Ethereum', allocation: '15%', costBasis: '$1,800', currentValue: '$2,200', roi: '+22.22%' },
+  { asset: 'Private Equity', allocation: '15%', costBasis: '$150,000', currentValue: '$210,000', roi: '+40.00%' },
+  { asset: 'Cash Reserve', allocation: '10%', costBasis: '$100,000', currentValue: '$100,000', roi: '0.00%' },
+];
+
+const tasks = {
+  todo: [
+    { title: 'Review Q1 marketing budget', assigned: 'Founder', priority: 'High' },
+    { title: 'Write 5 DeFi articles', assigned: 'Writer', priority: 'Medium' },
+  ],
+  inProgress: [
+    { title: 'Dashboard development', assigned: 'Dev', priority: 'High' },
+  ],
+  completed: [
+    { title: 'Monthly financial review', assigned: 'Founder', priority: 'Medium' },
+  ],
+};
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Txchyon Capital Dashboard</title>
-  <style>
-    :root {
-      --txchyon-blue: #1a365d;
-      --txchyon-gray: #f7fafc;
-    }
-    body { 
-      margin: 0; 
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--txchyon-gray);
-    }
-    .navbar {
-      background: white;
-      border-bottom: 1px solid #e2e8f0;
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-    }
-    .logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: var(--txchyon-blue);
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      margin-left: 3rem;
-    }
-    .nav-links a {
-      color: #64748b;
-      text-decoration: none;
-      font-weight: 500;
-    }
-    .nav-links a:hover {
-      color: var(--txchyon-blue);
-    }
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-  </style>
-</head>
-<body>
-  <nav class="navbar">
-    <div class="logo">Txchyon Capital</div>
-    <div class="nav-links">
-      {navItems.map(item => (
-        <a href={item.path}>{item.name}</a>
-      ))}
+<Layout>
+  <!-- Header with Logo, Logout & Dark Mode -->
+  <div class="flex items-center justify-between mb-8">
+    <!-- Left: Logo and Title -->
+    <div class="flex items-center gap-4">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <img 
+          src="/images/logo.png" 
+          alt="Txchyon Capital Logo" 
+          class="h-12 w-auto object-contain filter brightness-110 contrast-110 dark:brightness-125 dark:contrast-125"
+          onerror="this.style.display='none'; document.getElementById('dashboard-fallback-logo').style.display='block';"
+        />
+        <div id="dashboard-fallback-logo" class="hidden">
+          <div class="text-4xl">🌌</div>
+        </div>
+      </div>
+      
+      <!-- Title and Subtitle -->
+      <div>
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
+        <p class="text-gray-600 dark:text-gray-300">Internal capital management dashboard</p>
+      </div>
     </div>
-  </nav>
+    
+    <!-- Right: Dark Mode and Logout -->
+    <div class="flex items-center gap-4">
+      <!-- Date/Time Display -->
+      <div class="hidden md:block text-sm text-gray-500 dark:text-gray-400">
+        <div id="current-date" class="font-medium"></div>
+        <div id="current-time" class="text-xs"></div>
+      </div>
+      
+      <!-- Dark Mode Toggle -->
+      <button id="theme-toggle" 
+              class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              aria-label="Toggle dark mode"
+              title="Toggle dark/light mode">
+        <span id="theme-icon-sun" class="hidden text-lg">☀️</span>
+        <span id="theme-icon-moon" class="text-lg">🌙</span>
+      </button>
+      
+      <!-- Logout Button -->
+      <button onclick="logout()" 
+              class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-2"
+              title="Logout of dashboard">
+        <span>🚪</span>
+        <span class="hidden sm:inline">Logout</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+    {kpis.map(kpi => (
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-2xl">{kpi.icon}</span>
+          <span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">
+            {kpi.change}
+          </span>
+        </div>
+        <div class="text-sm text-gray-500 dark:text-gray-400">{kpi.title}</div>
+        <div class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{kpi.value}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Assets Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Asset Portfolio</h2>
+        <a href="/assets" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          View all
+          <span>→</span>
+        </a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Name</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Type</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            {assets.map(asset => (
+              <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.name}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{asset.type}</td>
+                <td class="py-3">
+                  <span class={`px-2 py-1 text-xs font-medium rounded-full ${asset.status === 'Scaling' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}>
+                    {asset.status}
+                  </span>
+                </td>
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.revenue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Investments Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Investments</h2>
+        <a href="/investments" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          View all
+          <span>→</span>
+        </a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Asset</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Allocation</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Cost Basis</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Current Value</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">ROI</th>
+            </tr>
+          </thead>
+          <tbody>
+            {investments.map(inv => (
+              <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.asset}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.allocation}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.costBasis}</td>
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.currentValue}</td>
+                <td class={`py-3 text-sm font-medium ${parseFloat(inv.roi) > 0 ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {inv.roi}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Workflow Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Workflow / Tasks</h2>
+        <a href="/workflow" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          View all
+          <span>→</span>
+        </a>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div>
+          <div class="text-center bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 py-2 rounded-t-lg font-medium">To Do</div>
+          <div class="space-y-3 mt-3">
+            {tasks.todo.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-colors">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class={`text-xs px-2 py-1 rounded ${task.priority === 'High' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'}`}>
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="text-center bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300 py-2 rounded-t-lg font-medium">In Progress</div>
+          <div class="space-y-3 mt-3">
+            {tasks.inProgress.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-colors">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="text-center bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 py-2 rounded-t-lg font-medium">Completed</div>
+          <div class="space-y-3 mt-3">
+            {tasks.completed.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-colors">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Notes / Alerts</h2>
+        <button onclick="document.getElementById('notes-textarea').focus()" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          Edit
+          <span>✏️</span>
+        </button>
+      </div>
+      <textarea 
+        id="notes-textarea"
+        class="w-full h-48 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg p-4 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+        placeholder="Strategy notes, reminders, market alerts, weekly focus..."
+      ># Weekly Focus
+
+## Strategic Goals
+- Scale DeFi content vertical
+- Evaluate new acquisition targets
+- Optimize existing funnels
+
+## Key Metrics to Watch
+- Organic traffic growth
+- Lead conversion rate
+- CAC/LTV ratio
+
+## Market Alerts
+BTC testing resistance at $45K
+Fed meeting next week</textarea>
+      <div class="flex justify-end mt-4">
+        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-2">
+          <span>💾</span>
+          Save Notes
+        </button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Add smooth transitions */
+  * {
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
   
-  <main class="container">
-    <slot />
-  </main>
-</body>
-</html>
+  /* Better table styling */
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  th, td {
+    padding: 12px 16px;
+  }
+  
+  /* Scrollbar styling */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #6b7280;
+  }
+  
+  /* Logo styling */
+  .logo-hover:hover {
+    filter: brightness(1.15) contrast(1.15);
+  }
+</style>
+
+<script>
+  // Dark Mode Toggle
+  function toggleDarkMode() {
+    const html = document.documentElement;
+    const isDark = html.classList.contains('dark');
+    const newTheme = isDark ? 'light' : 'dark';
+    
+    if (newTheme === 'dark') {
+      html.classList.add('dark');
+      html.setAttribute('data-theme', 'dark');
+    } else {
+      html.classList.remove('dark');
+      html.setAttribute('data-theme', 'light');
+    }
+    
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcons();
+  }
+  
+  function updateThemeIcons() {
+    const sunIcon = document.getElementById('theme-icon-sun');
+    const moonIcon = document.getElementById('theme-icon-moon');
+    const isDark = document.documentElement.classList.contains('dark');
+    
+    if (sunIcon) sunIcon.classList.toggle('hidden', isDark);
+    if (moonIcon) moonIcon.classList.toggle('hidden', !isDark);
+  }
+  
+  // Logout Function
+  function logout() {
+    localStorage.removeItem('txchyon_capital_auth');
+    localStorage.removeItem('txchyon_last_login');
+    window.location.href = '/';
+  }
+  
+  // Update Date and Time
+  function updateDateTime() {
+    const now = new Date();
+    
+    // Format date
+    const dateOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+    const dateElement = document.getElementById('current-date');
+    if (dateElement) {
+      dateElement.textContent = now.toLocaleDateString('en-US', dateOptions);
+    }
+    
+    // Format time
+    const timeElement = document.getElementById('current-time');
+    if (timeElement) {
+      timeElement.textContent = now.toLocaleTimeString('en-US', { 
+        hour: '2-digit', 
+        minute: '2-digit',
+        hour12: true 
+      });
+    }
+  }
+  
+  // Initialize on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    // Dark mode toggle
+    const toggleBtn = document.getElementById('theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', toggleDarkMode);
+    }
+    updateThemeIcons();
+    
+    // Date/time
+    updateDateTime();
+    setInterval(updateDateTime, 60000); // Update every minute
+    
+    // Auto-save notes after 5 seconds of inactivity
+    const notesTextarea = document.getElementById('notes-textarea');
+    let saveTimeout;
+    
+    if (notesTextarea) {
+      notesTextarea.addEventListener('input', () => {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+          console.log('Auto-saving notes...');
+          // Here you would typically save to localStorage or API
+          localStorage.setItem('dashboard_notes', notesTextarea.value);
+        }, 5000);
+      });
+      
+      // Load saved notes
+      const savedNotes = localStorage.getItem('dashboard_notes');
+      if (savedNotes) {
+        notesTextarea.value = savedNotes;
+      }
+    }
+    
+    // Logo hover effect
+    const logo = document.querySelector('img[alt="Txchyon Capital Logo"]');
+    if (logo) {
+      logo.addEventListener('mouseenter', () => {
+        logo.classList.add('logo-hover');
+      });
+      logo.addEventListener('mouseleave', () => {
+        logo.classList.remove('logo-hover');
+      });
+    }
+  });
+</script>

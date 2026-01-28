@@ -39,10 +39,22 @@ if (isAuthenticated && typeof window !== 'undefined') {
     <!-- Content -->
     <div class="relative z-10 container mx-auto px-4 pt-32 pb-20">
       <div class="max-w-6xl mx-auto">
-        <!-- Logo/Brand -->
+        <!-- Logo/Brand - UPDATED WITH ACTUAL LOGO -->
         <div class="flex justify-center mb-12">
           <div class="text-center">
-            <div class="text-6xl mb-4">🌌</div>
+            <!-- Logo Image -->
+            <div class="flex justify-center mb-6">
+              <img 
+                src="/images/logo.png" 
+                alt="Txchyon Capital Logo" 
+                class="h-32 w-auto object-contain filter brightness-110 contrast-110"
+                onerror="this.style.display='none'; document.getElementById('fallback-logo').style.display='block';"
+              />
+              <div id="fallback-logo" class="hidden">
+                <div class="text-6xl mb-4">🌌</div>
+              </div>
+            </div>
+            
             <h1 class="text-7xl md:text-8xl font-black mb-4 tracking-tight">
               <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 animate-gradient">
                 Txchyon Capital
@@ -55,7 +67,7 @@ if (isAuthenticated && typeof window !== 'undefined') {
         <!-- Stats Preview -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-3xl mx-auto mb-16">
           <div class="text-center">
-            <div class="text-4xl font-bold text-white mb-2">$2.8B+</div>
+            <div class="text-4xl font-bold text-white mb-2">$2.8M+</div>
             <div class="text-gray-400 text-sm">Assets Under Management</div>
           </div>
           <div class="text-center">
@@ -349,8 +361,17 @@ if (isAuthenticated && typeof window !== 'undefined') {
       <div class="max-w-6xl mx-auto">
         <div class="flex flex-col md:flex-row justify-between items-center gap-8">
           <div class="text-center md:text-left">
-            <div class="text-3xl mb-2">🌌</div>
-            <h3 class="text-2xl font-bold text-white">Txchyon Capital</h3>
+            <!-- Footer Logo -->
+            <div class="flex items-center gap-3 mb-2">
+              <img 
+                src="/images/logo.png" 
+                alt="Txchyon Capital Logo" 
+                class="h-10 w-auto object-contain"
+                onerror="this.style.display='none'; document.getElementById('footer-fallback-logo').style.display='inline';"
+              />
+              <span id="footer-fallback-logo" class="hidden text-2xl">🌌</span>
+              <h3 class="text-2xl font-bold text-white">Txchyon Capital</h3>
+            </div>
             <p class="text-gray-500 mt-2">Digital Venture Capital & Asset Management</p>
           </div>
           

@@ -1,0 +1,266 @@
+---
+import Layout from '../layouts/Base.astro';
+
+// Sample Data - We'll replace with JSON files later
+const kpis = [
+  { title: 'Total Assets Value', value: '$2.8M', change: '+2.4%', icon: '💰' },
+  { title: 'Monthly Cashflow', value: '$85,450', change: '+5.1%', icon: '📊' },
+  { title: 'Total ROI %', value: '142%', change: '+1.2%', icon: '📈' },
+  { title: 'Active Businesses', value: '5', change: '+1', icon: '🏢' },
+  { title: 'Total Leads (monthly)', value: '1,240', change: '+12%', icon: '👥' },
+];
+
+const assets = [
+  { name: 'Txchyon (DeFi Megablog)', type: 'Blog', status: 'Scaling', revenue: '$45,200', notes: 'Content refresh in Q1' },
+  { name: 'Insurance Megablog', type: 'Blog', status: 'Active', revenue: '$28,500', notes: 'Lead gen performing well' },
+  { name: 'Roofing Megablog', type: 'Blog', status: 'Active', revenue: '$18,750', notes: 'Seasonal spike expected' },
+  { name: 'Home Services Megablog', type: 'Blog', status: 'Active', revenue: '$32,500', notes: 'New funnel testing' },
+  { name: 'Music IP', type: 'IP', status: 'Active', revenue: '$4,500', notes: 'Royalties stable' },
+];
+
+const investments = [
+  { asset: 'BTC', allocation: '35%', costBasis: '$28,500', currentValue: '$42,500', roi: '+49.12%' },
+  { asset: 'S&P 500 ETF', allocation: '25%', costBasis: '$420,000', currentValue: '$515,000', roi: '+22.62%' },
+  { asset: 'Ethereum', allocation: '15%', costBasis: '$1,800', currentValue: '$2,200', roi: '+22.22%' },
+  { asset: 'Private Equity', allocation: '15%', costBasis: '$150,000', currentValue: '$210,000', roi: '+40.00%' },
+  { asset: 'Cash Reserve', allocation: '10%', costBasis: '$100,000', currentValue: '$100,000', roi: '0.00%' },
+];
+
+const tasks = {
+  todo: [
+    { title: 'Review Q1 marketing budget', assigned: 'Founder', priority: 'High' },
+    { title: 'Write 5 DeFi articles', assigned: 'Writer', priority: 'Medium' },
+  ],
+  inProgress: [
+    { title: 'Dashboard development', assigned: 'Dev', priority: 'High' },
+  ],
+  completed: [
+    { title: 'Monthly financial review', assigned: 'Founder', priority: 'Medium' },
+  ],
+};
+---
+
+<Layout>
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
+    <p class="text-gray-600 dark:text-gray-300">Internal capital management dashboard</p>
+  </div>
+
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+    {kpis.map(kpi => (
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-2xl">{kpi.icon}</span>
+          <span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">
+            {kpi.change}
+          </span>
+        </div>
+        <div class="text-sm text-gray-500 dark:text-gray-400">{kpi.title}</div>
+        <div class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{kpi.value}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Assets Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Asset Portfolio</h2>
+        <a href="/assets" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Name</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Type</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            {assets.map(asset => (
+              <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30">
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.name}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{asset.type}</td>
+                <td class="py-3">
+                  <span class={`px-2 py-1 text-xs font-medium rounded-full ${asset.status === 'Scaling' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}>
+                    {asset.status}
+                  </span>
+                </td>
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.revenue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Investments Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Investments</h2>
+        <a href="/investments" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Asset</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Allocation</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Cost Basis</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Current Value</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">ROI</th>
+            </tr>
+          </thead>
+          <tbody>
+            {investments.map(inv => (
+              <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30">
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.asset}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.allocation}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.costBasis}</td>
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.currentValue}</td>
+                <td class={`py-3 text-sm font-medium ${parseFloat(inv.roi) > 0 ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {inv.roi}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Workflow Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Workflow / Tasks</h2>
+        <a href="/workflow" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <div>
+          <div class="text-center bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 py-2 rounded-t-lg font-medium">To Do</div>
+          <div class="space-y-3 mt-3">
+            {tasks.todo.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class={`text-xs px-2 py-1 rounded ${task.priority === 'High' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'}`}>
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="text-center bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300 py-2 rounded-t-lg font-medium">In Progress</div>
+          <div class="space-y-3 mt-3">
+            {tasks.inProgress.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div>
+          <div class="text-center bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 py-2 rounded-t-lg font-medium">Completed</div>
+          <div class="space-y-3 mt-3">
+            {tasks.completed.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Notes / Alerts</h2>
+        <button onclick="document.getElementById('notes-textarea').focus()" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Edit</button>
+      </div>
+      <textarea 
+        id="notes-textarea"
+        class="w-full h-48 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg p-4 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        placeholder="Strategy notes, reminders, market alerts, weekly focus..."
+      ># Weekly Focus
+
+## Strategic Goals
+- Scale DeFi content vertical
+- Evaluate new acquisition targets
+- Optimize existing funnels
+
+## Key Metrics to Watch
+- Organic traffic growth
+- Lead conversion rate
+- CAC/LTV ratio
+
+## Market Alerts
+BTC testing resistance at $45K
+Fed meeting next week</textarea>
+      <div class="flex justify-end mt-4">
+        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200">
+          Save Notes
+        </button>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Add smooth transitions */
+  * {
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  /* Better table styling */
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+  
+  th, td {
+    padding: 12px 16px;
+  }
+  
+  /* Scrollbar styling */
+  .overflow-x-auto::-webkit-scrollbar {
+    height: 6px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+  }
+  
+  .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-track {
+    background: #374151;
+  }
+  
+  .dark .overflow-x-auto::-webkit-scrollbar-thumb {
+    background: #6b7280;
+  }
+</style>

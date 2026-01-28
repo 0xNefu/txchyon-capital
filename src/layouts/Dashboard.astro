@@ -1,0 +1,75 @@
+---
+// src/layouts/Dashboard.astro
+const navItems = [
+  { name: 'Overview', path: '/' },
+  { name: 'Assets', path: '/assets' },
+  { name: 'Investments', path: '/investments' },
+  { name: 'Workflow', path: '/workflow' },
+  { name: 'Notes', path: '/notes' },
+  { name: 'Settings', path: '/settings' },
+];
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Txchyon Capital Dashboard</title>
+  <style>
+    :root {
+      --txchyon-blue: #1a365d;
+      --txchyon-gray: #f7fafc;
+    }
+    body { 
+      margin: 0; 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--txchyon-gray);
+    }
+    .navbar {
+      background: white;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--txchyon-blue);
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      margin-left: 3rem;
+    }
+    .nav-links a {
+      color: #64748b;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .nav-links a:hover {
+      color: var(--txchyon-blue);
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Txchyon Capital</div>
+    <div class="nav-links">
+      {navItems.map(item => (
+        <a href={item.path}>{item.name}</a>
+      ))}
+    </div>
+  </nav>
+  
+  <main class="container">
+    <slot />
+  </main>
+</body>
+</html>

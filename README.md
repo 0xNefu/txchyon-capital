@@ -262,4 +262,8 @@ console.log('🎯 GATE CONTROL:', {
   frontmatter: fromFrontmatter,
   hardcoded: fromHardcoded,
   final: hasGatedContent
-});
+}); 
+ I n t e r n a l   d a s h b o a r d   f o r   a s s e t   m a n a g e m e n t ,   i n v e s t m e n t   t r a c k i n g ,   a n d   w o r k f l o w .  
+  
+ * * S t a t u s * * :   I n i t i a l   d e p l o y m e n t   i n   p r o g r e s s .  
+ 

@@ -10,21 +10,34 @@ if (isAuthenticated && typeof window !== 'undefined') {
 ---
 
 <Base>
-  <!-- MINIMALIST HERO -->
+  <!-- HERO WITH BACKGROUND IMAGE - 90% VISIBLE! -->
   <section class="relative min-h-screen bg-black overflow-hidden">
-    <!-- Ultra-subtle gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-gray-950 via-black to-gray-950"></div>
+    <!-- Hero Background Image - MAXIMUM VISIBILITY -->
+    <div class="absolute inset-0">
+      <!-- Your hero image at nearly full opacity -->
+      <img 
+        src="/images/hero1.png" 
+        alt="Txchyon Capital Background" 
+        class="w-full h-full object-cover"
+        style="opacity: 0.9;"
+        id="hero-image-main"
+      />
+      
+      <!-- Barely-there overlay for minimal text contrast -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/5 via-transparent to-black/5"></div>
+    </div>
     
+    <!-- Content Container with minimal interference -->
     <div class="relative z-10 container mx-auto px-4 pt-32 pb-20">
       <div class="max-w-4xl mx-auto">
-        <!-- Logo and Minimal Header -->
+        <!-- Logo and Header - Almost no background -->
         <div class="flex justify-center mb-16">
           <div class="text-center">
             <div class="flex justify-center mb-8">
               <img 
                 src="/images/logo.png" 
                 alt="Txchyon Capital Logo" 
-                class="h-20 w-auto object-contain"
+                class="h-20 w-auto object-contain drop-shadow-lg"
                 onerror="this.style.display='none'; document.getElementById('hero-fallback-logo').style.display='block';"
               />
               <div id="hero-fallback-logo" class="hidden">
@@ -33,22 +46,22 @@ if (isAuthenticated && typeof window !== 'undefined') {
             </div>
             
             <div class="inline-block mb-8">
-              <span class="text-xs font-mono tracking-widest text-gray-500 uppercase">
+              <span class="text-xs font-mono tracking-widest text-white uppercase border border-white/30 px-3 py-1 rounded-full">
                 Established 2018
               </span>
             </div>
             
-            <h1 class="text-4xl md:text-5xl font-light tracking-tight text-white mb-6 leading-tight">
+            <h1 class="text-4xl md:text-5xl font-light tracking-tight text-white mb-6 leading-tight drop-shadow-lg">
               Txchyon Capital
             </h1>
-            <p class="text-xl text-gray-400 font-light max-w-2xl mx-auto mb-10">
+            <p class="text-xl text-white font-light max-w-2xl mx-auto mb-10 drop-shadow-lg">
               A long-term digital capital allocator and operating system.
             </p>
             
             <!-- Core Purpose Quote -->
             <div class="max-w-xl mx-auto mb-12">
-              <div class="border-l-2 border-gray-700 pl-6 py-2">
-                <p class="text-lg text-gray-300 italic">
+              <div class="pl-6 py-2">
+                <p class="text-lg text-white italic drop-shadow-lg">
                   "Turn productive digital systems into compounding capital."
                 </p>
               </div>
@@ -56,68 +69,89 @@ if (isAuthenticated && typeof window !== 'undefined') {
           </div>
         </div>
 
-        <!-- Minimal Stats -->
+        <!-- Minimal Stats - Almost transparent -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-2xl mx-auto mb-20">
-          <div class="text-center">
-            <div class="text-2xl font-light text-gray-300 mb-2">6+</div>
-            <div class="text-sm text-gray-500">Years Operating</div>
+          <div class="text-center bg-black/20 rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-light text-white mb-2 drop-shadow-lg">6+</div>
+            <div class="text-sm text-white">Years Operating</div>
           </div>
-          <div class="text-center">
-            <div class="text-2xl font-light text-gray-300 mb-2">100%</div>
-            <div class="text-sm text-gray-500">Internal Capital</div>
+          <div class="text-center bg-black/20 rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-light text-white mb-2 drop-shadow-lg">100%</div>
+            <div class="text-sm text-white">Internal Capital</div>
           </div>
-          <div class="text-center">
-            <div class="text-2xl font-light text-gray-300 mb-2">0</div>
-            <div class="text-sm text-gray-500">External LPs</div>
+          <div class="text-center bg-black/20 rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-light text-white mb-2 drop-shadow-lg">0</div>
+            <div class="text-sm text-white">External LPs</div>
           </div>
-          <div class="text-center">
-            <div class="text-2xl font-light text-gray-300 mb-2">∞</div>
-            <div class="text-sm text-gray-500">Time Horizon</div>
+          <div class="text-center bg-black/20 rounded-lg p-4 border border-white/20">
+            <div class="text-2xl font-light text-white mb-2 drop-shadow-lg">∞</div>
+            <div class="text-sm text-white">Time Horizon</div>
           </div>
+        </div>
+        
+        <!-- Access Button - Minimal overlay -->
+        <div class="text-center">
+          <button onclick="window.location.href='/login'"
+                  class="inline-flex items-center gap-2 px-8 py-3 bg-black/40 border border-white/40 text-white hover:bg-black/60 hover:border-white/60 rounded-lg transition-colors drop-shadow-lg">
+            <span>Access System</span>
+            <span>→</span>
+          </button>
         </div>
       </div>
     </div>
     
     <!-- Scroll Indicator -->
-    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+    <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10">
       <div class="animate-pulse">
-        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
         </svg>
       </div>
     </div>
   </section>
 
-  <!-- WHAT IT IS / WHAT IT IS NOT -->
-  <section class="py-24 bg-black border-t border-gray-900">
-    <div class="container mx-auto px-4">
+  <!-- WHAT IT IS / WHAT IT IS NOT WITH HERO4.JPG -->
+  <section class="relative py-24 bg-black overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img 
+        src="/images/hero9.jpg" 
+        alt="Txchyon What It Is Background" 
+        class="w-full h-full object-cover"
+        style="opacity: 0.25;"
+      />
+      <!-- Dark overlay for text contrast -->
+      <div class="absolute inset-0 bg-black/70"></div>
+    </div>
+    
+    <div class="relative z-10 container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
           <!-- What It Is -->
           <div>
             <div class="flex items-center gap-3 mb-8">
-              <div class="w-6 h-px bg-gray-700"></div>
-              <span class="text-sm font-mono text-gray-500 uppercase tracking-widest">What It Is</span>
+              <div class="w-6 h-px bg-gray-400"></div>
+              <span class="text-sm font-mono text-gray-300 uppercase tracking-widest">What It Is</span>
             </div>
             
             <div class="space-y-6">
-              <div class="border border-gray-800 rounded-lg p-6">
+              <div class="border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors backdrop-blur-sm bg-black/30">
                 <h3 class="text-white font-light text-lg mb-3">Internal Treasury</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
+                <p class="text-gray-300 text-sm leading-relaxed">
                   An allocation layer built to grow durable capital over time through disciplined, patient management.
                 </p>
               </div>
               
-              <div class="border border-gray-800 rounded-lg p-6">
+              <div class="border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors backdrop-blur-sm bg-black/30">
                 <h3 class="text-white font-light text-lg mb-3">Digital Cashflow Systems</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
+                <p class="text-gray-300 text-sm leading-relaxed">
                   Content, media, and software assets designed to produce consistent returns with minimal intervention.
                 </p>
               </div>
               
-              <div class="border border-gray-800 rounded-lg p-6">
+              <div class="border border-gray-700 rounded-lg p-6 hover:border-gray-600 transition-colors backdrop-blur-sm bg-black/30">
                 <h3 class="text-white font-light text-lg mb-3">Long-Term Compounding</h3>
-                <p class="text-gray-400 text-sm leading-relaxed">
+                <p class="text-gray-300 text-sm leading-relaxed">
                   Capital allocation favoring assets with no forced exit timelines and positions that strengthen over time.
                 </p>
               </div>
@@ -127,28 +161,28 @@ if (isAuthenticated && typeof window !== 'undefined') {
           <!-- What It Is Not -->
           <div>
             <div class="flex items-center gap-3 mb-8">
-              <div class="w-6 h-px bg-gray-700"></div>
-              <span class="text-sm font-mono text-gray-500 uppercase tracking-widest">What It Is Not</span>
+              <div class="w-6 h-px bg-gray-400"></div>
+              <span class="text-sm font-mono text-gray-300 uppercase tracking-widest">What It Is Not</span>
             </div>
             
             <div class="space-y-6">
-              <div class="border border-gray-800 rounded-lg p-6 bg-gray-900/30">
-                <h3 class="text-gray-400 font-light text-lg mb-3">Not a Hedge Fund</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">
+              <div class="border border-gray-700 rounded-lg p-6 bg-black/40 hover:border-gray-600 transition-colors backdrop-blur-sm">
+                <h3 class="text-gray-300 font-light text-lg mb-3">Not a Hedge Fund</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
                   No public fundraising, no performance marketing, no speculative trade signaling.
                 </p>
               </div>
               
-              <div class="border border-gray-800 rounded-lg p-6 bg-gray-900/30">
-                <h3 class="text-gray-400 font-light text-lg mb-3">Not a Trading Group</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">
+              <div class="border border-gray-700 rounded-lg p-6 bg-black/40 hover:border-gray-600 transition-colors backdrop-blur-sm">
+                <h3 class="text-gray-300 font-light text-lg mb-3">Not a Trading Group</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
                   No short-term yield strategies, no dependence on external hype cycles.
                 </p>
               </div>
               
-              <div class="border border-gray-800 rounded-lg p-6 bg-gray-900/30">
-                <h3 class="text-gray-400 font-light text-lg mb-3">Not a Marketing Brand</h3>
-                <p class="text-gray-500 text-sm leading-relaxed">
+              <div class="border border-gray-700 rounded-lg p-6 bg-black/40 hover:border-gray-600 transition-colors backdrop-blur-sm">
+                <h3 class="text-gray-300 font-light text-lg mb-3">Not a Marketing Brand</h3>
+                <p class="text-gray-400 text-sm leading-relaxed">
                   Operates quietly and internally. Silence is a competitive advantage.
                 </p>
               </div>
@@ -166,12 +200,12 @@ if (isAuthenticated && typeof window !== 'undefined') {
         <div class="text-center mb-16">
           <div class="flex items-center justify-center gap-3 mb-6">
             <div class="w-12 h-px bg-gray-700"></div>
-            <span class="text-sm font-mono text-gray-500 uppercase tracking-widest">Operating Model</span>
+            <span class="text-sm font-mono text-gray-400 uppercase tracking-widest">Operating Model</span>
             <div class="w-12 h-px bg-gray-700"></div>
           </div>
           <h2 class="text-3xl font-light text-white mb-8">
             Systems that compound.<br>
-            <span class="text-gray-400">Effort that scales.</span>
+            <span class="text-gray-300">Effort that scales.</span>
           </h2>
         </div>
         
@@ -204,47 +238,59 @@ if (isAuthenticated && typeof window !== 'undefined') {
     </div>
   </section>
 
-  <!-- GUIDING PRINCIPLES -->
-  <section class="py-24 bg-black">
-    <div class="container mx-auto px-4">
+  <!-- GUIDING PRINCIPLES WITH BACKGROUND -->
+  <section class="relative py-24 bg-black overflow-hidden">
+    <!-- Background Image at 50% opacity -->
+    <div class="absolute inset-0">
+      <img 
+        src="/images/hero3.jpg" 
+        alt="Txchyon Principles Background" 
+        class="w-full h-full object-cover"
+        style="opacity: 0.8;"
+      />
+      <!-- Dark overlay for text contrast -->
+      <div class="absolute inset-0 bg-black/60"></div>
+    </div>
+    
+    <div class="relative z-10 container mx-auto px-4">
       <div class="max-w-3xl mx-auto">
         <div class="text-center mb-16">
           <div class="flex items-center justify-center gap-3 mb-6">
-            <div class="w-8 h-px bg-gray-700"></div>
-            <span class="text-sm font-mono text-gray-500 uppercase tracking-widest">Guiding Principles</span>
-            <div class="w-8 h-px bg-gray-700"></div>
+            <div class="w-8 h-px bg-gray-400"></div>
+            <span class="text-sm font-mono text-gray-300 uppercase tracking-widest">Guiding Principles</span>
+            <div class="w-8 h-px bg-gray-400"></div>
           </div>
         </div>
         
         <div class="space-y-6">
           <div class="flex items-start gap-4">
-            <div class="text-gray-600 mt-1">•</div>
-            <p class="text-gray-300 text-lg">Compounding beats activity</p>
+            <div class="text-white mt-1 text-lg">•</div>
+            <p class="text-white text-lg font-light">Compounding beats activity</p>
           </div>
           
           <div class="flex items-start gap-4">
-            <div class="text-gray-600 mt-1">•</div>
-            <p class="text-gray-300 text-lg">Systems outperform effort</p>
+            <div class="text-white mt-1 text-lg">•</div>
+            <p class="text-white text-lg font-light">Systems outperform effort</p>
           </div>
           
           <div class="flex items-start gap-4">
-            <div class="text-gray-600 mt-1">•</div>
-            <p class="text-gray-300 text-lg">Durable cashflow funds optionality</p>
+            <div class="text-white mt-1 text-lg">•</div>
+            <p class="text-white text-lg font-light">Durable cashflow funds optionality</p>
           </div>
           
           <div class="flex items-start gap-4">
-            <div class="text-gray-600 mt-1">•</div>
-            <p class="text-gray-300 text-lg">Bitcoin is a long-term monetary anchor</p>
+            <div class="text-white mt-1 text-lg">•</div>
+            <p class="text-white text-lg font-light">Bitcoin is a long-term monetary anchor</p>
           </div>
           
           <div class="flex items-start gap-4">
-            <div class="text-gray-600 mt-1">•</div>
-            <p class="text-gray-300 text-lg">Silence is a competitive advantage</p>
+            <div class="text-white mt-1 text-lg">•</div>
+            <p class="text-white text-lg font-light">Silence is a competitive advantage</p>
           </div>
         </div>
         
-        <div class="mt-16 pt-12 border-t border-gray-900 text-center">
-          <p class="text-gray-400 text-sm leading-relaxed max-w-xl mx-auto">
+        <div class="mt-16 pt-12 border-t border-gray-700 text-center">
+          <p class="text-gray-300 text-sm leading-relaxed max-w-xl mx-auto">
             Every allocation decision flows from these principles.<br>
             No exceptions, no shortcuts, no noise.
           </p>
@@ -253,26 +299,38 @@ if (isAuthenticated && typeof window !== 'undefined') {
     </div>
   </section>
 
-  <!-- INTERNAL DASHBOARD ACCESS -->
-  <section class="py-24 bg-gradient-to-b from-gray-950 to-black">
-    <div class="container mx-auto px-4">
+  <!-- INTERNAL DASHBOARD ACCESS WITH HERO6.JPG -->
+  <section class="relative py-24 bg-gradient-to-b from-gray-950 to-black overflow-hidden">
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+      <img 
+        src="/images/hero6.jpg" 
+        alt="Txchyon Dashboard Background" 
+        class="w-full h-full object-cover"
+        style="opacity: 0.9;"
+      />
+      <!-- Dark overlay for text contrast -->
+      <div class="absolute inset-0 bg-black/80"></div>
+    </div>
+    
+    <div class="relative z-10 container mx-auto px-4">
       <div class="max-w-md mx-auto">
-        <div class="border border-gray-800 rounded-xl p-8 bg-black/50 backdrop-blur-sm">
+        <div class="border border-gray-700 rounded-xl p-8 backdrop-blur-sm bg-black/40">
           <div class="text-center mb-8">
             <div class="text-3xl mb-6">🔐</div>
             <h2 class="text-2xl font-light text-white mb-4">Internal Dashboard</h2>
-            <p class="text-gray-400 text-sm">
+            <p class="text-gray-300 text-sm">
               System-level visibility and controlled optimization.
             </p>
           </div>
           
           <button onclick="window.location.href='/login'"
-                  class="w-full py-3 bg-gray-800 hover:bg-gray-700 text-white font-light rounded-lg transition-colors border border-gray-700">
+                  class="w-full py-3 bg-black/60 hover:bg-black/80 text-white font-light rounded-lg transition-colors border border-gray-600 hover:border-gray-500">
             Access Operating System
           </button>
           
-          <div class="mt-8 pt-6 border-t border-gray-900 text-center">
-            <p class="text-gray-500 text-xs">
+          <div class="mt-8 pt-6 border-t border-gray-700 text-center">
+            <p class="text-gray-400 text-xs">
               No public access. No marketing.<br>
               Built quietly. Managed patiently. Compounded inevitably.
             </p>
@@ -283,7 +341,7 @@ if (isAuthenticated && typeof window !== 'undefined') {
   </section>
 
   <!-- MINIMAL FOOTER -->
-  <footer class="bg-black border-t border-gray-900 py-12">
+  <footer class="bg-black border-t border-gray-800 py-12">
     <div class="container mx-auto px-4">
       <div class="max-w-4xl mx-auto">
         <div class="text-center">
@@ -324,15 +382,5 @@ if (isAuthenticated && typeof window !== 'undefined') {
   /* Smooth scroll */
   html {
     scroll-behavior: smooth;
-  }
-  
-  /* Hide scrollbar but allow scrolling */
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
   }
 </style>

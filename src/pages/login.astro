@@ -1,7 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 
-const isAuthenticated = typeof window !== 'undefined' ? localStorage.getItem('txchyon_capital_auth') === 'true' : false;
+const isAuthenticated = typeof window !== 'undefined' ? localStorage.getItem('capital_dashboard_auth') === 'true' : false;
 
 if (isAuthenticated && typeof window !== 'undefined') {
   window.location.href = '/dashboard';
@@ -9,140 +9,157 @@ if (isAuthenticated && typeof window !== 'undefined') {
 ---
 
 <Base>
-  <section class="min-h-screen bg-black relative overflow-hidden">
-    <!-- Space Background -->
-    <div class="absolute inset-0">
-      <div class="stars"></div>
-      <div class="stars stars-2"></div>
-      <div class="absolute w-[500px] h-[500px] bg-gradient-to-r from-cyan-500/10 to-blue-500/10 rounded-full blur-3xl top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-    </div>
-    
-    <div class="relative z-10 container mx-auto px-4 py-20">
-      <div class="max-w-md mx-auto">
-        <!-- Back to Home -->
-        <a href="/" class="inline-flex items-center gap-2 text-gray-400 hover:text-white mb-12 transition-colors">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-          </svg>
-          Back to Home
-        </a>
+  <section class="min-h-screen bg-black">
+    <div class="container mx-auto px-4 py-20">
+      <!-- Back Link -->
+      <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-gray-300 mb-12 transition-colors text-sm">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Return to system
+      </a>
+      
+      <!-- Login Container -->
+      <div class="max-w-sm mx-auto">
+        <!-- Logo -->
+        <div class="flex justify-center mb-8">
+          <img 
+            src="/images/logo.png" 
+            alt="Txchyon Capital Logo" 
+            class="h-12 w-auto object-contain opacity-90"
+            onerror="this.style.display='none'; document.getElementById('login-fallback-logo').style.display='block';"
+          />
+          <div id="login-fallback-logo" class="hidden text-3xl">⚫</div>
+        </div>
         
-        <!-- Login Card -->
-        <div class="bg-gradient-to-br from-gray-900/80 to-black/80 backdrop-blur-xl rounded-3xl p-8 border border-cyan-500/30 shadow-2xl">
-          <div class="text-center mb-10">
-            <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl mb-6">
-              <span class="text-3xl">🔐</span>
-            </div>
-            <h1 class="text-4xl font-bold text-white mb-3">Secure Access</h1>
-            <p class="text-gray-400">Enter your credentials to continue</p>
-          </div>
-          
+        <!-- Header -->
+        <div class="text-center mb-10">
+          <h1 class="text-2xl font-light text-white mb-2">System Access</h1>
+          <p class="text-gray-500 text-sm">Internal operating system</p>
+        </div>
+        
+        <!-- Login Form -->
+        <div class="border border-gray-800 rounded-lg p-8">
           <form id="login-form" class="space-y-6">
             <div>
-              <label class="block text-sm font-medium text-gray-300 mb-2">Access Code</label>
+              <label class="block text-xs text-gray-500 mb-2 uppercase tracking-wider">Access Code</label>
               <input 
                 type="password" 
                 id="password" 
-                placeholder="Enter secure passphrase" 
-                class="w-full px-5 py-4 bg-gray-900/50 border border-gray-700 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent transition duration-200"
+                placeholder="Enter system passphrase" 
+                class="w-full px-4 py-3 bg-black border border-gray-800 rounded text-white placeholder-gray-600 focus:outline-none focus:border-gray-700 transition-colors text-sm"
                 autocomplete="current-password"
                 required
                 autofocus
               />
             </div>
             
-            <div class="flex items-center">
-              <input type="checkbox" id="remember" class="w-4 h-4 bg-gray-900 border-gray-700 rounded focus:ring-cyan-500">
-              <label for="remember" class="ml-2 text-sm text-gray-400">Remember this device</label>
-            </div>
-            
             <button 
               type="submit" 
-              class="w-full bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-[1.02] shadow-lg hover:shadow-cyan-500/30"
+              class="w-full py-3 border border-gray-700 text-gray-300 hover:text-white hover:border-gray-600 rounded transition-colors text-sm"
             >
-              <span class="flex items-center justify-center gap-3">
-                <span>🚀</span>
-                Authenticate & Continue
-              </span>
+              Authenticate
             </button>
           </form>
           
+          <!-- Security Notes -->
           <div class="mt-10 pt-8 border-t border-gray-800">
-            <div class="space-y-4">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span class="text-sm text-gray-400">End-to-end encrypted connection</span>
+            <div class="space-y-3 text-xs text-gray-500">
+              <div class="flex items-start gap-2">
+                <span>•</span>
+                <span>End-to-end encrypted connection</span>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
-                <span class="text-sm text-gray-400">Two-factor authentication ready</span>
+              <div class="flex items-start gap-2">
+                <span>•</span>
+                <span>Internal system only</span>
               </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
-                <span class="text-sm text-gray-400">SOC 2 Type II compliant</span>
+              <div class="flex items-start gap-2">
+                <span>•</span>
+                <span>Access attempts are monitored</span>
               </div>
             </div>
             
-            <div class="text-center mt-8">
-              <p class="text-gray-500 text-xs">
-                For authorized personnel only. Unauthorized access attempts are logged and monitored.
+            <div class="mt-8 text-center">
+              <p class="text-gray-600 text-xs">
+                For authorized system operators only.
               </p>
             </div>
           </div>
         </div>
+        
+        <!-- System Status -->
+        <div class="mt-8 text-center">
+          <div class="inline-flex items-center gap-2 text-xs text-gray-500">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
+            <span>System: Operational</span>
+          </div>
+        </div>
       </div>
     </div>
-    
-    <script>
-      document.getElementById('login-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const password = document.getElementById('password').value;
-        const button = this.querySelector('button');
-        
-        // Show loading state
-        const originalHTML = button.innerHTML;
-        button.innerHTML = '<span class="flex items-center justify-center"><span class="animate-spin mr-3">⟳</span> Authenticating...</span>';
-        button.disabled = true;
-        
-        // Simulate secure authentication
-        setTimeout(() => {
-          if (password === 'txchyon2024') { // Change this password!
-            localStorage.setItem('txchyon_capital_auth', 'true');
-            localStorage.setItem('txchyon_last_login', new Date().toISOString());
-            
-            // Store remember preference
-            if (document.getElementById('remember').checked) {
-              localStorage.setItem('txchyon_remember_device', 'true');
-            }
-            
-            // Success animation
-            button.innerHTML = '<span class="flex items-center justify-center"><span class="mr-3">✅</span> Access Granted</span>';
-            button.classList.remove('from-cyan-600', 'to-blue-600');
-            button.classList.add('from-green-600', 'to-emerald-600');
-            
-            // Redirect to dashboard
-            setTimeout(() => {
-              window.location.href = '/dashboard';
-            }, 800);
-          } else {
-            // Reset button
-            button.innerHTML = originalHTML;
-            button.disabled = false;
-            
-            // Show error
-            const input = document.getElementById('password');
-            input.value = '';
-            input.focus();
-            input.classList.add('border-red-500', 'animate-pulse');
-            
-            setTimeout(() => {
-              input.classList.remove('border-red-500', 'animate-pulse');
-            }, 1000);
-            
-            alert('Invalid access code. Please try again.');
-          }
-        }, 800); // Security delay
-      });
-    </script>
   </section>
+  
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+      const button = this.querySelector('button');
+      
+      // Show authenticating state
+      const originalText = button.textContent;
+      button.textContent = 'Authenticating...';
+      button.disabled = true;
+      
+      // Simple delay for security feel
+      setTimeout(() => {
+        // UPDATE THIS PASSWORD TO YOUR ACTUAL PASSWORD
+        if (password === 'YOUR_ACTUAL_PASSWORD_HERE') {
+          localStorage.setItem('capital_dashboard_auth', 'true');
+          localStorage.setItem('capital_last_login', new Date().toISOString());
+          
+          // Success state
+          button.textContent = 'Access Granted';
+          button.classList.remove('border-gray-700', 'hover:border-gray-600');
+          button.classList.add('border-green-800', 'text-green-400');
+          
+          // Redirect to dashboard
+          setTimeout(() => {
+            window.location.href = '/dashboard';
+          }, 600);
+        } else {
+          // Reset button
+          button.textContent = originalText;
+          button.disabled = false;
+          
+          // Show error on input
+          const input = document.getElementById('password');
+          input.value = '';
+          input.focus();
+          input.classList.add('border-red-800');
+          
+          // Reset input border after delay
+          setTimeout(() => {
+            input.classList.remove('border-red-800');
+          }, 1000);
+        }
+      }, 600);
+    });
+    
+    // Auto-focus password field
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('password').focus();
+    });
+  </script>
 </Base>
+
+<style>
+  /* Minimalist focus styles */
+  input:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* Smooth transitions */
+  * {
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+</style>

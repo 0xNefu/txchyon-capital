@@ -1,14 +1,36 @@
 ---
 import Layout from '../layouts/Base.astro';
 
-// Sample Data - We'll replace with JSON files later
+// Sample Data - FIXED: Missing object wrapper for 4th KPI
 const kpis = [
   { title: 'Total Assets Value', value: '$2.8M', change: '+2.4%', icon: '💰' },
   { title: 'Monthly Cashflow', value: '$85,450', change: '+5.1%', icon: '📊' },
   { title: 'Total ROI %', value: '142%', change: '+1.2%', icon: '📈' },
-  { title: 'Active Businesses', value: '5', change: '+1', icon: '🏢' },
+  { title: 'Active Businesses', value: '5', change: '+1', icon: '🏢' }, // FIXED: Added { }
   { title: 'Total Leads (monthly)', value: '1,240', change: '+12%', icon: '👥' },
 ];
+
+// NEW: Stats tabs data
+const statsTabsData = {
+  overview: [
+    { label: 'Monthly Growth', value: '8.2%', change: '+0.5%', icon: '📈' },
+    { label: 'Net Profit Margin', value: '32%', change: '+3.1%', icon: '💹' },
+    { label: 'Traffic Growth', value: '18.5K', change: '+24%', icon: '🚀' },
+    { label: 'Avg. Deal Size', value: '$2,450', change: '+$120', icon: '💰' },
+  ],
+  performance: [
+    { label: 'Best Performer', value: 'DeFi Blog', metric: '+42% ROI', icon: '🥇' },
+    { label: 'Conversion Rate', value: '4.8%', change: '+0.7%', icon: '🎯' },
+    { label: 'CAC', value: '$125', change: '-$18', icon: '📉' },
+    { label: 'LTV', value: '$2,850', change: '+$320', icon: '📊' },
+  ],
+  projects: [
+    { label: 'Active Projects', value: '7', icon: '⚡' },
+    { label: 'Behind Schedule', value: '2', icon: '⚠️' },
+    { label: 'Completed This Month', value: '4', icon: '✅' },
+    { label: 'Pending Approval', value: '3', icon: '⏳' },
+  ],
+};
 
 const assets = [
   { name: 'Txchyon (DeFi Megablog)', type: 'Blog', status: 'Scaling', revenue: '$45,200', notes: 'Content refresh in Q1' },
@@ -41,225 +63,305 @@ const tasks = {
 ---
 
 <Layout>
-  <!-- Header with Logo, Logout & Dark Mode - FIXED HEIGHT -->
-  <div class="py-6 px-4 bg-gradient-to-r from-gray-900 to-black dark:from-black dark:to-gray-900 border-b border-gray-800 dark:border-gray-700 mb-8">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex items-center justify-between">
-        <!-- Left: Logo and Title -->
-        <div class="flex items-center gap-6">
-          <!-- Logo Container with larger size -->
-          <div class="flex-shrink-0">
-            <div class="relative">
-              <img 
-                src="/images/logo.png" 
-                alt="Capital Dashboard Logo" 
-                class="h-16 w-auto object-contain filter brightness-110 contrast-110 dark:brightness-125 dark:contrast-125 min-w-[64px]"
-                onerror="console.error('Logo failed to load'); this.style.display='none'; document.getElementById('dashboard-fallback-logo').style.display='flex';"
-                onload="console.log('Logo loaded successfully')"
-                id="dashboard-logo"
-              />
-              <div id="dashboard-fallback-logo" class="hidden items-center justify-center h-16 w-16 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-lg">
-                <span class="text-3xl">🌌</span>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Vertical Divider -->
-          <div class="h-12 w-px bg-gradient-to-b from-gray-700 to-transparent dark:from-gray-600"></div>
-          
-          <!-- Title and Subtitle -->
-          <div>
-            <h1 class="text-2xl md:text-3xl font-bold text-white">Dashboard Overview</h1>
-            <p class="text-gray-400 text-sm md:text-base">Portfolio Management & Analytics</p>
-          </div>
+  <!-- Header with Logo, Navigation & Dark Mode -->
+  <div class="flex items-center justify-between mb-8">
+    <!-- Left: Logo, Title & Navigation -->
+    <div class="flex items-center gap-6">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <img 
+          src="/images/logo.png" 
+          alt="Txchyon Capital Logo" 
+          class="h-12 w-auto object-contain filter brightness-110 contrast-110 dark:brightness-125 dark:contrast-125"
+          onerror="this.style.display='none'; document.getElementById('dashboard-fallback-logo').style.display='block';"
+        />
+        <div id="dashboard-fallback-logo" class="hidden">
+          <div class="text-4xl">🌌</div>
         </div>
+      </div>
+      
+      <!-- Title and Navigation -->
+      <div class="flex flex-col">
+        <h1 class="text-3xl font-bold text-gray-900 dark:text-white">Dashboard Overview</h1>
+        <p class="text-gray-600 dark:text-gray-300 mb-2">Internal capital management dashboard</p>
         
-        <!-- Right: Dark Mode and Logout -->
-        <div class="flex items-center gap-4">
-          <!-- Date/Time Display -->
-          <div class="hidden lg:block text-sm">
-            <div id="current-date" class="text-gray-300 font-medium"></div>
-            <div id="current-time" class="text-gray-500 text-xs"></div>
-          </div>
-          
-          <!-- Dark Mode Toggle -->
-          <button id="theme-toggle" 
-                  class="p-3 rounded-lg bg-gray-800 dark:bg-gray-700 hover:bg-gray-700 dark:hover:bg-gray-600 transition-colors"
-                  aria-label="Toggle dark mode"
-                  title="Toggle dark/light mode">
-            <span id="theme-icon-sun" class="hidden text-lg">☀️</span>
-            <span id="theme-icon-moon" class="text-lg">🌙</span>
+        <!-- NEW: Navigation Tabs -->
+        <div class="flex items-center gap-4 mt-2">
+          <button id="nav-home" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-2 text-sm">
+            <span>🏠</span>
+            Home
           </button>
-          
-          <!-- Logout Button -->
-          <button onclick="logout()" 
-                  class="px-5 py-2.5 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-700 hover:to-red-800 text-white font-medium rounded-lg transition duration-200 flex items-center gap-2 shadow-lg"
-                  title="Logout of dashboard">
-            <span>🚪</span>
-            <span class="hidden sm:inline">Logout</span>
+          <button id="nav-assets" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-2 text-sm">
+            <span>📁</span>
+            Assets
+          </button>
+          <button id="nav-analytics" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-2 text-sm">
+            <span>📊</span>
+            Analytics
+          </button>
+          <button id="nav-settings" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-2 text-sm">
+            <span>⚙️</span>
+            Settings
           </button>
         </div>
+      </div>
+    </div>
+    
+    <!-- Right: Actions, Date/Time & Logout -->
+    <div class="flex items-center gap-4">
+      <!-- Date/Time Display -->
+      <div class="hidden md:block text-sm text-gray-500 dark:text-gray-400">
+        <div id="current-date" class="font-medium"></div>
+        <div id="current-time" class="text-xs"></div>
+      </div>
+      
+      <!-- NEW: Quick Actions Dropdown -->
+      <div class="relative">
+        <button id="quick-actions-btn" 
+                class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                aria-label="Quick Actions"
+                title="Quick Actions">
+          <span class="text-lg">⚡</span>
+        </button>
+        <div id="quick-actions-menu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-10">
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <span class="mr-2">📈</span> Add New Metric
+          </a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <span class="mr-2">📝</span> Create Report
+          </a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <span class="mr-2">🎯</span> Set Target
+          </a>
+          <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
+          <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+            <span class="mr-2">↩️</span> Return to System
+          </a>
+        </div>
+      </div>
+      
+      <!-- Dark Mode Toggle -->
+      <button id="theme-toggle" 
+              class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+              aria-label="Toggle dark mode"
+              title="Toggle dark/light mode">
+        <span id="theme-icon-sun" class="hidden text-lg">☀️</span>
+        <span id="theme-icon-moon" class="text-lg">🌙</span>
+      </button>
+      
+      <!-- Logout Button -->
+      <button onclick="logout()" 
+              class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-2"
+              title="Logout of dashboard">
+        <span>🚪</span>
+        <span class="hidden sm:inline">Logout</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- NEW: Stats Tabs Section -->
+  <div class="mb-8 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Performance Metrics</h2>
+      <div class="flex gap-2">
+        <button id="stats-tab-overview" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 text-sm">
+          Overview
+        </button>
+        <button id="stats-tab-performance" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 text-sm">
+          Performance
+        </button>
+        <button id="stats-tab-projects" class="px-4 py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 text-sm">
+          Projects
+        </button>
+      </div>
+    </div>
+    
+    <!-- Stats Content (Dynamic) -->
+    <div id="stats-content">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {statsTabsData.overview.map(stat => (
+          <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xl">{stat.icon}</span>
+              <span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">
+                {stat.change}
+              </span>
+            </div>
+            <div class="text-sm text-gray-500 dark:text-gray-400">{stat.label}</div>
+            <div class="text-xl font-bold text-gray-900 dark:text-white mt-1">{stat.value}</div>
+          </div>
+        ))}
       </div>
     </div>
   </div>
 
-  <!-- Main Content Container -->
-  <div class="max-w-7xl mx-auto px-4">
-    <!-- KPI Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-      {kpis.map(kpi => (
-        <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-2xl">{kpi.icon}</span>
-            <span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">
-              {kpi.change}
-            </span>
-          </div>
-          <div class="text-sm text-gray-500 dark:text-gray-400">{kpi.title}</div>
-          <div class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{kpi.value}</div>
+  <!-- KPI Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+    {kpis.map(kpi => (
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 hover:shadow-md transition-shadow duration-200 group">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-2xl group-hover:scale-110 transition-transform duration-200">{kpi.icon}</span>
+          <span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">
+            {kpi.change}
+          </span>
         </div>
-      ))}
+        <div class="text-sm text-gray-500 dark:text-gray-400">{kpi.title}</div>
+        <div class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{kpi.value}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Main Grid -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- Assets Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Asset Portfolio</h2>
+        <a href="/assets" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          View all
+          <span>→</span>
+        </a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Name</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Type</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</th>
+            </tr>
+          </thead>
+          <tbody>
+            {assets.map(asset => (
+              <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.name}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{asset.type}</td>
+                <td class="py-3">
+                  <span class={`px-2 py-1 text-xs font-medium rounded-full ${asset.status === 'Scaling' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}>
+                    {asset.status}
+                  </span>
+                </td>
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.revenue}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
 
-    <!-- Main Grid -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      <!-- Assets Section -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Asset Portfolio</h2>
-          <a href="/assets" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead>
-              <tr class="border-b border-gray-200 dark:border-gray-700">
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Name</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Type</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Revenue</th>
+    <!-- Investments Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Investments</h2>
+        <a href="/investments" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          View all
+          <span>→</span>
+        </a>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-gray-200 dark:border-gray-700">
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Asset</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Allocation</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Cost Basis</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Current Value</th>
+              <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">ROI</th>
+            </tr>
+          </thead>
+          <tbody>
+            {investments.map(inv => (
+              <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.asset}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.allocation}</td>
+                <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.costBasis}</td>
+                <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.currentValue}</td>
+                <td class={`py-3 text-sm font-medium ${parseFloat(inv.roi) > 0 ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}`}>
+                  {inv.roi}
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {assets.map(asset => (
-                <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30">
-                  <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.name}</td>
-                  <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{asset.type}</td>
-                  <td class="py-3">
-                    <span class={`px-2 py-1 text-xs font-medium rounded-full ${asset.status === 'Scaling' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}>
-                      {asset.status}
-                    </span>
-                  </td>
-                  <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.revenue}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </div>
+    </div>
 
-      <!-- Investments Section -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Investments</h2>
-          <a href="/investments" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
-        </div>
-        <div class="overflow-x-auto">
-          <table class="w-full">
-            <thead>
-              <tr class="border-b border-gray-200 dark:border-gray-700">
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Asset</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Allocation</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Cost Basis</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Current Value</th>
-                <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">ROI</th>
-              </tr>
-            </thead>
-            <tbody>
-              {investments.map(inv => (
-                <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30">
-                  <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.asset}</td>
-                  <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.allocation}</td>
-                  <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{inv.costBasis}</td>
-                  <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{inv.currentValue}</td>
-                  <td class={`py-3 text-sm font-medium ${parseFloat(inv.roi) > 0 ? 'text-green-600 dark:text-green-400' : 'text-gray-500 dark:text-gray-400'}`}>
-                    {inv.roi}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+    <!-- Workflow Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Workflow / Tasks</h2>
+        <a href="/workflow" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          View all
+          <span>→</span>
+        </a>
       </div>
-
-      <!-- Workflow Section -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Workflow / Tasks</h2>
-          <a href="/workflow" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">View all</a>
+      <div class="grid grid-cols-3 gap-4">
+        <div>
+          <div class="text-center bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 py-2 rounded-t-lg font-medium">To Do</div>
+          <div class="space-y-3 mt-3">
+            {tasks.todo.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-colors">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class={`text-xs px-2 py-1 rounded ${task.priority === 'High' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'}`}>
+                    {task.priority}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div class="grid grid-cols-3 gap-4">
-          <div>
-            <div class="text-center bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-300 py-2 rounded-t-lg font-medium">To Do</div>
-            <div class="space-y-3 mt-3">
-              {tasks.todo.map(task => (
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600">
-                  <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
-                  <div class="flex justify-between items-center mt-2">
-                    <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
-                    <span class={`text-xs px-2 py-1 rounded ${task.priority === 'High' ? 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300' : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300'}`}>
-                      {task.priority}
-                    </span>
-                  </div>
+        <div>
+          <div class="text-center bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300 py-2 rounded-t-lg font-medium">In Progress</div>
+          <div class="space-y-3 mt-3">
+            {tasks.inProgress.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-colors">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
+                    {task.priority}
+                  </span>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-          <div>
-            <div class="text-center bg-yellow-50 dark:bg-yellow-900/20 text-yellow-800 dark:text-yellow-300 py-2 rounded-t-lg font-medium">In Progress</div>
-            <div class="space-y-3 mt-3">
-              {tasks.inProgress.map(task => (
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600">
-                  <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
-                  <div class="flex justify-between items-center mt-2">
-                    <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
-                    <span class="text-xs px-2 py-1 rounded bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-300">
-                      {task.priority}
-                    </span>
-                  </div>
+        </div>
+        <div>
+          <div class="text-center bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 py-2 rounded-t-lg font-medium">Completed</div>
+          <div class="space-y-3 mt-3">
+            {tasks.completed.map(task => (
+              <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500 transition-colors">
+                <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
+                <div class="flex justify-between items-center mt-2">
+                  <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
+                  <span class="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
+                    {task.priority}
+                  </span>
                 </div>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div class="text-center bg-green-50 dark:bg-green-900/20 text-green-800 dark:text-green-300 py-2 rounded-t-lg font-medium">Completed</div>
-            <div class="space-y-3 mt-3">
-              {tasks.completed.map(task => (
-                <div class="bg-gray-50 dark:bg-gray-700/50 p-3 rounded border border-gray-200 dark:border-gray-600">
-                  <div class="font-medium text-sm text-gray-900 dark:text-white">{task.title}</div>
-                  <div class="flex justify-between items-center mt-2">
-                    <span class="text-xs text-gray-500 dark:text-gray-400">{task.assigned}</span>
-                    <span class="text-xs px-2 py-1 rounded bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300">
-                      {task.priority}
-                    </span>
-                  </div>
-                </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
+    </div>
 
-      <!-- Notes Section -->
-      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
-        <div class="flex items-center justify-between mb-6">
-          <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Notes / Alerts</h2>
-          <button onclick="document.getElementById('notes-textarea').focus()" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">Edit</button>
-        </div>
-        <textarea 
-          id="notes-textarea"
-          class="w-full h-48 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg p-4 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          placeholder="Strategy notes, reminders, market alerts, weekly focus..."
-        ># Weekly Focus
+    <!-- Notes Section -->
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Notes / Alerts</h2>
+        <button onclick="document.getElementById('notes-textarea').focus()" class="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
+          Edit
+          <span>✏️</span>
+        </button>
+      </div>
+      <textarea 
+        id="notes-textarea"
+        class="w-full h-48 bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg p-4 text-sm text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+        placeholder="Strategy notes, reminders, market alerts, weekly focus..."
+      ># Weekly Focus
 
 ## Strategic Goals
 - Scale DeFi content vertical
@@ -274,11 +376,15 @@ const tasks = {
 ## Market Alerts
 BTC testing resistance at $45K
 Fed meeting next week</textarea>
-        <div class="flex justify-end mt-4">
-          <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200">
-            Save Notes
-          </button>
-        </div>
+      <div class="flex justify-between items-center mt-4">
+        <button id="clear-notes" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-2 text-sm">
+          <span>🗑️</span>
+          Clear
+        </button>
+        <button id="save-notes" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-2">
+          <span>💾</span>
+          Save Notes
+        </button>
       </div>
     </div>
   </div>
@@ -287,7 +393,7 @@ Fed meeting next week</textarea>
 <style>
   /* Add smooth transitions */
   * {
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
   
   /* Better table styling */
@@ -322,9 +428,52 @@ Fed meeting next week</textarea>
   .dark .overflow-x-auto::-webkit-scrollbar-thumb {
     background: #6b7280;
   }
+  
+  /* Logo styling */
+  .logo-hover:hover {
+    filter: brightness(1.15) contrast(1.15);
+  }
+  
+  /* Quick actions menu animation */
+  #quick-actions-menu {
+    animation: fadeIn 0.2s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 </style>
 
 <script>
+  // Stats tabs data for frontend
+  const statsTabs = {
+    overview: [
+      { label: 'Monthly Growth', value: '8.2%', change: '+0.5%', icon: '📈' },
+      { label: 'Net Profit Margin', value: '32%', change: '+3.1%', icon: '💹' },
+      { label: 'Traffic Growth', value: '18.5K', change: '+24%', icon: '🚀' },
+      { label: 'Avg. Deal Size', value: '$2,450', change: '+$120', icon: '💰' },
+    ],
+    performance: [
+      { label: 'Best Performer', value: 'DeFi Blog', metric: '+42% ROI', icon: '🥇' },
+      { label: 'Conversion Rate', value: '4.8%', change: '+0.7%', icon: '🎯' },
+      { label: 'CAC', value: '$125', change: '-$18', icon: '📉' },
+      { label: 'LTV', value: '$2,850', change: '+$320', icon: '📊' },
+    ],
+    projects: [
+      { label: 'Active Projects', value: '7', icon: '⚡' },
+      { label: 'Behind Schedule', value: '2', icon: '⚠️' },
+      { label: 'Completed This Month', value: '4', icon: '✅' },
+      { label: 'Pending Approval', value: '3', icon: '⏳' },
+    ]
+  };
+
   // Dark Mode Toggle
   function toggleDarkMode() {
     const html = document.documentElement;
@@ -354,8 +503,8 @@ Fed meeting next week</textarea>
   
   // Logout Function
   function logout() {
-    localStorage.removeItem('capital_dashboard_auth');
-    localStorage.removeItem('capital_last_login');
+    localStorage.removeItem('txchyon_capital_auth');
+    localStorage.removeItem('txchyon_last_login');
     window.location.href = '/';
   }
   
@@ -381,6 +530,152 @@ Fed meeting next week</textarea>
     }
   }
   
+  // Stats Tabs Functionality
+  function setupStatsTabs() {
+    const tabs = ['overview', 'performance', 'projects'];
+    const statsContent = document.getElementById('stats-content');
+    
+    tabs.forEach(tabName => {
+      const tabBtn = document.getElementById(`stats-tab-${tabName}`);
+      if (tabBtn) {
+        tabBtn.addEventListener('click', () => {
+          // Update active tab styling
+          tabs.forEach(t => {
+            const btn = document.getElementById(`stats-tab-${t}`);
+            if (btn) {
+              if (t === tabName) {
+                btn.classList.remove('bg-gray-100', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+                btn.classList.add('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+              } else {
+                btn.classList.remove('bg-blue-600', 'hover:bg-blue-700', 'text-white');
+                btn.classList.add('bg-gray-100', 'dark:bg-gray-700', 'text-gray-800', 'dark:text-gray-200');
+              }
+            }
+          });
+          
+          // Update content
+          if (statsContent && statsTabs[tabName]) {
+            const statsData = statsTabs[tabName];
+            statsContent.innerHTML = `
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                ${statsData.map(stat => `
+                  <div class="bg-gray-50 dark:bg-gray-700/50 p-4 rounded-lg border border-gray-200 dark:border-gray-600">
+                    <div class="flex items-center justify-between mb-2">
+                      <span class="text-xl">${stat.icon}</span>
+                      ${stat.change ? `
+                        <span class="text-sm font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 px-2 py-1 rounded">
+                          ${stat.change}
+                        </span>
+                      ` : ''}
+                    </div>
+                    <div class="text-sm text-gray-500 dark:text-gray-400">${stat.label}</div>
+                    <div class="text-xl font-bold text-gray-900 dark:text-white mt-1">${stat.value}</div>
+                    ${stat.metric ? `<div class="text-xs text-gray-500 dark:text-gray-400 mt-1">${stat.metric}</div>` : ''}
+                  </div>
+                `).join('')}
+              </div>
+            `;
+          }
+          
+          // Save active tab
+          localStorage.setItem('active_stats_tab', tabName);
+        });
+      }
+    });
+  }
+  
+  // Quick Actions Menu
+  function setupQuickActions() {
+    const btn = document.getElementById('quick-actions-btn');
+    const menu = document.getElementById('quick-actions-menu');
+    
+    if (btn && menu) {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        menu.classList.toggle('hidden');
+      });
+      
+      // Close menu when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !btn.contains(e.target)) {
+          menu.classList.add('hidden');
+        }
+      });
+    }
+  }
+  
+  // Notes Functionality
+  function setupNotes() {
+    const notesTextarea = document.getElementById('notes-textarea');
+    const saveBtn = document.getElementById('save-notes');
+    const clearBtn = document.getElementById('clear-notes');
+    let saveTimeout;
+    
+    if (notesTextarea) {
+      // Auto-save after 5 seconds of inactivity
+      notesTextarea.addEventListener('input', () => {
+        clearTimeout(saveTimeout);
+        saveTimeout = setTimeout(() => {
+          saveNotes();
+        }, 5000);
+      });
+      
+      // Load saved notes
+      const savedNotes = localStorage.getItem('dashboard_notes');
+      if (savedNotes) {
+        notesTextarea.value = savedNotes;
+      }
+    }
+    
+    if (saveBtn) {
+      saveBtn.addEventListener('click', saveNotes);
+    }
+    
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (confirm('Clear all notes?')) {
+          notesTextarea.value = '';
+          localStorage.removeItem('dashboard_notes');
+        }
+      });
+    }
+    
+    function saveNotes() {
+      if (!notesTextarea) return;
+      
+      const notes = notesTextarea.value;
+      localStorage.setItem('dashboard_notes', notes);
+      
+      // Visual feedback
+      const originalText = saveBtn.innerHTML;
+      saveBtn.innerHTML = '<span>✅</span> Saved!';
+      saveBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
+      saveBtn.classList.add('bg-green-600', 'hover:bg-green-700');
+      
+      setTimeout(() => {
+        saveBtn.innerHTML = originalText;
+        saveBtn.classList.remove('bg-green-600', 'hover:bg-green-700');
+        saveBtn.classList.add('bg-blue-600', 'hover:bg-blue-700');
+      }, 1500);
+    }
+  }
+  
+  // Navigation Setup
+  function setupNavigation() {
+    // Home button (already active)
+    document.getElementById('nav-assets')?.addEventListener('click', () => {
+      window.location.href = '/assets';
+    });
+    
+    document.getElementById('nav-analytics')?.addEventListener('click', () => {
+      window.location.href = '/analytics';
+    });
+    
+    document.getElementById('nav-settings')?.addEventListener('click', () => {
+      window.location.href = '/settings';
+    });
+  }
+  
   // Initialize on page load
   document.addEventListener('DOMContentLoaded', () => {
     // Dark mode toggle
@@ -392,27 +687,28 @@ Fed meeting next week</textarea>
     
     // Date/time
     updateDateTime();
-    setInterval(updateDateTime, 60000); // Update every minute
+    setInterval(updateDateTime, 60000);
     
-    // Auto-save notes after 5 seconds of inactivity
-    const notesTextarea = document.getElementById('notes-textarea');
-    let saveTimeout;
+    // Setup all functionality
+    setupStatsTabs();
+    setupQuickActions();
+    setupNotes();
+    setupNavigation();
     
-    if (notesTextarea) {
-      notesTextarea.addEventListener('input', () => {
-        clearTimeout(saveTimeout);
-        saveTimeout = setTimeout(() => {
-          console.log('Auto-saving notes...');
-          // Here you would typically save to localStorage or API
-          localStorage.setItem('dashboard_notes', notesTextarea.value);
-        }, 5000);
+    // Restore active stats tab
+    const activeTab = localStorage.getItem('active_stats_tab') || 'overview';
+    const activeTabBtn = document.getElementById(`stats-tab-${activeTab}`);
+    if (activeTabBtn) activeTabBtn.click();
+    
+    // Logo hover effect
+    const logo = document.querySelector('img[alt="Txchyon Capital Logo"]');
+    if (logo) {
+      logo.addEventListener('mouseenter', () => {
+        logo.classList.add('logo-hover');
       });
-      
-      // Load saved notes
-      const savedNotes = localStorage.getItem('dashboard_notes');
-      if (savedNotes) {
-        notesTextarea.value = savedNotes;
-      }
+      logo.addEventListener('mouseleave', () => {
+        logo.classList.remove('logo-hover');
+      });
     }
   });
 </script>

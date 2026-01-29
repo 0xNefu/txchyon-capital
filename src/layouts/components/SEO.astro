@@ -7,66 +7,167 @@ const {
   image,
   canonical,
   noindex = false,
-  type = "website", // 'website' or 'article'
+  type = "website", // 'website', 'article', 'profile', etc.
   publishedTime,
+  modifiedTime,
   author = "NefuTrades",
-  section = "DeFi", // Changed from "Crypto" to "DeFi"
+  section = "Digital Assets", // Changed from "DeFi" to broader "Digital Assets"
+  tags = [], // Accept custom tags array
+  locale = "en_US",
+  twitterSite = "@NefuTrades",
+  twitterCreator = "@NefuTrades",
 } = Astro.props;
 
-// Simple, direct image URL - NO DOUBLE BASE_URL!
-const finalTitle = title ?? "Txchyon - On-Chain Research & DeFi Alpha";
-const finalDescription = description && description !== "true" ? description : "on-chain research + Defi alpha and Airdrops";
-// Use provided image OR fall back to default
-const finalImage = image ? image : "https://txchyon.com/images/txchyasit.jpg";
+// Clean title and description
+const finalTitle = title ?? "Txchyon Capital - Digital Venture Capital & Asset Management";
+const finalDescription = description && description !== "true" 
+  ? description 
+  : "Txchyon Capital is a digital venture capital and asset management firm specializing in blockchain infrastructure and digital asset innovation.";
 
-// FIXED: Normalize canonical URL - remove trailing slash
-const cleanPath = Astro.url.pathname.replace(/\/$/, ""); // Remove trailing slash
-const finalCanonical = canonical ?? `https://txchyon.com${cleanPath}`;
+// Enhanced image handling with multiple fallbacks and automatic dimensions
+const baseUrl = "https://capital.txchyon.com";
+let finalImage = image;
+
+if (!finalImage) {
+  // Try multiple fallback images in order
+  const fallbackImages = [
+    "/images/social/og-default.jpg",
+    "/images/hero5.jpg",
+    "/images/social/twitter-card.jpg",
+  ];
+  
+  // Use first available image or default to hero5
+  finalImage = `${baseUrl}${fallbackImages.find(img => {
+    return img.includes('hero5');
+  }) || '/images/hero5.jpg'}`;
+}
+
+// Append dimensions to image URL if it's our own domain (for CDN optimization)
+if (finalImage.startsWith(baseUrl)) {
+  finalImage = `${finalImage}?width=1200&height=630&fit=cover`;
+}
+
+// Enhanced canonical URL handling
+const cleanPath = Astro.url.pathname.replace(/\/$/, "");
+const finalCanonical = canonical ?? `${baseUrl}${cleanPath}`;
+
+// UPDATED: Professional tags for private digital VC/asset management
+const defaultTags = [
+  "Digital Assets", 
+  "Bitcoin", 
+  "Blockchain Infrastructure",
+  "Venture Capital", 
+  "Asset Management", 
+  "Portfolio Allocation",
+  "Digital Real Estate", 
+  "Tokenization", 
+  "Smart Contracts",
+  "Decentralized Finance", 
+  "Web3", 
+  "Strategic Investment",
+  "Crypto Assets", 
+  "Fund Management", 
+  "Capital Allocation"
+];
+const finalTags = [...new Set([...defaultTags, ...tags])];
 ---
 
-<!-- Simple, reliable social meta tags -->
-{!noindex && <meta name="robots" content="index, follow" />}
-{noindex && <meta name="robots" content="noindex, nofollow" />}
+<!-- Robots & SEO Directives -->
+{!noindex && <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />}
+{noindex && <meta name="robots" content="noindex, nofollow, noimageindex" />}
 
-<!-- Primary Meta Tags -->
+<!-- SEO Title -->
 <title>{finalTitle}</title>
 <meta name="title" content={finalTitle} />
 <meta name="description" content={finalDescription} />
+<meta name="author" content={author} />
 
 <!-- Open Graph / Facebook -->
+<meta property="og:locale" content={locale} />
 <meta property="og:type" content={type} />
 <meta property="og:url" content={finalCanonical} />
 <meta property="og:title" content={finalTitle} />
 <meta property="og:description" content={finalDescription} />
 <meta property="og:image" content={finalImage} />
+<meta property="og:image:secure_url" content={finalImage.replace('http://', 'https://')} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content={finalTitle} />
-<meta property="og:site_name" content="Txchyon" />
+<meta property="og:image:alt" content={`${finalTitle} - Txchyon Capital`} />
+<meta property="og:image:type" content="image/jpeg" />
+<meta property="og:site_name" content="Txchyon Capital" />
 
-<!-- Additional Open Graph tags for articles -->
+<!-- Additional OG for rich content -->
+<meta property="og:updated_time" content={new Date().toISOString()} />
+<meta property="og:see_also" content="https://twitter.com/NefuTrades" />
+<meta property="og:see_also" content="https://github.com/0xNefu" />
+
+<!-- Article-specific OG tags -->
 {type === 'article' && (
   <>
     {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
     <meta property="article:author" content={author} />
     <meta property="article:section" content={section} />
-    <meta property="article:tag" content="DeFi" />
-    <meta property="article:tag" content="Crypto" />
-    <meta property="article:tag" content="Blockchain" />
-    <meta property="article:tag" content="Airdrops" />
+    <meta property="article:tag" content="Txchyon Capital" />
+    {finalTags.map(tag => (
+      <meta property="article:tag" content={tag} key={tag} />
+    ))}
   </>
 )}
 
-<!-- Twitter - FIXED SYNTAX -->
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={twitterSite} />
+<meta name="twitter:creator" content={twitterCreator} />
 <meta name="twitter:url" content={finalCanonical} />
 <meta name="twitter:title" content={finalTitle} />
 <meta name="twitter:description" content={finalDescription} />
 <meta name="twitter:image" content={finalImage} />
-<meta name="twitter:image:alt" content={finalTitle} />
-<meta name="twitter:site" content="@NefuTrades" />
-<meta name="twitter:creator" content="@NefuTrades" />
+<meta name="twitter:image:alt" content={`${finalTitle} - Txchyon Capital`} />
+<meta name="twitter:label1" content="Category" />
+<meta name="twitter:data1" content={section} />
+<meta name="twitter:label2" content="Author" />
+<meta name="twitter:data2" content={author} />
+
+<!-- Additional Social Platforms -->
+<meta property="linkedin:creator" content={author} />
+<meta property="linkedin:title" content={finalTitle} />
+<meta property="linkedin:description" content={finalDescription} />
+<meta property="linkedin:image" content={finalImage} />
+
+<meta property="og:image:type" content="image/jpeg" />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={finalCanonical} />
 
+<!-- Structured Data (JSON-LD) -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": type === 'article' ? 'Article' : 'WebPage',
+  "headline": finalTitle,
+  "description": finalDescription,
+  "image": finalImage,
+  "url": finalCanonical,
+  "datePublished": publishedTime || new Date().toISOString(),
+  "dateModified": modifiedTime || new Date().toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": author,
+    "url": "https://twitter.com/NefuTrades"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Txchyon Capital",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://capital.txchyon.com/images/logo.png"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": finalCanonical
+  }
+})}></script>
+
+<!-- Additional SEO meta -->
+<meta name="keywords" content={finalTags.join(', ')} />

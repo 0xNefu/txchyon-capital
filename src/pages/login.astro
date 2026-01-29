@@ -9,10 +9,22 @@ if (isAuthenticated && typeof window !== 'undefined') {
 ---
 
 <Base>
-  <section class="min-h-screen bg-black">
-    <div class="container mx-auto px-4 py-20">
+  <section class="min-h-screen bg-black relative overflow-hidden">
+    <!-- Background Image with Opacity -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="/images/hero1.png" 
+        alt="Background" 
+        class="w-full h-full object-cover opacity-80"
+        style="opacity: 0.8;"
+      />
+      <div class="absolute inset-0 bg-black/40"></div>
+    </div>
+    
+    <!-- Content Container -->
+    <div class="container mx-auto px-4 py-20 relative z-10">
       <!-- Back Link -->
-      <a href="/" class="inline-flex items-center gap-2 text-gray-500 hover:text-gray-300 mb-12 transition-colors text-sm">
+      <a href="/" class="inline-flex items-center gap-2 text-gray-300 hover:text-white mb-12 transition-colors text-sm">
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
         </svg>
@@ -29,25 +41,25 @@ if (isAuthenticated && typeof window !== 'undefined') {
             class="h-12 w-auto object-contain opacity-90"
             onerror="this.style.display='none'; document.getElementById('login-fallback-logo').style.display='block';"
           />
-          <div id="login-fallback-logo" class="hidden text-3xl">⚫</div>
+          <div id="login-fallback-logo" class="hidden text-3xl text-white">⚫</div>
         </div>
         
         <!-- Header -->
         <div class="text-center mb-10">
           <h1 class="text-2xl font-light text-white mb-2">System Access</h1>
-          <p class="text-gray-500 text-sm">Internal operating system</p>
+          <p class="text-gray-300 text-sm">Internal operating system</p>
         </div>
         
         <!-- Login Form -->
-        <div class="border border-gray-800 rounded-lg p-8">
+        <div class="border border-gray-700/50 rounded-lg p-8 backdrop-blur-sm bg-black/30">
           <form id="login-form" class="space-y-6">
             <div>
-              <label class="block text-xs text-gray-500 mb-2 uppercase tracking-wider">Access Code</label>
+              <label class="block text-xs text-gray-300 mb-2 uppercase tracking-wider">Access Code</label>
               <input 
                 type="password" 
                 id="password" 
                 placeholder="Enter system passphrase" 
-                class="w-full px-4 py-3 bg-black border border-gray-800 rounded text-white placeholder-gray-600 focus:outline-none focus:border-gray-700 transition-colors text-sm"
+                class="w-full px-4 py-3 bg-black/50 border border-gray-700/70 rounded text-white placeholder-gray-400 focus:outline-none focus:border-gray-500 transition-colors text-sm backdrop-blur-sm"
                 autocomplete="current-password"
                 required
                 autofocus
@@ -56,15 +68,15 @@ if (isAuthenticated && typeof window !== 'undefined') {
             
             <button 
               type="submit" 
-              class="w-full py-3 border border-gray-700 text-gray-300 hover:text-white hover:border-gray-600 rounded transition-colors text-sm"
+              class="w-full py-3 border border-gray-600/70 text-white hover:text-white hover:border-gray-500 rounded transition-colors text-sm backdrop-blur-sm bg-black/30 hover:bg-black/50"
             >
               Authenticate
             </button>
           </form>
           
           <!-- Security Notes -->
-          <div class="mt-10 pt-8 border-t border-gray-800">
-            <div class="space-y-3 text-xs text-gray-500">
+          <div class="mt-10 pt-8 border-t border-gray-700/50">
+            <div class="space-y-3 text-xs text-gray-300">
               <div class="flex items-start gap-2">
                 <span>•</span>
                 <span>End-to-end encrypted connection</span>
@@ -80,7 +92,7 @@ if (isAuthenticated && typeof window !== 'undefined') {
             </div>
             
             <div class="mt-8 text-center">
-              <p class="text-gray-600 text-xs">
+              <p class="text-gray-400 text-xs">
                 For authorized system operators only.
               </p>
             </div>
@@ -89,7 +101,7 @@ if (isAuthenticated && typeof window !== 'undefined') {
         
         <!-- System Status -->
         <div class="mt-8 text-center">
-          <div class="inline-flex items-center gap-2 text-xs text-gray-500">
+          <div class="inline-flex items-center gap-2 text-xs text-gray-300">
             <div class="w-1.5 h-1.5 bg-green-500 rounded-full"></div>
             <span>System: Operational</span>
           </div>
@@ -112,14 +124,14 @@ if (isAuthenticated && typeof window !== 'undefined') {
       // Simple delay for security feel
       setTimeout(() => {
         // UPDATE THIS PASSWORD TO YOUR ACTUAL PASSWORD
-        if (password === 'YOUR_ACTUAL_PASSWORD_HERE') {
+        if (password === 'vibecode2026') {
           localStorage.setItem('capital_dashboard_auth', 'true');
           localStorage.setItem('capital_last_login', new Date().toISOString());
           
           // Success state
           button.textContent = 'Access Granted';
-          button.classList.remove('border-gray-700', 'hover:border-gray-600');
-          button.classList.add('border-green-800', 'text-green-400');
+          button.classList.remove('border-gray-600/70', 'hover:border-gray-500', 'bg-black/30');
+          button.classList.add('border-green-800', 'bg-green-900/20', 'text-green-400');
           
           // Redirect to dashboard
           setTimeout(() => {
@@ -134,11 +146,11 @@ if (isAuthenticated && typeof window !== 'undefined') {
           const input = document.getElementById('password');
           input.value = '';
           input.focus();
-          input.classList.add('border-red-800');
+          input.classList.add('border-red-800', 'bg-red-900/10');
           
           // Reset input border after delay
           setTimeout(() => {
-            input.classList.remove('border-red-800');
+            input.classList.remove('border-red-800', 'bg-red-900/10');
           }, 1000);
         }
       }, 600);
@@ -155,11 +167,17 @@ if (isAuthenticated && typeof window !== 'undefined') {
   /* Minimalist focus styles */
   input:focus {
     outline: none;
-    box-shadow: none;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
   }
   
   /* Smooth transitions */
   * {
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+  
+  /* Ensure content is above background */
+  .relative.z-10 {
+    position: relative;
+    z-index: 10;
   }
 </style>

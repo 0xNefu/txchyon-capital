@@ -8,8 +8,7 @@ const siteConfig = {
   title: "Txchyon Capital",
   description: "Digital Venture Capital & Asset Management",
   siteUrl: "https://capital.txchyon.com",
-  ogImage: "' + $ogImagePath + '",
-  favicon: "/favicon.svg",
+  ogImage: "/images/hero5.jpg", // FIXED: Changed to hero5.jpg
   twitterHandle: "@txchyon"
 };
 
@@ -19,11 +18,8 @@ const pageDescription = Astro.props.description || siteConfig.description;
 const pageImage = Astro.props.image || siteConfig.ogImage;
 const canonicalUrl = Astro.props.canonical || Astro.url.pathname;
 
-// Simple auth check - can be improved later
-const isAuthenticated = () => {
-  if (typeof window === 'undefined') return false;
-  return localStorage.getItem('txchyon_capital_auth') === 'true';
-};
+// Remove trailing slash from canonical URL if present
+const cleanCanonical = canonicalUrl.replace(/\/$/, '');
 ---
 
 <!DOCTYPE html>
@@ -40,14 +36,14 @@ const isAuthenticated = () => {
     <meta name="description" content={pageDescription} />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href={siteConfig.favicon} />
+    <link rel="icon" href="/images/logo.png" type="image/png" />
     
     <!-- Canonical URL -->
-    <link rel="canonical" href={`${siteConfig.siteUrl}${canonicalUrl}`} />
+    <link rel="canonical" href={`${siteConfig.siteUrl}${cleanCanonical}`} />
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={`${siteConfig.siteUrl}${canonicalUrl}`} />
+    <meta property="og:url" content={`${siteConfig.siteUrl}${cleanCanonical}`} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={pageDescription} />
     <meta property="og:image" content={`${siteConfig.siteUrl}${pageImage}`} />
@@ -57,11 +53,11 @@ const isAuthenticated = () => {
     <meta property="og:site_name" content="Txchyon Capital" />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={`${siteConfig.siteUrl}${canonicalUrl}`} />
-    <meta property="twitter:title" content={pageTitle} />
-    <meta property="twitter:description" content={pageDescription} />
-    <meta property="twitter:image" content={`${siteConfig.siteUrl}${pageImage}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={`${siteConfig.siteUrl}${cleanCanonical}`} />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={`${siteConfig.siteUrl}${pageImage}`} />
     <meta name="twitter:site" content={siteConfig.twitterHandle} />
     <meta name="twitter:creator" content={siteConfig.twitterHandle} />
 

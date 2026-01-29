@@ -1152,9 +1152,9 @@ Fed meeting next week</textarea>
     // Store dashboard data globally for export functionality
     window.dashboardData = {
       kpis: JSON.stringify(kpis),
-      assets: JSON.stringify(assets),
-      investments: JSON.stringify(investments),
-      tasks: JSON.stringify(tasks)
+      assets: ${JSON.stringify(assets)},
+      investments: ${JSON.stringify(investments)},
+      tasks: ${JSON.stringify(tasks)}
     };
     
     // Restore active stats tab

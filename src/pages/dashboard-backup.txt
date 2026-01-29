@@ -1,34 +1,34 @@
-﻿---
+---
 import Layout from '../layouts/Base.astro';
 
 // Sample Data - FIXED: Missing object wrapper for 4th KPI
 const kpis = [
-  { title: 'Total Assets Value', value: '$2.8M', change: '+2.4%', icon: 'ðŸ’°' },
-  { title: 'Monthly Cashflow', value: '$85,450', change: '+5.1%', icon: 'ðŸ“Š' },
-  { title: 'Total ROI %', value: '142%', change: '+1.2%', icon: 'ðŸ“ˆ' },
-  { title: 'Active Businesses', value: '5', change: '+1', icon: 'ðŸ¢' },
-  { title: 'Total Leads (monthly)', value: '1,240', change: '+12%', icon: 'ðŸ‘¥' },
+  { title: 'Total Assets Value', value: '$2.8M', change: '+2.4%', icon: '💰' },
+  { title: 'Monthly Cashflow', value: '$85,450', change: '+5.1%', icon: '📊' },
+  { title: 'Total ROI %', value: '142%', change: '+1.2%', icon: '📈' },
+  { title: 'Active Businesses', value: '5', change: '+1', icon: '🏢' },
+  { title: 'Total Leads (monthly)', value: '1,240', change: '+12%', icon: '👥' },
 ];
 
 // Stats tabs data
 const statsTabsData = {
   overview: [
-    { label: 'Monthly Growth', value: '8.2%', change: '+0.5%', icon: 'ðŸ“ˆ' },
-    { label: 'Net Profit Margin', value: '32%', change: '+3.1%', icon: 'ðŸ’¹' },
-    { label: 'Traffic Growth', value: '18.5K', change: '+24%', icon: 'ðŸš€' },
-    { label: 'Avg. Deal Size', value: '$2,450', change: '+$120', icon: 'ðŸ’°' },
+    { label: 'Monthly Growth', value: '8.2%', change: '+0.5%', icon: '📈' },
+    { label: 'Net Profit Margin', value: '32%', change: '+3.1%', icon: '💹' },
+    { label: 'Traffic Growth', value: '18.5K', change: '+24%', icon: '🚀' },
+    { label: 'Avg. Deal Size', value: '$2,450', change: '+$120', icon: '💰' },
   ],
   performance: [
-    { label: 'Best Performer', value: 'DeFi Blog', metric: '+42% ROI', icon: 'ðŸ¥‡' },
-    { label: 'Conversion Rate', value: '4.8%', change: '+0.7%', icon: 'ðŸŽ¯' },
-    { label: 'CAC', value: '$125', change: '-$18', icon: 'ðŸ“‰' },
-    { label: 'LTV', value: '$2,850', change: '+$320', icon: 'ðŸ“Š' },
+    { label: 'Best Performer', value: 'DeFi Blog', metric: '+42% ROI', icon: '🥇' },
+    { label: 'Conversion Rate', value: '4.8%', change: '+0.7%', icon: '🎯' },
+    { label: 'CAC', value: '$125', change: '-$18', icon: '📉' },
+    { label: 'LTV', value: '$2,850', change: '+$320', icon: '📊' },
   ],
   projects: [
-    { label: 'Active Projects', value: '7', icon: 'âš¡' },
-    { label: 'Behind Schedule', value: '2', icon: 'âš ï¸' },
-    { label: 'Completed This Month', value: '4', icon: 'âœ…' },
-    { label: 'Pending Approval', value: '3', icon: 'â³' },
+    { label: 'Active Projects', value: '7', icon: '⚡' },
+    { label: 'Behind Schedule', value: '2', icon: '⚠️' },
+    { label: 'Completed This Month', value: '4', icon: '✅' },
+    { label: 'Pending Approval', value: '3', icon: '⏳' },
   ],
 };
 
@@ -76,7 +76,7 @@ const tasks = {
           onerror="this.style.display='none'; document.getElementById('dashboard-fallback-logo').style.display='block';"
         />
         <div id="dashboard-fallback-logo" class="hidden">
-          <div class="text-4xl">ðŸŒŒ</div>
+          <div class="text-4xl">🌌</div>
         </div>
       </div>
       
@@ -88,19 +88,19 @@ const tasks = {
         <!-- Navigation Tabs - MOBILE FRIENDLY -->
         <div class="flex items-center gap-2 sm:gap-4 mt-2 overflow-x-auto pb-2">
           <button id="nav-home" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm whitespace-nowrap">
-            <span>ðŸ </span>
+            <span>🏠</span>
             <span class="hidden xs:inline">Home</span>
           </button>
           <button id="nav-assets" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm whitespace-nowrap">
-            <span>ðŸ“</span>
+            <span>📁</span>
             <span class="hidden xs:inline">Assets</span>
           </button>
           <button id="nav-analytics" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm whitespace-nowrap">
-            <span>ðŸ“Š</span>
+            <span>📊</span>
             <span class="hidden xs:inline">Analytics</span>
           </button>
           <button id="nav-settings" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm whitespace-nowrap">
-            <span>âš™ï¸</span>
+            <span>⚙️</span>
             <span class="hidden xs:inline">Settings</span>
           </button>
         </div>
@@ -120,7 +120,7 @@ const tasks = {
         <button id="export-btn" 
                 class="px-3 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-sm"
                 title="Export Data">
-          <span>ðŸ“¥</span>
+          <span>📥</span>
           <span class="hidden sm:inline">Export</span>
         </button>
         <div id="export-menu" class="hidden absolute right-0 mt-2 w-56 sm:w-64 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-2 z-20">
@@ -179,21 +179,21 @@ const tasks = {
                 class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
                 aria-label="Quick Actions"
                 title="Quick Actions">
-          <span class="text-lg">âš¡</span>
+          <span class="text-lg">⚡</span>
         </button>
         <div id="quick-actions-menu" class="hidden absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 py-1 z-10">
           <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <span class="mr-2">ðŸ“ˆ</span> Add New Metric
+            <span class="mr-2">📈</span> Add New Metric
           </a>
           <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <span class="mr-2">ðŸ“</span> Create Report
+            <span class="mr-2">📝</span> Create Report
           </a>
           <a href="#" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <span class="mr-2">ðŸŽ¯</span> Set Target
+            <span class="mr-2">🎯</span> Set Target
           </a>
           <div class="border-t border-gray-200 dark:border-gray-700 my-1"></div>
           <a href="/" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
-            <span class="mr-2">â†©ï¸</span> Return to System
+            <span class="mr-2">↩️</span> Return to System
           </a>
         </div>
       </div>
@@ -203,14 +203,14 @@ const tasks = {
               class="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
               aria-label="Toggle dark mode"
               title="Toggle dark/light mode">
-        <span id="theme-icon-sun" class="hidden text-lg">â˜€ï¸</span>
-        <span id="theme-icon-moon" class="text-lg">ðŸŒ™</span>
+        <span id="theme-icon-sun" class="hidden text-lg">☀️</span>
+        <span id="theme-icon-moon" class="text-lg">🌙</span>
       </button>
       
       <!-- Logout Button -->
       <button onclick="logout()" 
               class="px-3 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-sm">
-        <span>ðŸšª</span>
+        <span>🚪</span>
         <span class="hidden sm:inline">Logout</span>
       </button>
     </div>
@@ -281,7 +281,7 @@ const tasks = {
         <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Asset Portfolio</h2>
         <a href="/assets" class="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
           View all
-          <span>â†’</span>
+          <span>→</span>
         </a>
       </div>
       <div class="overflow-x-auto -mx-2 sm:mx-0">
@@ -318,7 +318,7 @@ const tasks = {
         <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Investments</h2>
         <a href="/investments" class="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
           View all
-          <span>â†’</span>
+          <span>→</span>
         </a>
       </div>
       <div class="overflow-x-auto -mx-2 sm:mx-0">
@@ -355,7 +355,7 @@ const tasks = {
         <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Workflow / Tasks</h2>
         <a href="/workflow" class="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
           View all
-          <span>â†’</span>
+          <span>→</span>
         </a>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -416,7 +416,7 @@ const tasks = {
         <h2 class="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">Notes / Alerts</h2>
         <button onclick="document.getElementById('notes-textarea').focus()" class="text-xs sm:text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1">
           Edit
-          <span>âœï¸</span>
+          <span>✏️</span>
         </button>
       </div>
       <textarea 
@@ -440,11 +440,11 @@ BTC testing resistance at $45K
 Fed meeting next week</textarea>
       <div class="flex justify-between items-center mt-4">
         <button id="clear-notes" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-          <span>ðŸ—‘ï¸</span>
+          <span>🗑️</span>
           Clear
         </button>
         <button id="save-notes" class="px-3 py-1.5 sm:px-4 sm:py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
-          <span>ðŸ’¾</span>
+          <span>💾</span>
           Save Notes
         </button>
       </div>
@@ -591,22 +591,22 @@ Fed meeting next week</textarea>
   // Stats tabs data for frontend
   const statsTabs = {
     overview: [
-      { label: 'Monthly Growth', value: '8.2%', change: '+0.5%', icon: 'ðŸ“ˆ' },
-      { label: 'Net Profit Margin', value: '32%', change: '+3.1%', icon: 'ðŸ’¹' },
-      { label: 'Traffic Growth', value: '18.5K', change: '+24%', icon: 'ðŸš€' },
-      { label: 'Avg. Deal Size', value: '$2,450', change: '+$120', icon: 'ðŸ’°' },
+      { label: 'Monthly Growth', value: '8.2%', change: '+0.5%', icon: '📈' },
+      { label: 'Net Profit Margin', value: '32%', change: '+3.1%', icon: '💹' },
+      { label: 'Traffic Growth', value: '18.5K', change: '+24%', icon: '🚀' },
+      { label: 'Avg. Deal Size', value: '$2,450', change: '+$120', icon: '💰' },
     ],
     performance: [
-      { label: 'Best Performer', value: 'DeFi Blog', metric: '+42% ROI', icon: 'ðŸ¥‡' },
-      { label: 'Conversion Rate', value: '4.8%', change: '+0.7%', icon: 'ðŸŽ¯' },
-      { label: 'CAC', value: '$125', change: '-$18', icon: 'ðŸ“‰' },
-      { label: 'LTV', value: '$2,850', change: '+$320', icon: 'ðŸ“Š' },
+      { label: 'Best Performer', value: 'DeFi Blog', metric: '+42% ROI', icon: '🥇' },
+      { label: 'Conversion Rate', value: '4.8%', change: '+0.7%', icon: '🎯' },
+      { label: 'CAC', value: '$125', change: '-$18', icon: '📉' },
+      { label: 'LTV', value: '$2,850', change: '+$320', icon: '📊' },
     ],
     projects: [
-      { label: 'Active Projects', value: '7', icon: 'âš¡' },
-      { label: 'Behind Schedule', value: '2', icon: 'âš ï¸' },
-      { label: 'Completed This Month', value: '4', icon: 'âœ…' },
-      { label: 'Pending Approval', value: '3', icon: 'â³' },
+      { label: 'Active Projects', value: '7', icon: '⚡' },
+      { label: 'Behind Schedule', value: '2', icon: '⚠️' },
+      { label: 'Completed This Month', value: '4', icon: '✅' },
+      { label: 'Pending Approval', value: '3', icon: '⏳' },
     ]
   };
 
@@ -1096,7 +1096,7 @@ Fed meeting next week</textarea>
       
       // Visual feedback
       const originalText = saveBtn.innerHTML;
-      saveBtn.innerHTML = '<span>âœ…</span> Saved!';
+      saveBtn.innerHTML = '<span>✅</span> Saved!';
       saveBtn.classList.remove('bg-blue-600', 'hover:bg-blue-700');
       saveBtn.classList.add('bg-green-600', 'hover:bg-green-700');
       
@@ -1151,10 +1151,10 @@ Fed meeting next week</textarea>
     
     // Store dashboard data globally for export functionality
     window.dashboardData = {
-      kpis: JSON.stringify(kpis),
-      assets: JSON.stringify(assets),
-      investments: JSON.stringify(investments),
-      tasks: JSON.stringify(tasks)
+      kpis: ${JSON.stringify(kpis)},
+      assets: ${JSON.stringify(assets)},
+      investments: ${JSON.stringify(investments)},
+      tasks: ${JSON.stringify(tasks)}
     };
     
     // Restore active stats tab

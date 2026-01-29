@@ -1,0 +1,124 @@
+---
+import Layout from '../layouts/Base.astro';
+import DashboardHeader from '../components/DashboardHeader.astro';
+
+// Sample assets data
+const assets = [
+  { name: 'Txchyon (DeFi Megablog)', type: 'Blog', status: 'Scaling', revenue: '$45,200', traffic: '42.5K/mo', notes: 'Content refresh in Q1' },
+  { name: 'Insurance Megablog', type: 'Blog', status: 'Active', revenue: '$28,500', traffic: '31.2K/mo', notes: 'Lead gen performing well' },
+  { name: 'Roofing Megablog', type: 'Blog', status: 'Active', revenue: '$18,750', traffic: '24.8K/mo', notes: 'Seasonal spike expected' },
+  { name: 'Home Services Megablog', type: 'Blog', status: 'Active', revenue: '$32,500', traffic: '38.7K/mo', notes: 'New funnel testing' },
+  { name: 'Music IP', type: 'IP', status: 'Active', revenue: '$4,500', traffic: 'Royalties', notes: 'Royalties stable' },
+];
+---
+
+<Layout>
+  <DashboardHeader 
+    title="Asset Portfolio" 
+    subtitle="Detailed asset management and performance"
+  />
+  
+  <!-- Asset Filters -->
+  <div class="mb-8 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">All Assets</h2>
+      <div class="flex flex-wrap gap-3">
+        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 text-sm">
+          + Add New Asset
+        </button>
+        <select class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg text-sm">
+          <option>Filter by Type</option>
+          <option>Blog</option>
+          <option>IP</option>
+          <option>Other</option>
+        </select>
+        <select class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg text-sm">
+          <option>Filter by Status</option>
+          <option>Active</option>
+          <option>Scaling</option>
+          <option>Maintenance</option>
+        </select>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Assets Table -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-gray-200 dark:border-gray-700">
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Asset Name</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Type</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Status</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Monthly Revenue</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Traffic</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {assets.map(asset => (
+            <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+              <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.name}</td>
+              <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{asset.type}</td>
+              <td class="py-3">
+                <span class={`px-2 py-1 text-xs font-medium rounded-full ${asset.status === 'Scaling' ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400' : 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-400'}`}>
+                  {asset.status}
+                </span>
+              </td>
+              <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{asset.revenue}</td>
+              <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{asset.traffic}</td>
+              <td class="py-3">
+                <div class="flex gap-2">
+                  <button class="px-3 py-1 text-xs bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-400 rounded hover:bg-blue-200 dark:hover:bg-blue-800/40 transition">
+                    Edit
+                  </button>
+                  <button class="px-3 py-1 text-xs bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+                    View
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    
+    <!-- Pagination -->
+    <div class="flex justify-between items-center mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
+      <div class="text-sm text-gray-500 dark:text-gray-400">
+        Showing 1-5 of 5 assets
+      </div>
+      <div class="flex gap-2">
+        <button class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+          Previous
+        </button>
+        <button class="px-3 py-1 bg-blue-600 text-white rounded text-sm">
+          1
+        </button>
+        <button class="px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300 rounded text-sm hover:bg-gray-200 dark:hover:bg-gray-600 transition">
+          Next
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Asset Metrics -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+      <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Total Asset Value</div>
+      <div class="text-2xl font-bold text-gray-900 dark:text-white">$129,450</div>
+      <div class="text-xs text-green-600 dark:text-green-400 mt-1">+12.4% from last month</div>
+    </div>
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+      <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Monthly Growth</div>
+      <div class="text-2xl font-bold text-gray-900 dark:text-white">8.2%</div>
+      <div class="text-xs text-green-600 dark:text-green-400 mt-1">+1.5% from target</div>
+    </div>
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+      <div class="text-sm text-gray-500 dark:text-gray-400 mb-2">Active Assets</div>
+      <div class="text-2xl font-bold text-gray-900 dark:text-white">5</div>
+      <div class="text-xs text-gray-500 dark:text-gray-400 mt-1">All performing above target</div>
+    </div>
+  </div>
+</Layout>

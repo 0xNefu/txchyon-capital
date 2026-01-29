@@ -1,0 +1,120 @@
+---
+import Layout from '../layouts/Base.astro';
+import DashboardHeader from '../components/DashboardHeader.astro';
+
+// Sample analytics data
+const trafficData = [
+  { source: 'Organic Search', visitors: '42.5K', growth: '+12%', conversion: '4.2%' },
+  { source: 'Direct', visitors: '18.3K', growth: '+8%', conversion: '5.1%' },
+  { source: 'Social Media', visitors: '12.7K', growth: '+24%', conversion: '3.8%' },
+  { source: 'Referral', visitors: '8.9K', growth: '+5%', conversion: '4.5%' },
+  { source: 'Email', visitors: '6.4K', growth: '+15%', conversion: '6.2%' },
+];
+
+const metrics = [
+  { label: 'Avg. Session Duration', value: '4m 32s', change: '+0.5m' },
+  { label: 'Bounce Rate', value: '42%', change: '-3%' },
+  { label: 'Pages/Session', value: '3.8', change: '+0.4' },
+  { label: 'New Visitors', value: '68%', change: '+7%' },
+];
+---
+
+<Layout>
+  <DashboardHeader 
+    title="Analytics Dashboard" 
+    subtitle="Performance metrics and insights"
+  />
+  
+  <!-- Date Range Selector -->
+  <div class="mb-8 bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+      <h2 class="text-xl font-semibold text-gray-900 dark:text-white">Performance Overview</h2>
+      <div class="flex items-center gap-3">
+        <select class="px-4 py-2 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-lg text-sm">
+          <option>Last 7 days</option>
+          <option>Last 30 days</option>
+          <option>Last quarter</option>
+          <option>Year to date</option>
+        </select>
+        <button class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200 text-sm">
+          Export Report
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Key Metrics -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+    {metrics.map(metric => (
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700">
+        <div class="text-sm text-gray-500 dark:text-gray-400">{metric.label}</div>
+        <div class="text-2xl font-bold text-gray-900 dark:text-white mt-1">{metric.value}</div>
+        <div class={`text-xs mt-1 ${metric.change.startsWith('+') ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
+          {metric.change} from previous period
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  <!-- Traffic Sources -->
+  <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6 mb-8">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-6">Traffic Sources</h3>
+    <div class="overflow-x-auto">
+      <table class="w-full">
+        <thead>
+          <tr class="border-b border-gray-200 dark:border-gray-700">
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Source</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Visitors</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Growth</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Conversion</th>
+            <th class="text-left py-3 text-sm font-medium text-gray-500 dark:text-gray-400">Trend</th>
+          </tr>
+        </thead>
+        <tbody>
+          {trafficData.map(source => (
+            <tr class="border-b border-gray-100 dark:border-gray-700/50 hover:bg-gray-50 dark:hover:bg-gray-700/30 transition-colors">
+              <td class="py-3 text-sm font-medium text-gray-900 dark:text-white">{source.source}</td>
+              <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{source.visitors}</td>
+              <td class="py-3">
+                <span class="text-sm font-medium text-green-600 dark:text-green-400">
+                  {source.growth}
+                </span>
+              </td>
+              <td class="py-3 text-sm text-gray-500 dark:text-gray-400">{source.conversion}</td>
+              <td class="py-3">
+                <div class="h-2 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div class="h-full bg-green-500 rounded-full" style={{ width: `${parseInt(source.conversion) * 15}%` }}></div>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Charts Placeholder -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Traffic Overview</h3>
+      <div class="h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+        <div class="text-center">
+          <div class="text-3xl mb-2">📈</div>
+          <div>Chart visualization would appear here</div>
+          <div class="text-sm mt-1">(Integration with Chart.js or similar)</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-6">
+      <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-4">Conversion Funnel</h3>
+      <div class="h-64 flex items-center justify-center text-gray-400 dark:text-gray-500 border-2 border-dashed border-gray-300 dark:border-gray-600 rounded-lg">
+        <div class="text-center">
+          <div class="text-3xl mb-2">🎯</div>
+          <div>Conversion funnel visualization</div>
+          <div class="text-sm mt-1">(Integration with analytics library)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>
